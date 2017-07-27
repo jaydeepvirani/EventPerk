@@ -1,0 +1,6 @@
+framework module YIPopupTextView {
+  umbrella header "YIPopupTextView-umbrella.h"
+
+  export *
+  module * { export * }
+}

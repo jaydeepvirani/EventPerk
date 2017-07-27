@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "8B53574A5772AB8CA90D63F3BDCF0F1018F0010F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "B87068084D648BE880F4BF599A6E86D64C765CEA" : 9223372036854775807,
+    "8B53574A5772AB8CA90D63F3BDCF0F1018F0010F" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "DEDD2ED4-BB2E-4BDA-B52A-9615249D9E51",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "B87068084D648BE880F4BF599A6E86D64C765CEA" : "..\/..\/..\/Volumes\/Data\/Development\/bitbucket\/DoyenGo_App\/doyengo_driver",
+    "8B53574A5772AB8CA90D63F3BDCF0F1018F0010F" : "eventperk\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Eventperk",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Eventperk\/Eventperk.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/eventperkteam\/eventperk.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8B53574A5772AB8CA90D63F3BDCF0F1018F0010F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/crayonsolution\/doyengo_driver.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B87068084D648BE880F4BF599A6E86D64C765CEA"
+    }
+  ]
+}

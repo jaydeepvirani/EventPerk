@@ -166,7 +166,7 @@ class EPAuthViewController: EPBaseViewController
 //        passwordAuthFieldView.textField.text = "qwerQWER"
 //            emailAuthFieldView.textField.text = "gangajaliya.sandeep@gmail.com"
 //            emailAuthFieldView.textField.text = "siddharth.b.shukla@gmail.com"
-            passwordAuthFieldView.textField.text = "Admin123"
+//            passwordAuthFieldView.textField.text = "Admin123"
         #endif
 
         

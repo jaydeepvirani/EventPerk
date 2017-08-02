@@ -165,6 +165,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Please allow us access to use Camera.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allow to get your address</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Please allow us access to use Media Library.</string>
 	<key>UIAppFonts</key>

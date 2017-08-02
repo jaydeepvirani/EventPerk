@@ -11,13 +11,18 @@ import RealmSwift
 import IQKeyboardManagerSwift
 import AWSCognitoIdentityProvider
 import AWSMobileHubHelper
+import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,RDVTabBarControllerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, RDVTabBarControllerDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
     var isVendor: Bool?
     var storyBoard: UIStoryboard?
+    
+    let locationManager = CLLocationManager()
+    var latitude = 0.0
+    var longitude = 0.0
     
     var dictUserDetail = NSMutableDictionary()
 
@@ -32,9 +37,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,RDVTabBarControllerDelegat
         if UserDefaults.standard.value(forKey: "UserDetail") != nil {
             
             let unarchivedObject = UserDefaults.standard.object(forKey: "UserDetail") as? NSData
-            dictUserDetail = NSKeyedUnarchiver.unarchiveObject(with: unarchivedObject as! Data) as! NSMutableDictionary
-//            print("User detail = ",dictUserDetail)
+            dictUserDetail = NSKeyedUnarchiver.unarchiveObject(with: unarchivedObject! as Data) as! NSMutableDictionary
         }
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
         
         return AWSMobileClient.sharedInstance.didFinishLaunching(application, withOptions: launchOptions)
     }
@@ -206,6 +215,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate,RDVTabBarControllerDelegat
     }
     
     func tabBarController(_ tabBarController: RDVTabBarController!, didSelect index: Int) {
+        
+    }
+    
+    //MARK:- Location Manager Delegate
+    
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        latitude = manager.location!.coordinate.latitude
+        longitude = manager.location!.coordinate.longitude
+        
+        print("latitude = \(latitude)")
+        print("longitude = \(longitude)")
+        
+        locationManager.stopUpdatingLocation()
+    }
+    
+    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         
     }
 }

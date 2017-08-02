@@ -4,22 +4,6 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Eventperk/Classes/ViewControllers/HomeViewController/EventViewController.swift"
-            timestampString = "521719965.202097"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
@@ -67,13 +51,13 @@
                   symbolName = "Eventperk.EditProfileViewController.insertSampleDataWithCompletionHandler ((Swift.Optional&lt;Swift.Array&lt;__ObjC.NSError&gt;&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "Eventperk"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Sandeep/Desktop/Sandeep/Current%20Running/Eventperk%20-%20Module%202%20(Latest)/Eventperk/Classes/ViewControllers/HomeViewController/EditProfileViewController.swift"
-                  timestampString = "522762151.705055"
+                  urlString = "file:///Users/Sandeep/Desktop/Sandeep/Current%20Running/EventPerk/Eventperk%20-%20Module%202%20(Latest)/Eventperk/Classes/ViewControllers/HomeViewController/EditProfileViewController.swift"
+                  timestampString = "523362420.549168"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "516"
                   endingLineNumber = "516"
-                  offsetFromSymbolStart = "12737">
+                  offsetFromSymbolStart = "12612">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -82,8 +66,8 @@
                   symbolName = "Eventperk.EditProfileViewController.(insertSampleDataWithCompletionHandler ((Swift.Optional&lt;Swift.Array&lt;__ObjC.NSError&gt;&gt;) -&gt; ()) -&gt; ()).(closure #2)"
                   moduleName = "Eventperk"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Sandeep/Desktop/Sandeep/Current%20Running/Eventperk%20-%20Module%202%20(Latest)/Eventperk/Classes/ViewControllers/HomeViewController/EditProfileViewController.swift"
-                  timestampString = "522762151.707676"
+                  urlString = "file:///Users/Sandeep/Desktop/Sandeep/Current%20Running/EventPerk/Eventperk%20-%20Module%202%20(Latest)/Eventperk/Classes/ViewControllers/HomeViewController/EditProfileViewController.swift"
+                  timestampString = "523362420.553204"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "478"

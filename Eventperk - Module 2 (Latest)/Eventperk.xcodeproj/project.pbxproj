@@ -8,7 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		2C38167C1F2888BA00B1A363 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C38167B1F2888BA00B1A363 /* Constants.swift */; };
+		2C3880B81F31C10400B747ED /* CreateEventStep5VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3880B71F31C10400B747ED /* CreateEventStep5VC.swift */; };
 		2C3F307A1F18B9C6001FAA4B /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3F30791F18B9C5001FAA4B /* UserProfile.swift */; };
+		2C4A3BB51F3076640047D22E /* CreateEventStep2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A3BB41F3076640047D22E /* CreateEventStep2VC.swift */; };
+		2C4A3BB71F308A750047D22E /* CreateEventStep3VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A3BB61F308A750047D22E /* CreateEventStep3VC.swift */; };
+		2C4A3BB91F309CD20047D22E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4A3BB81F309CD20047D22E /* MapKit.framework */; };
+		2C4A3BBB1F309E030047D22E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4A3BBA1F309E030047D22E /* CoreLocation.framework */; };
+		2C53ECB11F2F588C002B8916 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53ECB01F2F588C002B8916 /* EventViewController.swift */; };
+		2C53ECB31F2F76BB002B8916 /* CreateEventStep1VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53ECB21F2F76BB002B8916 /* CreateEventStep1VC.swift */; };
+		2CBB50341F30CB5100765115 /* CreateEventStep4VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBB50331F30CB5100765115 /* CreateEventStep4VC.swift */; };
 		2CC41E631F2731450008B343 /* ObjectiveCMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC41E621F2731450008B343 /* ObjectiveCMethods.m */; };
 		2CE2157E1F16695300E81728 /* AAPopUp+Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE2157B1F16695300E81728 /* AAPopUp+Global.swift */; };
 		2CE2157F1F16695300E81728 /* AAPopUp+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE2157C1F16695300E81728 /* AAPopUp+Helper.swift */; };
@@ -63,7 +71,6 @@
 		EEA915B51EAA187200892743 /* CommonController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA915B41EAA187200892743 /* CommonController.m */; };
 		EEA915BA1EAA203A00892743 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA915B91EAA203A00892743 /* ExploreViewController.swift */; };
 		EEA915BC1EAA20AD00892743 /* LikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA915BB1EAA20AD00892743 /* LikeViewController.swift */; };
-		EEA915BE1EAA20BB00892743 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA915BD1EAA20BB00892743 /* EventViewController.swift */; };
 		EEA915C01EAA20D200892743 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA915BF1EAA20D200892743 /* InboxViewController.swift */; };
 		EEA915C21EAA20DF00892743 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA915C11EAA20DF00892743 /* ProfileViewController.swift */; };
 		EEB191A61EB862E900CEC946 /* ViewAllEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB191A41EB862E900CEC946 /* ViewAllEventsViewController.swift */; };
@@ -88,7 +95,15 @@
 /* Begin PBXFileReference section */
 		1725062A1E994FB300CFC1B7 /* Eventperk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Eventperk.entitlements; sourceTree = "<group>"; };
 		2C38167B1F2888BA00B1A363 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2C3880B71F31C10400B747ED /* CreateEventStep5VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventStep5VC.swift; sourceTree = "<group>"; };
 		2C3F30791F18B9C5001FAA4B /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		2C4A3BB41F3076640047D22E /* CreateEventStep2VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventStep2VC.swift; sourceTree = "<group>"; };
+		2C4A3BB61F308A750047D22E /* CreateEventStep3VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventStep3VC.swift; sourceTree = "<group>"; };
+		2C4A3BB81F309CD20047D22E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		2C4A3BBA1F309E030047D22E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		2C53ECB01F2F588C002B8916 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		2C53ECB21F2F76BB002B8916 /* CreateEventStep1VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventStep1VC.swift; sourceTree = "<group>"; };
+		2CBB50331F30CB5100765115 /* CreateEventStep4VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventStep4VC.swift; sourceTree = "<group>"; };
 		2CC41E611F2731450008B343 /* ObjectiveCMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCMethods.h; sourceTree = "<group>"; };
 		2CC41E621F2731450008B343 /* ObjectiveCMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCMethods.m; sourceTree = "<group>"; };
 		2CE2157B1F16695300E81728 /* AAPopUp+Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AAPopUp+Global.swift"; sourceTree = "<group>"; };
@@ -157,7 +172,6 @@
 		EEA915B41EAA187200892743 /* CommonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonController.m; sourceTree = "<group>"; };
 		EEA915B91EAA203A00892743 /* ExploreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		EEA915BB1EAA20AD00892743 /* LikeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeViewController.swift; sourceTree = "<group>"; };
-		EEA915BD1EAA20BB00892743 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		EEA915BF1EAA20D200892743 /* InboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
 		EEA915C11EAA20DF00892743 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EEB191A41EB862E900CEC946 /* ViewAllEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAllEventsViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +200,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C4A3BBB1F309E030047D22E /* CoreLocation.framework in Frameworks */,
+				2C4A3BB91F309CD20047D22E /* MapKit.framework in Frameworks */,
 				35F44B281E8DA80A00D95F22 /* SystemConfiguration.framework in Frameworks */,
 				35F44B261E8DA73B00D95F22 /* SafariServices.framework in Frameworks */,
 				795629163F56FF9958B4BBDB /* Pods_Eventperk.framework in Frameworks */,
@@ -218,6 +234,19 @@
 			children = (
 			);
 			path = NoSQLTables;
+			sourceTree = "<group>";
+		};
+		2C53ECAF1F2F588C002B8916 /* EventViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2C53ECB01F2F588C002B8916 /* EventViewController.swift */,
+				2C53ECB21F2F76BB002B8916 /* CreateEventStep1VC.swift */,
+				2C4A3BB41F3076640047D22E /* CreateEventStep2VC.swift */,
+				2C4A3BB61F308A750047D22E /* CreateEventStep3VC.swift */,
+				2CBB50331F30CB5100765115 /* CreateEventStep4VC.swift */,
+				2C3880B71F31C10400B747ED /* CreateEventStep5VC.swift */,
+			);
+			path = EventViewController;
 			sourceTree = "<group>";
 		};
 		2CC41E601F2731450008B343 /* ObjectiveCMethods */ = {
@@ -344,9 +373,10 @@
 			isa = PBXGroup;
 			children = (
 				2CE215811F1669F700E81728 /* Auth */,
+				2C53ECAF1F2F588C002B8916 /* EventViewController */,
 				EEC4D93D1EC2D460000E7E15 /* VendorViewController */,
-				771898411EB45A5900FF9D31 /* MenuViewController */,
 				EEA915B61EAA1B9500892743 /* HomeViewController */,
+				771898411EB45A5900FF9D31 /* MenuViewController */,
 				35FE070F1E81B84A00255602 /* Base */,
 				357C85A31E92D20B00D99863 /* EPNextViewController.swift */,
 			);
@@ -433,6 +463,8 @@
 		96E63BFCB967C1BA878C9073 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C4A3BBA1F309E030047D22E /* CoreLocation.framework */,
+				2C4A3BB81F309CD20047D22E /* MapKit.framework */,
 				35F44B271E8DA80A00D95F22 /* SystemConfiguration.framework */,
 				35F44B251E8DA73B00D95F22 /* SafariServices.framework */,
 				35FE07271E81D1FC00255602 /* libsqlite3.tbd */,
@@ -481,7 +513,6 @@
 				EE9A2CB71EC5F20A00509569 /* NumberVeryfyViewController */,
 				EEA915B91EAA203A00892743 /* ExploreViewController.swift */,
 				EEA915BB1EAA20AD00892743 /* LikeViewController.swift */,
-				EEA915BD1EAA20BB00892743 /* EventViewController.swift */,
 				EEA915BF1EAA20D200892743 /* InboxViewController.swift */,
 				EEA915C11EAA20DF00892743 /* ProfileViewController.swift */,
 				EED89AA11EB75332009155E0 /* ProfileViewController.xib */,
@@ -634,7 +665,7 @@
 		};
 		C56B0A623B9AFDA923DD3990 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -674,7 +705,6 @@
 				2CE2158D1F1669F700E81728 /* EPSignUp1ViewController.swift in Sources */,
 				35FE07151E81B91000255602 /* EPNavigationViewController.swift in Sources */,
 				EED89AA51EB75E1E009155E0 /* PhotoCollectionViewCell.swift in Sources */,
-				EEA915BE1EAA20BB00892743 /* EventViewController.swift in Sources */,
 				EEC4D9471EC2D4FC000E7E15 /* VendorRevenuesViewController.swift in Sources */,
 				EEA915B51EAA187200892743 /* CommonController.m in Sources */,
 				EE9A2CBF1EC5F2C000509569 /* AddNumberViewController.swift in Sources */,
@@ -686,6 +716,7 @@
 				35746F991E8C17860043F14E /* EPInfoView.swift in Sources */,
 				35FE07211E81CE0000255602 /* AWSMobileClient.swift in Sources */,
 				35FE071C1E81C26900255602 /* EPAuthFieldView.swift in Sources */,
+				2CBB50341F30CB5100765115 /* CreateEventStep4VC.swift in Sources */,
 				2CE2158B1F1669F700E81728 /* EPForgotPasswordViewController.swift in Sources */,
 				35A037871E844BFB00D1F43F /* EPRoundButton.swift in Sources */,
 				2CE2157F1F16695300E81728 /* AAPopUp+Helper.swift in Sources */,
@@ -694,10 +725,12 @@
 				EEA915BA1EAA203A00892743 /* ExploreViewController.swift in Sources */,
 				2CE2158A1F1669F700E81728 /* EPAuthViewController.swift in Sources */,
 				35FE07201E81CE0000255602 /* AWSConfiguration.swift in Sources */,
+				2C3880B81F31C10400B747ED /* CreateEventStep5VC.swift in Sources */,
 				2C38167C1F2888BA00B1A363 /* Constants.swift in Sources */,
 				2CE215971F166DCE00E81728 /* Helpers.swift in Sources */,
 				EE62A50C1EB30EEE00E2C6E1 /* RDVTabBarController.m in Sources */,
 				EE62A50D1EB30EEE00E2C6E1 /* RDVTabBarItem.m in Sources */,
+				2C4A3BB71F308A750047D22E /* CreateEventStep3VC.swift in Sources */,
 				2CE2158F1F1669F700E81728 /* EPSignUp3ViewController.swift in Sources */,
 				357562DB1E8D9F3F00360F38 /* EPUser.swift in Sources */,
 				35FE06F51E81B36300255602 /* AppDelegate.swift in Sources */,
@@ -705,6 +738,7 @@
 				2CE215801F16695300E81728 /* AAPopUp.swift in Sources */,
 				357C85A41E92D20B00D99863 /* EPNextViewController.swift in Sources */,
 				EEB191AA1EB88AD900CEC946 /* FollowViewController.swift in Sources */,
+				2C53ECB11F2F588C002B8916 /* EventViewController.swift in Sources */,
 				7718984A1EB45A5900FF9D31 /* SliderMenuController.m in Sources */,
 				7751C8501EB33041001B13C1 /* PGDrawerTransition.m in Sources */,
 				35D7AF2E1E82E55F00758DBB /* EPAuthButtonView.swift in Sources */,
@@ -713,12 +747,14 @@
 				35F44B2A1E8DAD2C00D95F22 /* ApiManager.swift in Sources */,
 				EEA915BC1EAA20AD00892743 /* LikeViewController.swift in Sources */,
 				EEC4D94F1EC30DDD000E7E15 /* AboutEditViewController.swift in Sources */,
+				2C4A3BB51F3076640047D22E /* CreateEventStep2VC.swift in Sources */,
 				EEC4D94B1EC2D51C000E7E15 /* ServicesViewController.swift in Sources */,
 				EED89AA01EB73527009155E0 /* CALayer+RuntimeAttribute.m in Sources */,
 				2C3F307A1F18B9C6001FAA4B /* UserProfile.swift in Sources */,
 				35FE07111E81B85B00255602 /* EPBaseViewController.swift in Sources */,
 				EEC4D9431EC2D4DE000E7E15 /* VendorRequestViewController.swift in Sources */,
 				2CE215911F1669F700E81728 /* EPSignUpConfirmationViewController.swift in Sources */,
+				2C53ECB31F2F76BB002B8916 /* CreateEventStep1VC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

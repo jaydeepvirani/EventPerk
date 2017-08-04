@@ -74,7 +74,8 @@
 		EE91516C1F3342CC00358205 /* EventDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91516B1F3342CC00358205 /* EventDescriptionVC.swift */; };
 		EE9151711F3351E600358205 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91516E1F3351E600358205 /* CustomTextField.swift */; };
 		EE9151721F3351E600358205 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9151701F3351E600358205 /* UIPlaceHolderTextView.m */; };
-		EE9151741F337FDC00358205 /* EventServiceListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9151731F337FDC00358205 /* EventServiceListVC.swift */; };
+		EE9151761F3448EC00358205 /* EventServiceListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9151751F3448EC00358205 /* EventServiceListVC.swift */; };
+		EE9151781F3453CA00358205 /* LikedEventServicesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9151771F3453CA00358205 /* LikedEventServicesVC.swift */; };
 		EE9A2CBF1EC5F2C000509569 /* AddNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A2CBD1EC5F2C000509569 /* AddNumberViewController.swift */; };
 		EE9A2CC01EC5F2C000509569 /* AddNumberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE9A2CBE1EC5F2C000509569 /* AddNumberViewController.xib */; };
 		EEA915B51EAA187200892743 /* CommonController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA915B41EAA187200892743 /* CommonController.m */; };
@@ -191,7 +192,8 @@
 		EE91516E1F3351E600358205 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		EE91516F1F3351E600358205 /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
 		EE9151701F3351E600358205 /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
-		EE9151731F337FDC00358205 /* EventServiceListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventServiceListVC.swift; sourceTree = "<group>"; };
+		EE9151751F3448EC00358205 /* EventServiceListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventServiceListVC.swift; sourceTree = "<group>"; };
+		EE9151771F3453CA00358205 /* LikedEventServicesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedEventServicesVC.swift; sourceTree = "<group>"; };
 		EE9A2CBD1EC5F2C000509569 /* AddNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNumberViewController.swift; sourceTree = "<group>"; };
 		EE9A2CBE1EC5F2C000509569 /* AddNumberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNumberViewController.xib; sourceTree = "<group>"; };
 		EEA915B21EAA187100892743 /* Eventperk-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Eventperk-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -273,7 +275,8 @@
 				2CBB50331F30CB5100765115 /* CreateEventStep4VC.swift */,
 				2C3880B71F31C10400B747ED /* CreateEventStep5VC.swift */,
 				EE91516B1F3342CC00358205 /* EventDescriptionVC.swift */,
-				EE9151731F337FDC00358205 /* EventServiceListVC.swift */,
+				EE9151751F3448EC00358205 /* EventServiceListVC.swift */,
+				EE9151771F3453CA00358205 /* LikedEventServicesVC.swift */,
 			);
 			path = EventViewController;
 			sourceTree = "<group>";
@@ -821,11 +824,12 @@
 				EED89AA01EB73527009155E0 /* CALayer+RuntimeAttribute.m in Sources */,
 				2C3F307A1F18B9C6001FAA4B /* UserProfile.swift in Sources */,
 				35FE07111E81B85B00255602 /* EPBaseViewController.swift in Sources */,
-				EE9151741F337FDC00358205 /* EventServiceListVC.swift in Sources */,
+				EE9151761F3448EC00358205 /* EventServiceListVC.swift in Sources */,
 				EEC4D9431EC2D4DE000E7E15 /* VendorRequestViewController.swift in Sources */,
 				2CE215911F1669F700E81728 /* EPSignUpConfirmationViewController.swift in Sources */,
 				2C53ECB31F2F76BB002B8916 /* CreateEventStep1VC.swift in Sources */,
 				EE27C8081F32760B00F7CC73 /* NSString+Levenshtein.m in Sources */,
+				EE9151781F3453CA00358205 /* LikedEventServicesVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

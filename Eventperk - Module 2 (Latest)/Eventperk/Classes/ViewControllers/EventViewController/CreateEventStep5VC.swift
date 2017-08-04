@@ -16,6 +16,8 @@ class CreateEventStep5VC: UIViewController {
     
     @IBOutlet var tblAttributes: UITableView!
     
+    @IBOutlet var constNoteViewHeight: NSLayoutConstraint!
+    
     //MARK: Other Objects
     var dictCreateEventDetail = NSMutableDictionary()
     var arrAttributes = NSMutableArray()
@@ -23,8 +25,24 @@ class CreateEventStep5VC: UIViewController {
     //MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(dictCreateEventDetail)
         self.initialization()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        print(dictCreateEventDetail)
+        
+        if dictCreateEventDetail.value(forKey: "EventAttributes") != nil {
+            arrAttributes = dictCreateEventDetail.value(forKey: "EventAttributes") as! NSMutableArray
+            
+            if (arrAttributes.object(at: 0) as! NSMutableDictionary).value(forKey: "EventTitle") != nil {
+                constNoteViewHeight.constant = 0
+            }
+        }else{
+            self.createAttributes()
+        }
+        
+        tblAttributes.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -33,13 +51,12 @@ class CreateEventStep5VC: UIViewController {
     
     //MARK:- Initialization
     func initialization() {
-        btnPreview.layer.cornerRadius = 8
+        btnPreview.layer.cornerRadius = 10
         
         tblAttributes.rowHeight  = UITableViewAutomaticDimension
         tblAttributes.estimatedRowHeight = 80
-        
-        self.createAttributes()
     }
+    
     
     //MARK:- Button TouchUp
     @IBAction func btnBackAction (_ sender: UIButton) {
@@ -56,10 +73,29 @@ class CreateEventStep5VC: UIViewController {
         let cell:AttributesTableCell = tableView.dequeueReusableCell(withIdentifier: "AttributesTableCell", for: indexPath as IndexPath) as! AttributesTableCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         
-        cell.lblAttributeName.text = (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as? String
-        cell.lblAttributeDescription.text = (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeDescription") as? String
+        let dictRowData = arrAttributes.object(at: indexPath.row) as! NSMutableDictionary
+        
+        if indexPath.row == 0 {
+            if dictRowData.value(forKey: "EventTitle") != nil  {
+                cell.lblAttributeName.text = dictRowData.value(forKey: "EventTitle") as? String
+                cell.lblAttributeDescription.text = dictRowData.value(forKey: "DescriptionWhenAttributeChanged") as? String
+            }else{
+                cell.lblAttributeName.text = dictRowData.value(forKey: "AttributeTitle") as? String
+                cell.lblAttributeDescription.text = dictRowData.value(forKey: "AttributeDescription") as? String
+            }
+        }else{
+            cell.lblAttributeName.text = dictRowData.value(forKey: "AttributeTitle") as? String
+            cell.lblAttributeDescription.text = dictRowData.value(forKey: "AttributeDescription") as? String
+        }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+        if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Event Description" {
+            
+            self.performSegue(withIdentifier: "eventDescriptionSegue", sender: nil)
+        }
     }
     
     //MARK:- Create Attribute Array
@@ -67,6 +103,7 @@ class CreateEventStep5VC: UIViewController {
         var dictAttribute = NSMutableDictionary()
         dictAttribute.setValue("Event Description", forKey: "AttributeTitle")
         dictAttribute.setValue("Input name and highlights of your event", forKey: "AttributeDescription")
+        dictAttribute.setValue("Edit name and highlights of your event", forKey: "DescriptionWhenAttributeChanged")
         arrAttributes.add(dictAttribute)
         
         dictAttribute = NSMutableDictionary()
@@ -90,6 +127,21 @@ class CreateEventStep5VC: UIViewController {
         dictAttribute.setValue("Sourcing Settings", forKey: "AttributeTitle")
         dictAttribute.setValue("Other vendors must send engagement requests", forKey: "AttributeDescription")
         arrAttributes.add(dictAttribute)
+        
+        dictCreateEventDetail.setValue(arrAttributes, forKey: "EventAttributes")
+    }
+    
+    // MARK:- Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "eventDescriptionSegue" {
+            
+            let vc: EventDescriptionVC = segue.destination as! EventDescriptionVC
+            vc.dictCreateEventDetail = dictCreateEventDetail
+        }else if segue.identifier == "eventServiceListSegue" {
+            let vc: EventServiceListVC = segue.destination as! EventServiceListVC
+            vc.dictCreateEventDetail = dictCreateEventDetail
+        }
     }
 }
 

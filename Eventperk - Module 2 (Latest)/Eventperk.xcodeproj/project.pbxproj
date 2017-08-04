@@ -63,9 +63,18 @@
 		7718984B1EB45A5900FF9D31 /* SliderMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 771898471EB45A5900FF9D31 /* SliderMenuController.xib */; };
 		7751C8501EB33041001B13C1 /* PGDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 7751C84F1EB33041001B13C1 /* PGDrawerTransition.m */; };
 		795629163F56FF9958B4BBDB /* Pods_Eventperk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D718F6924C0C0F51BFF4B03E /* Pods_Eventperk.framework */; };
+		EE27C8061F32760B00F7CC73 /* MLPAutoCompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EE27C7FA1F32760B00F7CC73 /* MLPAutoCompleteTextField.m */; };
+		EE27C8071F32760B00F7CC73 /* MVPlaceSearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EE27C7FF1F32760B00F7CC73 /* MVPlaceSearchTextField.m */; };
+		EE27C8081F32760B00F7CC73 /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = EE27C8011F32760B00F7CC73 /* NSString+Levenshtein.m */; };
+		EE27C8091F32760B00F7CC73 /* PlaceDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = EE27C8031F32760B00F7CC73 /* PlaceDetail.m */; };
+		EE27C80A1F32760B00F7CC73 /* PlaceObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EE27C8051F32760B00F7CC73 /* PlaceObject.m */; };
 		EE62A50B1EB30EEE00E2C6E1 /* RDVTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62A5061EB30EEE00E2C6E1 /* RDVTabBar.m */; };
 		EE62A50C1EB30EEE00E2C6E1 /* RDVTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62A5081EB30EEE00E2C6E1 /* RDVTabBarController.m */; };
 		EE62A50D1EB30EEE00E2C6E1 /* RDVTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62A50A1EB30EEE00E2C6E1 /* RDVTabBarItem.m */; };
+		EE91516C1F3342CC00358205 /* EventDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91516B1F3342CC00358205 /* EventDescriptionVC.swift */; };
+		EE9151711F3351E600358205 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91516E1F3351E600358205 /* CustomTextField.swift */; };
+		EE9151721F3351E600358205 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9151701F3351E600358205 /* UIPlaceHolderTextView.m */; };
+		EE9151741F337FDC00358205 /* EventServiceListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9151731F337FDC00358205 /* EventServiceListVC.swift */; };
 		EE9A2CBF1EC5F2C000509569 /* AddNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A2CBD1EC5F2C000509569 /* AddNumberViewController.swift */; };
 		EE9A2CC01EC5F2C000509569 /* AddNumberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE9A2CBE1EC5F2C000509569 /* AddNumberViewController.xib */; };
 		EEA915B51EAA187200892743 /* CommonController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA915B41EAA187200892743 /* CommonController.m */; };
@@ -159,12 +168,30 @@
 		7751C84E1EB33041001B13C1 /* PGDrawerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGDrawerTransition.h; sourceTree = "<group>"; };
 		7751C84F1EB33041001B13C1 /* PGDrawerTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGDrawerTransition.m; sourceTree = "<group>"; };
 		D718F6924C0C0F51BFF4B03E /* Pods_Eventperk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eventperk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE27C7F91F32760B00F7CC73 /* MLPAutoCompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompleteTextField.h; sourceTree = "<group>"; };
+		EE27C7FA1F32760B00F7CC73 /* MLPAutoCompleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLPAutoCompleteTextField.m; sourceTree = "<group>"; };
+		EE27C7FB1F32760B00F7CC73 /* MLPAutoCompleteTextFieldDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompleteTextFieldDataSource.h; sourceTree = "<group>"; };
+		EE27C7FC1F32760B00F7CC73 /* MLPAutoCompleteTextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompleteTextFieldDelegate.h; sourceTree = "<group>"; };
+		EE27C7FD1F32760B00F7CC73 /* MLPAutoCompletionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompletionObject.h; sourceTree = "<group>"; };
+		EE27C7FE1F32760B00F7CC73 /* MVPlaceSearchTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVPlaceSearchTextField.h; sourceTree = "<group>"; };
+		EE27C7FF1F32760B00F7CC73 /* MVPlaceSearchTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVPlaceSearchTextField.m; sourceTree = "<group>"; };
+		EE27C8001F32760B00F7CC73 /* NSString+Levenshtein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Levenshtein.h"; sourceTree = "<group>"; };
+		EE27C8011F32760B00F7CC73 /* NSString+Levenshtein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Levenshtein.m"; sourceTree = "<group>"; };
+		EE27C8021F32760B00F7CC73 /* PlaceDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceDetail.h; sourceTree = "<group>"; };
+		EE27C8031F32760B00F7CC73 /* PlaceDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceDetail.m; sourceTree = "<group>"; };
+		EE27C8041F32760B00F7CC73 /* PlaceObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceObject.h; sourceTree = "<group>"; };
+		EE27C8051F32760B00F7CC73 /* PlaceObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceObject.m; sourceTree = "<group>"; };
 		EE62A5051EB30EEE00E2C6E1 /* RDVTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVTabBar.h; sourceTree = "<group>"; };
 		EE62A5061EB30EEE00E2C6E1 /* RDVTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBar.m; sourceTree = "<group>"; };
 		EE62A5071EB30EEE00E2C6E1 /* RDVTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVTabBarController.h; sourceTree = "<group>"; };
 		EE62A5081EB30EEE00E2C6E1 /* RDVTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBarController.m; sourceTree = "<group>"; };
 		EE62A5091EB30EEE00E2C6E1 /* RDVTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVTabBarItem.h; sourceTree = "<group>"; };
 		EE62A50A1EB30EEE00E2C6E1 /* RDVTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBarItem.m; sourceTree = "<group>"; };
+		EE91516B1F3342CC00358205 /* EventDescriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDescriptionVC.swift; sourceTree = "<group>"; };
+		EE91516E1F3351E600358205 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		EE91516F1F3351E600358205 /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
+		EE9151701F3351E600358205 /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
+		EE9151731F337FDC00358205 /* EventServiceListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventServiceListVC.swift; sourceTree = "<group>"; };
 		EE9A2CBD1EC5F2C000509569 /* AddNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNumberViewController.swift; sourceTree = "<group>"; };
 		EE9A2CBE1EC5F2C000509569 /* AddNumberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNumberViewController.xib; sourceTree = "<group>"; };
 		EEA915B21EAA187100892743 /* Eventperk-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Eventperk-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -245,6 +272,8 @@
 				2C4A3BB61F308A750047D22E /* CreateEventStep3VC.swift */,
 				2CBB50331F30CB5100765115 /* CreateEventStep4VC.swift */,
 				2C3880B71F31C10400B747ED /* CreateEventStep5VC.swift */,
+				EE91516B1F3342CC00358205 /* EventDescriptionVC.swift */,
+				EE9151731F337FDC00358205 /* EventServiceListVC.swift */,
 			);
 			path = EventViewController;
 			sourceTree = "<group>";
@@ -346,6 +375,7 @@
 		35FE07071E81B7F100255602 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				EE27C7F81F32760B00F7CC73 /* MLPAutoCompleteTextField */,
 				35F44B291E8DAD2C00D95F22 /* ApiManager.swift */,
 				357562D91E8D9F2500360F38 /* Models */,
 				2C3F307B1F18BBFE001FAA4B /* NoSQLTables */,
@@ -364,6 +394,7 @@
 		35FE07091E81B7F100255602 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				EE91516D1F3351E600358205 /* CustomText */,
 				2CE215961F166DCE00E81728 /* Helpers.swift */,
 			);
 			path = Helpers;
@@ -474,6 +505,27 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EE27C7F81F32760B00F7CC73 /* MLPAutoCompleteTextField */ = {
+			isa = PBXGroup;
+			children = (
+				EE27C7F91F32760B00F7CC73 /* MLPAutoCompleteTextField.h */,
+				EE27C7FA1F32760B00F7CC73 /* MLPAutoCompleteTextField.m */,
+				EE27C7FB1F32760B00F7CC73 /* MLPAutoCompleteTextFieldDataSource.h */,
+				EE27C7FC1F32760B00F7CC73 /* MLPAutoCompleteTextFieldDelegate.h */,
+				EE27C7FD1F32760B00F7CC73 /* MLPAutoCompletionObject.h */,
+				EE27C7FE1F32760B00F7CC73 /* MVPlaceSearchTextField.h */,
+				EE27C7FF1F32760B00F7CC73 /* MVPlaceSearchTextField.m */,
+				EE27C8001F32760B00F7CC73 /* NSString+Levenshtein.h */,
+				EE27C8011F32760B00F7CC73 /* NSString+Levenshtein.m */,
+				EE27C8021F32760B00F7CC73 /* PlaceDetail.h */,
+				EE27C8031F32760B00F7CC73 /* PlaceDetail.m */,
+				EE27C8041F32760B00F7CC73 /* PlaceObject.h */,
+				EE27C8051F32760B00F7CC73 /* PlaceObject.m */,
+			);
+			name = MLPAutoCompleteTextField;
+			path = Eventperk/Classes/Helpers/MLPAutoCompleteTextField;
+			sourceTree = SOURCE_ROOT;
+		};
 		EE62A5031EB30EEE00E2C6E1 /* 3rdPartyController */ = {
 			isa = PBXGroup;
 			children = (
@@ -496,6 +548,16 @@
 				EE62A50A1EB30EEE00E2C6E1 /* RDVTabBarItem.m */,
 			);
 			path = RDVTabBarController;
+			sourceTree = "<group>";
+		};
+		EE91516D1F3351E600358205 /* CustomText */ = {
+			isa = PBXGroup;
+			children = (
+				EE91516E1F3351E600358205 /* CustomTextField.swift */,
+				EE91516F1F3351E600358205 /* UIPlaceHolderTextView.h */,
+				EE9151701F3351E600358205 /* UIPlaceHolderTextView.m */,
+			);
+			path = CustomText;
 			sourceTree = "<group>";
 		};
 		EE9A2CB71EC5F20A00509569 /* NumberVeryfyViewController */ = {
@@ -708,6 +770,7 @@
 				EEC4D9471EC2D4FC000E7E15 /* VendorRevenuesViewController.swift in Sources */,
 				EEA915B51EAA187200892743 /* CommonController.m in Sources */,
 				EE9A2CBF1EC5F2C000509569 /* AddNumberViewController.swift in Sources */,
+				EE91516C1F3342CC00358205 /* EventDescriptionVC.swift in Sources */,
 				2CC41E631F2731450008B343 /* ObjectiveCMethods.m in Sources */,
 				771898481EB45A5900FF9D31 /* MenuTableViewCell.m in Sources */,
 				EEA915C01EAA20D200892743 /* InboxViewController.swift in Sources */,
@@ -717,6 +780,7 @@
 				35FE07211E81CE0000255602 /* AWSMobileClient.swift in Sources */,
 				35FE071C1E81C26900255602 /* EPAuthFieldView.swift in Sources */,
 				2CBB50341F30CB5100765115 /* CreateEventStep4VC.swift in Sources */,
+				EE9151711F3351E600358205 /* CustomTextField.swift in Sources */,
 				2CE2158B1F1669F700E81728 /* EPForgotPasswordViewController.swift in Sources */,
 				35A037871E844BFB00D1F43F /* EPRoundButton.swift in Sources */,
 				2CE2157F1F16695300E81728 /* AAPopUp+Helper.swift in Sources */,
@@ -724,6 +788,7 @@
 				EEB191A61EB862E900CEC946 /* ViewAllEventsViewController.swift in Sources */,
 				EEA915BA1EAA203A00892743 /* ExploreViewController.swift in Sources */,
 				2CE2158A1F1669F700E81728 /* EPAuthViewController.swift in Sources */,
+				EE27C80A1F32760B00F7CC73 /* PlaceObject.m in Sources */,
 				35FE07201E81CE0000255602 /* AWSConfiguration.swift in Sources */,
 				2C3880B81F31C10400B747ED /* CreateEventStep5VC.swift in Sources */,
 				2C38167C1F2888BA00B1A363 /* Constants.swift in Sources */,
@@ -741,20 +806,26 @@
 				2C53ECB11F2F588C002B8916 /* EventViewController.swift in Sources */,
 				7718984A1EB45A5900FF9D31 /* SliderMenuController.m in Sources */,
 				7751C8501EB33041001B13C1 /* PGDrawerTransition.m in Sources */,
+				EE27C8071F32760B00F7CC73 /* MVPlaceSearchTextField.m in Sources */,
 				35D7AF2E1E82E55F00758DBB /* EPAuthButtonView.swift in Sources */,
 				EE62A50B1EB30EEE00E2C6E1 /* RDVTabBar.m in Sources */,
 				EED89AA91EB768A6009155E0 /* EditProfileViewController.swift in Sources */,
 				35F44B2A1E8DAD2C00D95F22 /* ApiManager.swift in Sources */,
 				EEA915BC1EAA20AD00892743 /* LikeViewController.swift in Sources */,
+				EE27C8091F32760B00F7CC73 /* PlaceDetail.m in Sources */,
 				EEC4D94F1EC30DDD000E7E15 /* AboutEditViewController.swift in Sources */,
+				EE9151721F3351E600358205 /* UIPlaceHolderTextView.m in Sources */,
 				2C4A3BB51F3076640047D22E /* CreateEventStep2VC.swift in Sources */,
 				EEC4D94B1EC2D51C000E7E15 /* ServicesViewController.swift in Sources */,
+				EE27C8061F32760B00F7CC73 /* MLPAutoCompleteTextField.m in Sources */,
 				EED89AA01EB73527009155E0 /* CALayer+RuntimeAttribute.m in Sources */,
 				2C3F307A1F18B9C6001FAA4B /* UserProfile.swift in Sources */,
 				35FE07111E81B85B00255602 /* EPBaseViewController.swift in Sources */,
+				EE9151741F337FDC00358205 /* EventServiceListVC.swift in Sources */,
 				EEC4D9431EC2D4DE000E7E15 /* VendorRequestViewController.swift in Sources */,
 				2CE215911F1669F700E81728 /* EPSignUpConfirmationViewController.swift in Sources */,
 				2C53ECB31F2F76BB002B8916 /* CreateEventStep1VC.swift in Sources */,
+				EE27C8081F32760B00F7CC73 /* NSString+Levenshtein.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

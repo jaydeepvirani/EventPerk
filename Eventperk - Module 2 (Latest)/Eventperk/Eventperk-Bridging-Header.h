@@ -9,3 +9,6 @@
 #import "SliderMenuController.h"
 #import "CALayer+RuntimeAttribute.h"
 #import "ObjectiveCMethods.h"
+#import "MVPlaceSearchTextField.h"
+#import "MLPAutoCompleteTextField.h"
+#import "UIPlaceHolderTextView.h"

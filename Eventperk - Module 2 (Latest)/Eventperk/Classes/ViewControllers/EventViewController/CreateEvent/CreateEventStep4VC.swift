@@ -62,6 +62,10 @@ class CreateEventStep4VC: UIViewController {
         }else{
             btnNoVenue.isSelected = true
         }
+        
+        if dictCreateEventDetail.value(forKey: "EventAttributes") != nil {
+            dictCreateEventDetail.removeObject(forKey: "EventAttributes")
+        }
     }
     
     // MARK:- Segue

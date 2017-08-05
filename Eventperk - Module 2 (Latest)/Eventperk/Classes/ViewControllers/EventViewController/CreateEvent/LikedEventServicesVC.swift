@@ -95,9 +95,12 @@ class LikedEventServicesVC: UIViewController {
         
         cell.btnAddToEvent.layer.cornerRadius = 10
         
+        cell.lblTitle.attributedText = self.attributedString(string1: "$ 290 SGD", string2: " Entire Dessert Setup", size: 14.0)
+        cell.lblReview.attributedText = self.attributedString(string1: "16", string2: " Reviews", size: 13.0)
+        
         return cell
     }
-    
+        
     //MARK:- Tabs
     func createTabArray() {
         
@@ -116,21 +119,16 @@ class LikedEventServicesVC: UIViewController {
     }
     
     //MARK:- Attributed String
-    
-    func attributedString() {
-        var font = UIFont(name: "Helvetica-Bold", size: 14.0)
-        var attrsDictionary: [AnyHashable: Any] = [ NSFontAttributeName : font ]
-        var attrString = NSMutableAttributedString(string: str1, attributes: attrsDictionary as? [String : Any] ?? [String : Any]())
-        font = UIFont(name: "Helvetica", size: 14.0)
-        attrsDictionary = [ NSFontAttributeName : font ]
-        var newAttString = NSAttributedString(string: str2, attributes: attrsDictionary as? [String : Any] ?? [String : Any]())
+    func attributedString(string1: String, string2: String, size: Float) -> NSAttributedString {
+        var font = UIFont.boldSystemFont(ofSize: CGFloat(size))//UIFont(name: "Arial-Bold", size: 14.0)
+        var attrsDictionary: [AnyHashable: Any] = [NSFontAttributeName : font]
+        let attrString = NSMutableAttributedString(string: string1, attributes: attrsDictionary as? [String : Any] ?? [String : Any]())
+        font = UIFont.systemFont(ofSize: CGFloat(size))//UIFont(name: "Arial", size: 14.0)!
+        attrsDictionary = [ NSFontAttributeName : font]
+        let newAttString = NSAttributedString(string: string2, attributes: attrsDictionary as? [String : Any] ?? [String : Any]())
         attrString.append(newAttString)
-        attrString.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: (attrString.string as NSString).range(of: str1))
-        attrString.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: (attrString.string as NSString).range(of: str2))
-
+        return attrString
     }
-    
-    
 }
 
 class LikedEventServicesCollectionCell: UICollectionViewCell {
@@ -140,6 +138,9 @@ class LikedEventServicesCollectionCell: UICollectionViewCell {
 }
 
 class LikedEventServicesTableCell: UITableViewCell {
+    
+    @IBOutlet var lblTitle: UILabel!
+    @IBOutlet var lblReview: UILabel!
     
     @IBOutlet var btnAddToEvent: UIButton!
     @IBOutlet weak var viewRating: CosmosView!

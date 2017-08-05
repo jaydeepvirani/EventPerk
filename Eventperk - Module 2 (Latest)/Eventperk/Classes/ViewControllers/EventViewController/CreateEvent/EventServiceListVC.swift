@@ -59,8 +59,9 @@ class EventServiceListVC: UIViewController {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath){
-        
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+        tblService.tag = indexPath.row
+        self.performSegue(withIdentifier: "eventSubServiceListSegue", sender: nil)
     }
     
     //MARK:- Service Array
@@ -68,23 +69,30 @@ class EventServiceListVC: UIViewController {
         
         var dictService = NSMutableDictionary()
         dictService.setValue("Add Food & Bevrages Services", forKey: "ServiceTitle")
+        dictService.setValue("Food & Bevrages Services", forKey: "SubServiceTitle")
         arrServiceList.add(dictService)
         
         dictService = NSMutableDictionary()
         dictService.setValue("Add Entertainment Services", forKey: "ServiceTitle")
+        dictService.setValue("Entertainment Services", forKey: "SubServiceTitle")
         arrServiceList.add(dictService)
         
         dictService = NSMutableDictionary()
         dictService.setValue("Add Lifestyle Services", forKey: "ServiceTitle")
+        dictService.setValue("Lifestyle Services", forKey: "SubServiceTitle")
         arrServiceList.add(dictService)
         
         dictService = NSMutableDictionary()
         dictService.setValue("Add Facility Services", forKey: "ServiceTitle")
+        dictService.setValue("Facility Services", forKey: "SubServiceTitle")
         arrServiceList.add(dictService)
         
-        dictService = NSMutableDictionary()
-        dictService.setValue("Add Venue Services", forKey: "ServiceTitle")
-        arrServiceList.add(dictService)
+        if dictCreateEventDetail.value(forKey: "HaveVenue") as! String == "true" {
+            dictService = NSMutableDictionary()
+            dictService.setValue("Add Venue Services", forKey: "ServiceTitle")
+            dictService.setValue("Venue Services", forKey: "SubServiceTitle")
+            arrServiceList.add(dictService)
+        }
     }
     
     // MARK:- Segue
@@ -94,6 +102,11 @@ class EventServiceListVC: UIViewController {
             
             let vc: LikedEventServicesVC = segue.destination as! LikedEventServicesVC
             vc.dictCreateEventDetail = dictCreateEventDetail
+        }else if segue.identifier == "eventSubServiceListSegue" {
+            
+            let vc: EventSubServiceList = segue.destination as! EventSubServiceList
+            vc.dictCreateEventDetail = dictCreateEventDetail
+            vc.strSelectedSubService = (arrServiceList.object(at: tblService.tag) as! NSMutableDictionary).value(forKey: "SubServiceTitle") as! String
         }
     }
 }

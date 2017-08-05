@@ -8,15 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2C38167C1F2888BA00B1A363 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C38167B1F2888BA00B1A363 /* Constants.swift */; };
-		2C3880B81F31C10400B747ED /* CreateEventStep5VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3880B71F31C10400B747ED /* CreateEventStep5VC.swift */; };
 		2C3F307A1F18B9C6001FAA4B /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3F30791F18B9C5001FAA4B /* UserProfile.swift */; };
-		2C4A3BB51F3076640047D22E /* CreateEventStep2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A3BB41F3076640047D22E /* CreateEventStep2VC.swift */; };
-		2C4A3BB71F308A750047D22E /* CreateEventStep3VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A3BB61F308A750047D22E /* CreateEventStep3VC.swift */; };
 		2C4A3BB91F309CD20047D22E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4A3BB81F309CD20047D22E /* MapKit.framework */; };
 		2C4A3BBB1F309E030047D22E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4A3BBA1F309E030047D22E /* CoreLocation.framework */; };
 		2C53ECB11F2F588C002B8916 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53ECB01F2F588C002B8916 /* EventViewController.swift */; };
-		2C53ECB31F2F76BB002B8916 /* CreateEventStep1VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53ECB21F2F76BB002B8916 /* CreateEventStep1VC.swift */; };
-		2CBB50341F30CB5100765115 /* CreateEventStep4VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBB50331F30CB5100765115 /* CreateEventStep4VC.swift */; };
 		2CC41E631F2731450008B343 /* ObjectiveCMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC41E621F2731450008B343 /* ObjectiveCMethods.m */; };
 		2CE2157E1F16695300E81728 /* AAPopUp+Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE2157B1F16695300E81728 /* AAPopUp+Global.swift */; };
 		2CE2157F1F16695300E81728 /* AAPopUp+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE2157C1F16695300E81728 /* AAPopUp+Helper.swift */; };
@@ -87,11 +82,17 @@
 		EE7973F81F35B0EC0042E236 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE7973E81F35B0EC0042E236 /* Info.plist */; };
 		EE7973F91F35B0EC0042E236 /* StarFillMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7973E91F35B0EC0042E236 /* StarFillMode.swift */; };
 		EE7973FA1F35B0EC0042E236 /* StarLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7973EA1F35B0EC0042E236 /* StarLayer.swift */; };
-		EE91516C1F3342CC00358205 /* EventDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91516B1F3342CC00358205 /* EventDescriptionVC.swift */; };
+		EE7974091F35CBC60042E236 /* CreateEventStep1VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7974001F35CBC60042E236 /* CreateEventStep1VC.swift */; };
+		EE79740A1F35CBC70042E236 /* CreateEventStep2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7974011F35CBC60042E236 /* CreateEventStep2VC.swift */; };
+		EE79740B1F35CBC70042E236 /* CreateEventStep3VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7974021F35CBC60042E236 /* CreateEventStep3VC.swift */; };
+		EE79740C1F35CBC70042E236 /* CreateEventStep4VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7974031F35CBC60042E236 /* CreateEventStep4VC.swift */; };
+		EE79740D1F35CBC70042E236 /* CreateEventStep5VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7974041F35CBC60042E236 /* CreateEventStep5VC.swift */; };
+		EE79740E1F35CBC70042E236 /* EventDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7974051F35CBC60042E236 /* EventDescriptionVC.swift */; };
+		EE79740F1F35CBC70042E236 /* EventServiceListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7974061F35CBC60042E236 /* EventServiceListVC.swift */; };
+		EE7974101F35CBC70042E236 /* EventSubServiceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7974071F35CBC60042E236 /* EventSubServiceList.swift */; };
+		EE7974111F35CBC70042E236 /* LikedEventServicesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7974081F35CBC60042E236 /* LikedEventServicesVC.swift */; };
 		EE9151711F3351E600358205 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91516E1F3351E600358205 /* CustomTextField.swift */; };
 		EE9151721F3351E600358205 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9151701F3351E600358205 /* UIPlaceHolderTextView.m */; };
-		EE9151761F3448EC00358205 /* EventServiceListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9151751F3448EC00358205 /* EventServiceListVC.swift */; };
-		EE9151781F3453CA00358205 /* LikedEventServicesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9151771F3453CA00358205 /* LikedEventServicesVC.swift */; };
 		EE9A2CBF1EC5F2C000509569 /* AddNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A2CBD1EC5F2C000509569 /* AddNumberViewController.swift */; };
 		EE9A2CC01EC5F2C000509569 /* AddNumberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE9A2CBE1EC5F2C000509569 /* AddNumberViewController.xib */; };
 		EEA915B51EAA187200892743 /* CommonController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA915B41EAA187200892743 /* CommonController.m */; };
@@ -121,15 +122,10 @@
 /* Begin PBXFileReference section */
 		1725062A1E994FB300CFC1B7 /* Eventperk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Eventperk.entitlements; sourceTree = "<group>"; };
 		2C38167B1F2888BA00B1A363 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		2C3880B71F31C10400B747ED /* CreateEventStep5VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventStep5VC.swift; sourceTree = "<group>"; };
 		2C3F30791F18B9C5001FAA4B /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
-		2C4A3BB41F3076640047D22E /* CreateEventStep2VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventStep2VC.swift; sourceTree = "<group>"; };
-		2C4A3BB61F308A750047D22E /* CreateEventStep3VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventStep3VC.swift; sourceTree = "<group>"; };
 		2C4A3BB81F309CD20047D22E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2C4A3BBA1F309E030047D22E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2C53ECB01F2F588C002B8916 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
-		2C53ECB21F2F76BB002B8916 /* CreateEventStep1VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventStep1VC.swift; sourceTree = "<group>"; };
-		2CBB50331F30CB5100765115 /* CreateEventStep4VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventStep4VC.swift; sourceTree = "<group>"; };
 		2CC41E611F2731450008B343 /* ObjectiveCMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCMethods.h; sourceTree = "<group>"; };
 		2CC41E621F2731450008B343 /* ObjectiveCMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCMethods.m; sourceTree = "<group>"; };
 		2CE2157B1F16695300E81728 /* AAPopUp+Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AAPopUp+Global.swift"; sourceTree = "<group>"; };
@@ -221,12 +217,18 @@
 		EE7973E81F35B0EC0042E236 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE7973E91F35B0EC0042E236 /* StarFillMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarFillMode.swift; sourceTree = "<group>"; };
 		EE7973EA1F35B0EC0042E236 /* StarLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarLayer.swift; sourceTree = "<group>"; };
-		EE91516B1F3342CC00358205 /* EventDescriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDescriptionVC.swift; sourceTree = "<group>"; };
+		EE7974001F35CBC60042E236 /* CreateEventStep1VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventStep1VC.swift; sourceTree = "<group>"; };
+		EE7974011F35CBC60042E236 /* CreateEventStep2VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventStep2VC.swift; sourceTree = "<group>"; };
+		EE7974021F35CBC60042E236 /* CreateEventStep3VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventStep3VC.swift; sourceTree = "<group>"; };
+		EE7974031F35CBC60042E236 /* CreateEventStep4VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventStep4VC.swift; sourceTree = "<group>"; };
+		EE7974041F35CBC60042E236 /* CreateEventStep5VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventStep5VC.swift; sourceTree = "<group>"; };
+		EE7974051F35CBC60042E236 /* EventDescriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDescriptionVC.swift; sourceTree = "<group>"; };
+		EE7974061F35CBC60042E236 /* EventServiceListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventServiceListVC.swift; sourceTree = "<group>"; };
+		EE7974071F35CBC60042E236 /* EventSubServiceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventSubServiceList.swift; sourceTree = "<group>"; };
+		EE7974081F35CBC60042E236 /* LikedEventServicesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedEventServicesVC.swift; sourceTree = "<group>"; };
 		EE91516E1F3351E600358205 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		EE91516F1F3351E600358205 /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
 		EE9151701F3351E600358205 /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
-		EE9151751F3448EC00358205 /* EventServiceListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventServiceListVC.swift; sourceTree = "<group>"; };
-		EE9151771F3453CA00358205 /* LikedEventServicesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedEventServicesVC.swift; sourceTree = "<group>"; };
 		EE9A2CBD1EC5F2C000509569 /* AddNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNumberViewController.swift; sourceTree = "<group>"; };
 		EE9A2CBE1EC5F2C000509569 /* AddNumberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNumberViewController.xib; sourceTree = "<group>"; };
 		EEA915B21EAA187100892743 /* Eventperk-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Eventperk-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -302,14 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				2C53ECB01F2F588C002B8916 /* EventViewController.swift */,
-				2C53ECB21F2F76BB002B8916 /* CreateEventStep1VC.swift */,
-				2C4A3BB41F3076640047D22E /* CreateEventStep2VC.swift */,
-				2C4A3BB61F308A750047D22E /* CreateEventStep3VC.swift */,
-				2CBB50331F30CB5100765115 /* CreateEventStep4VC.swift */,
-				2C3880B71F31C10400B747ED /* CreateEventStep5VC.swift */,
-				EE91516B1F3342CC00358205 /* EventDescriptionVC.swift */,
-				EE9151751F3448EC00358205 /* EventServiceListVC.swift */,
-				EE9151771F3453CA00358205 /* LikedEventServicesVC.swift */,
+				EE7973FF1F35CBC60042E236 /* CreateEvent */,
 			);
 			path = EventViewController;
 			sourceTree = "<group>";
@@ -619,6 +614,22 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		EE7973FF1F35CBC60042E236 /* CreateEvent */ = {
+			isa = PBXGroup;
+			children = (
+				EE7974001F35CBC60042E236 /* CreateEventStep1VC.swift */,
+				EE7974011F35CBC60042E236 /* CreateEventStep2VC.swift */,
+				EE7974021F35CBC60042E236 /* CreateEventStep3VC.swift */,
+				EE7974031F35CBC60042E236 /* CreateEventStep4VC.swift */,
+				EE7974041F35CBC60042E236 /* CreateEventStep5VC.swift */,
+				EE7974051F35CBC60042E236 /* EventDescriptionVC.swift */,
+				EE7974061F35CBC60042E236 /* EventServiceListVC.swift */,
+				EE7974081F35CBC60042E236 /* LikedEventServicesVC.swift */,
+				EE7974071F35CBC60042E236 /* EventSubServiceList.swift */,
+			);
+			path = CreateEvent;
+			sourceTree = "<group>";
+		};
 		EE91516D1F3351E600358205 /* CustomText */ = {
 			isa = PBXGroup;
 			children = (
@@ -832,15 +843,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE79740F1F35CBC70042E236 /* EventServiceListVC.swift in Sources */,
 				35D7AF321E82F91E00758DBB /* EPInputView.swift in Sources */,
 				2CE2157E1F16695300E81728 /* AAPopUp+Global.swift in Sources */,
 				2CE2158D1F1669F700E81728 /* EPSignUp1ViewController.swift in Sources */,
 				35FE07151E81B91000255602 /* EPNavigationViewController.swift in Sources */,
 				EED89AA51EB75E1E009155E0 /* PhotoCollectionViewCell.swift in Sources */,
 				EEC4D9471EC2D4FC000E7E15 /* VendorRevenuesViewController.swift in Sources */,
+				EE7974111F35CBC70042E236 /* LikedEventServicesVC.swift in Sources */,
 				EEA915B51EAA187200892743 /* CommonController.m in Sources */,
 				EE9A2CBF1EC5F2C000509569 /* AddNumberViewController.swift in Sources */,
-				EE91516C1F3342CC00358205 /* EventDescriptionVC.swift in Sources */,
 				2CC41E631F2731450008B343 /* ObjectiveCMethods.m in Sources */,
 				EE7973F21F35B0EC0042E236 /* CosmosSize.swift in Sources */,
 				771898481EB45A5900FF9D31 /* MenuTableViewCell.m in Sources */,
@@ -852,34 +864,37 @@
 				35FE07211E81CE0000255602 /* AWSMobileClient.swift in Sources */,
 				EE7973F91F35B0EC0042E236 /* StarFillMode.swift in Sources */,
 				35FE071C1E81C26900255602 /* EPAuthFieldView.swift in Sources */,
-				2CBB50341F30CB5100765115 /* CreateEventStep4VC.swift in Sources */,
 				EE9151711F3351E600358205 /* CustomTextField.swift in Sources */,
 				2CE2158B1F1669F700E81728 /* EPForgotPasswordViewController.swift in Sources */,
 				EE7973F11F35B0EC0042E236 /* CosmosSettings.swift in Sources */,
 				35A037871E844BFB00D1F43F /* EPRoundButton.swift in Sources */,
+				EE79740B1F35CBC70042E236 /* CreateEventStep3VC.swift in Sources */,
 				2CE2157F1F16695300E81728 /* AAPopUp+Helper.swift in Sources */,
+				EE79740D1F35CBC70042E236 /* CreateEventStep5VC.swift in Sources */,
 				EE7973F01F35B0EC0042E236 /* CosmosRating.swift in Sources */,
 				EEA915C21EAA20DF00892743 /* ProfileViewController.swift in Sources */,
+				EE7974101F35CBC70042E236 /* EventSubServiceList.swift in Sources */,
 				EE7973F31F35B0EC0042E236 /* CosmosText.swift in Sources */,
+				EE7974091F35CBC60042E236 /* CreateEventStep1VC.swift in Sources */,
 				EEB191A61EB862E900CEC946 /* ViewAllEventsViewController.swift in Sources */,
 				EEA915BA1EAA203A00892743 /* ExploreViewController.swift in Sources */,
 				2CE2158A1F1669F700E81728 /* EPAuthViewController.swift in Sources */,
 				EE27C80A1F32760B00F7CC73 /* PlaceObject.m in Sources */,
 				35FE07201E81CE0000255602 /* AWSConfiguration.swift in Sources */,
 				EE7973EC1F35B0EC0042E236 /* CosmosDefaultSettings.swift in Sources */,
-				2C3880B81F31C10400B747ED /* CreateEventStep5VC.swift in Sources */,
 				2C38167C1F2888BA00B1A363 /* Constants.swift in Sources */,
 				2CE215971F166DCE00E81728 /* Helpers.swift in Sources */,
 				EE62A50C1EB30EEE00E2C6E1 /* RDVTabBarController.m in Sources */,
 				EE7973F51F35B0EC0042E236 /* CosmosView.swift in Sources */,
 				EE62A50D1EB30EEE00E2C6E1 /* RDVTabBarItem.m in Sources */,
-				2C4A3BB71F308A750047D22E /* CreateEventStep3VC.swift in Sources */,
 				EE7973ED1F35B0EC0042E236 /* CosmosLayerHelper.swift in Sources */,
 				2CE2158F1F1669F700E81728 /* EPSignUp3ViewController.swift in Sources */,
 				357562DB1E8D9F3F00360F38 /* EPUser.swift in Sources */,
+				EE79740A1F35CBC70042E236 /* CreateEventStep2VC.swift in Sources */,
 				35FE06F51E81B36300255602 /* AppDelegate.swift in Sources */,
 				2CE215901F1669F700E81728 /* EPSignUp4ViewController.swift in Sources */,
 				EE7973EF1F35B0EC0042E236 /* CosmosLocalizedRating.swift in Sources */,
+				EE79740E1F35CBC70042E236 /* EventDescriptionVC.swift in Sources */,
 				2CE215801F16695300E81728 /* AAPopUp.swift in Sources */,
 				EE7973FA1F35B0EC0042E236 /* StarLayer.swift in Sources */,
 				357C85A41E92D20B00D99863 /* EPNextViewController.swift in Sources */,
@@ -899,19 +914,16 @@
 				EE7973F71F35B0EC0042E236 /* RightToLeft.swift in Sources */,
 				EEC4D94F1EC30DDD000E7E15 /* AboutEditViewController.swift in Sources */,
 				EE9151721F3351E600358205 /* UIPlaceHolderTextView.m in Sources */,
-				2C4A3BB51F3076640047D22E /* CreateEventStep2VC.swift in Sources */,
 				EEC4D94B1EC2D51C000E7E15 /* ServicesViewController.swift in Sources */,
 				EE27C8061F32760B00F7CC73 /* MLPAutoCompleteTextField.m in Sources */,
 				EE7973F61F35B0EC0042E236 /* CosmosTouchTarget.swift in Sources */,
 				EED89AA01EB73527009155E0 /* CALayer+RuntimeAttribute.m in Sources */,
+				EE79740C1F35CBC70042E236 /* CreateEventStep4VC.swift in Sources */,
 				2C3F307A1F18B9C6001FAA4B /* UserProfile.swift in Sources */,
 				35FE07111E81B85B00255602 /* EPBaseViewController.swift in Sources */,
-				EE9151761F3448EC00358205 /* EventServiceListVC.swift in Sources */,
 				EEC4D9431EC2D4DE000E7E15 /* VendorRequestViewController.swift in Sources */,
 				2CE215911F1669F700E81728 /* EPSignUpConfirmationViewController.swift in Sources */,
-				2C53ECB31F2F76BB002B8916 /* CreateEventStep1VC.swift in Sources */,
 				EE27C8081F32760B00F7CC73 /* NSString+Levenshtein.m in Sources */,
-				EE9151781F3453CA00358205 /* LikedEventServicesVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

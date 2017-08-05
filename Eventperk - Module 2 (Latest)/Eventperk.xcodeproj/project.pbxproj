@@ -71,6 +71,22 @@
 		EE62A50B1EB30EEE00E2C6E1 /* RDVTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62A5061EB30EEE00E2C6E1 /* RDVTabBar.m */; };
 		EE62A50C1EB30EEE00E2C6E1 /* RDVTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62A5081EB30EEE00E2C6E1 /* RDVTabBarController.m */; };
 		EE62A50D1EB30EEE00E2C6E1 /* RDVTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62A50A1EB30EEE00E2C6E1 /* RDVTabBarItem.m */; };
+		EE7973EB1F35B0EC0042E236 /* CosmosAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7973DA1F35B0EC0042E236 /* CosmosAccessibility.swift */; };
+		EE7973EC1F35B0EC0042E236 /* CosmosDefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7973DB1F35B0EC0042E236 /* CosmosDefaultSettings.swift */; };
+		EE7973ED1F35B0EC0042E236 /* CosmosLayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7973DC1F35B0EC0042E236 /* CosmosLayerHelper.swift */; };
+		EE7973EE1F35B0EC0042E236 /* CosmosLayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7973DD1F35B0EC0042E236 /* CosmosLayers.swift */; };
+		EE7973EF1F35B0EC0042E236 /* CosmosLocalizedRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7973DE1F35B0EC0042E236 /* CosmosLocalizedRating.swift */; };
+		EE7973F01F35B0EC0042E236 /* CosmosRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7973DF1F35B0EC0042E236 /* CosmosRating.swift */; };
+		EE7973F11F35B0EC0042E236 /* CosmosSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7973E01F35B0EC0042E236 /* CosmosSettings.swift */; };
+		EE7973F21F35B0EC0042E236 /* CosmosSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7973E11F35B0EC0042E236 /* CosmosSize.swift */; };
+		EE7973F31F35B0EC0042E236 /* CosmosText.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7973E21F35B0EC0042E236 /* CosmosText.swift */; };
+		EE7973F41F35B0EC0042E236 /* CosmosTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7973E31F35B0EC0042E236 /* CosmosTouch.swift */; };
+		EE7973F51F35B0EC0042E236 /* CosmosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7973E41F35B0EC0042E236 /* CosmosView.swift */; };
+		EE7973F61F35B0EC0042E236 /* CosmosTouchTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7973E61F35B0EC0042E236 /* CosmosTouchTarget.swift */; };
+		EE7973F71F35B0EC0042E236 /* RightToLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7973E71F35B0EC0042E236 /* RightToLeft.swift */; };
+		EE7973F81F35B0EC0042E236 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE7973E81F35B0EC0042E236 /* Info.plist */; };
+		EE7973F91F35B0EC0042E236 /* StarFillMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7973E91F35B0EC0042E236 /* StarFillMode.swift */; };
+		EE7973FA1F35B0EC0042E236 /* StarLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7973EA1F35B0EC0042E236 /* StarLayer.swift */; };
 		EE91516C1F3342CC00358205 /* EventDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91516B1F3342CC00358205 /* EventDescriptionVC.swift */; };
 		EE9151711F3351E600358205 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91516E1F3351E600358205 /* CustomTextField.swift */; };
 		EE9151721F3351E600358205 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9151701F3351E600358205 /* UIPlaceHolderTextView.m */; };
@@ -188,6 +204,23 @@
 		EE62A5081EB30EEE00E2C6E1 /* RDVTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBarController.m; sourceTree = "<group>"; };
 		EE62A5091EB30EEE00E2C6E1 /* RDVTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVTabBarItem.h; sourceTree = "<group>"; };
 		EE62A50A1EB30EEE00E2C6E1 /* RDVTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBarItem.m; sourceTree = "<group>"; };
+		EE7973D91F35B0EC0042E236 /* Cosmos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cosmos.h; sourceTree = "<group>"; };
+		EE7973DA1F35B0EC0042E236 /* CosmosAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosAccessibility.swift; sourceTree = "<group>"; };
+		EE7973DB1F35B0EC0042E236 /* CosmosDefaultSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosDefaultSettings.swift; sourceTree = "<group>"; };
+		EE7973DC1F35B0EC0042E236 /* CosmosLayerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosLayerHelper.swift; sourceTree = "<group>"; };
+		EE7973DD1F35B0EC0042E236 /* CosmosLayers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosLayers.swift; sourceTree = "<group>"; };
+		EE7973DE1F35B0EC0042E236 /* CosmosLocalizedRating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosLocalizedRating.swift; sourceTree = "<group>"; };
+		EE7973DF1F35B0EC0042E236 /* CosmosRating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosRating.swift; sourceTree = "<group>"; };
+		EE7973E01F35B0EC0042E236 /* CosmosSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosSettings.swift; sourceTree = "<group>"; };
+		EE7973E11F35B0EC0042E236 /* CosmosSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosSize.swift; sourceTree = "<group>"; };
+		EE7973E21F35B0EC0042E236 /* CosmosText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosText.swift; sourceTree = "<group>"; };
+		EE7973E31F35B0EC0042E236 /* CosmosTouch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosTouch.swift; sourceTree = "<group>"; };
+		EE7973E41F35B0EC0042E236 /* CosmosView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosView.swift; sourceTree = "<group>"; };
+		EE7973E61F35B0EC0042E236 /* CosmosTouchTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosTouchTarget.swift; sourceTree = "<group>"; };
+		EE7973E71F35B0EC0042E236 /* RightToLeft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightToLeft.swift; sourceTree = "<group>"; };
+		EE7973E81F35B0EC0042E236 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE7973E91F35B0EC0042E236 /* StarFillMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarFillMode.swift; sourceTree = "<group>"; };
+		EE7973EA1F35B0EC0042E236 /* StarLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarLayer.swift; sourceTree = "<group>"; };
 		EE91516B1F3342CC00358205 /* EventDescriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDescriptionVC.swift; sourceTree = "<group>"; };
 		EE91516E1F3351E600358205 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		EE91516F1F3351E600358205 /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
@@ -397,6 +430,7 @@
 		35FE07091E81B7F100255602 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				EE7973D81F35B0EC0042E236 /* Cosmos */,
 				EE91516D1F3351E600358205 /* CustomText */,
 				2CE215961F166DCE00E81728 /* Helpers.swift */,
 			);
@@ -553,6 +587,38 @@
 			path = RDVTabBarController;
 			sourceTree = "<group>";
 		};
+		EE7973D81F35B0EC0042E236 /* Cosmos */ = {
+			isa = PBXGroup;
+			children = (
+				EE7973E51F35B0EC0042E236 /* Helpers */,
+				EE7973D91F35B0EC0042E236 /* Cosmos.h */,
+				EE7973DA1F35B0EC0042E236 /* CosmosAccessibility.swift */,
+				EE7973DB1F35B0EC0042E236 /* CosmosDefaultSettings.swift */,
+				EE7973DC1F35B0EC0042E236 /* CosmosLayerHelper.swift */,
+				EE7973DD1F35B0EC0042E236 /* CosmosLayers.swift */,
+				EE7973DE1F35B0EC0042E236 /* CosmosLocalizedRating.swift */,
+				EE7973DF1F35B0EC0042E236 /* CosmosRating.swift */,
+				EE7973E01F35B0EC0042E236 /* CosmosSettings.swift */,
+				EE7973E11F35B0EC0042E236 /* CosmosSize.swift */,
+				EE7973E21F35B0EC0042E236 /* CosmosText.swift */,
+				EE7973E31F35B0EC0042E236 /* CosmosTouch.swift */,
+				EE7973E41F35B0EC0042E236 /* CosmosView.swift */,
+				EE7973E81F35B0EC0042E236 /* Info.plist */,
+				EE7973E91F35B0EC0042E236 /* StarFillMode.swift */,
+				EE7973EA1F35B0EC0042E236 /* StarLayer.swift */,
+			);
+			path = Cosmos;
+			sourceTree = "<group>";
+		};
+		EE7973E51F35B0EC0042E236 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				EE7973E61F35B0EC0042E236 /* CosmosTouchTarget.swift */,
+				EE7973E71F35B0EC0042E236 /* RightToLeft.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		EE91516D1F3351E600358205 /* CustomText */ = {
 			isa = PBXGroup;
 			children = (
@@ -694,6 +760,7 @@
 				EED89AA21EB75332009155E0 /* ProfileViewController.xib in Resources */,
 				35A037841E844AB500D1F43F /* SFUIText-Light.otf in Resources */,
 				35D7AF341E82FC7D00758DBB /* EPInputView.xib in Resources */,
+				EE7973F81F35B0EC0042E236 /* Info.plist in Resources */,
 				35FE06FC1E81B36300255602 /* Assets.xcassets in Resources */,
 				EEB191A71EB862E900CEC946 /* ViewAllEventsViewController.xib in Resources */,
 				35A037851E844AB500D1F43F /* SFUIText-Regular.otf in Resources */,
@@ -775,52 +842,67 @@
 				EE9A2CBF1EC5F2C000509569 /* AddNumberViewController.swift in Sources */,
 				EE91516C1F3342CC00358205 /* EventDescriptionVC.swift in Sources */,
 				2CC41E631F2731450008B343 /* ObjectiveCMethods.m in Sources */,
+				EE7973F21F35B0EC0042E236 /* CosmosSize.swift in Sources */,
 				771898481EB45A5900FF9D31 /* MenuTableViewCell.m in Sources */,
 				EEA915C01EAA20D200892743 /* InboxViewController.swift in Sources */,
+				EE7973F41F35B0EC0042E236 /* CosmosTouch.swift in Sources */,
 				2CE2158E1F1669F700E81728 /* EPSignUp2ViewController.swift in Sources */,
 				2CE2158C1F1669F700E81728 /* EPNewPasswordViewController.swift in Sources */,
 				35746F991E8C17860043F14E /* EPInfoView.swift in Sources */,
 				35FE07211E81CE0000255602 /* AWSMobileClient.swift in Sources */,
+				EE7973F91F35B0EC0042E236 /* StarFillMode.swift in Sources */,
 				35FE071C1E81C26900255602 /* EPAuthFieldView.swift in Sources */,
 				2CBB50341F30CB5100765115 /* CreateEventStep4VC.swift in Sources */,
 				EE9151711F3351E600358205 /* CustomTextField.swift in Sources */,
 				2CE2158B1F1669F700E81728 /* EPForgotPasswordViewController.swift in Sources */,
+				EE7973F11F35B0EC0042E236 /* CosmosSettings.swift in Sources */,
 				35A037871E844BFB00D1F43F /* EPRoundButton.swift in Sources */,
 				2CE2157F1F16695300E81728 /* AAPopUp+Helper.swift in Sources */,
+				EE7973F01F35B0EC0042E236 /* CosmosRating.swift in Sources */,
 				EEA915C21EAA20DF00892743 /* ProfileViewController.swift in Sources */,
+				EE7973F31F35B0EC0042E236 /* CosmosText.swift in Sources */,
 				EEB191A61EB862E900CEC946 /* ViewAllEventsViewController.swift in Sources */,
 				EEA915BA1EAA203A00892743 /* ExploreViewController.swift in Sources */,
 				2CE2158A1F1669F700E81728 /* EPAuthViewController.swift in Sources */,
 				EE27C80A1F32760B00F7CC73 /* PlaceObject.m in Sources */,
 				35FE07201E81CE0000255602 /* AWSConfiguration.swift in Sources */,
+				EE7973EC1F35B0EC0042E236 /* CosmosDefaultSettings.swift in Sources */,
 				2C3880B81F31C10400B747ED /* CreateEventStep5VC.swift in Sources */,
 				2C38167C1F2888BA00B1A363 /* Constants.swift in Sources */,
 				2CE215971F166DCE00E81728 /* Helpers.swift in Sources */,
 				EE62A50C1EB30EEE00E2C6E1 /* RDVTabBarController.m in Sources */,
+				EE7973F51F35B0EC0042E236 /* CosmosView.swift in Sources */,
 				EE62A50D1EB30EEE00E2C6E1 /* RDVTabBarItem.m in Sources */,
 				2C4A3BB71F308A750047D22E /* CreateEventStep3VC.swift in Sources */,
+				EE7973ED1F35B0EC0042E236 /* CosmosLayerHelper.swift in Sources */,
 				2CE2158F1F1669F700E81728 /* EPSignUp3ViewController.swift in Sources */,
 				357562DB1E8D9F3F00360F38 /* EPUser.swift in Sources */,
 				35FE06F51E81B36300255602 /* AppDelegate.swift in Sources */,
 				2CE215901F1669F700E81728 /* EPSignUp4ViewController.swift in Sources */,
+				EE7973EF1F35B0EC0042E236 /* CosmosLocalizedRating.swift in Sources */,
 				2CE215801F16695300E81728 /* AAPopUp.swift in Sources */,
+				EE7973FA1F35B0EC0042E236 /* StarLayer.swift in Sources */,
 				357C85A41E92D20B00D99863 /* EPNextViewController.swift in Sources */,
 				EEB191AA1EB88AD900CEC946 /* FollowViewController.swift in Sources */,
 				2C53ECB11F2F588C002B8916 /* EventViewController.swift in Sources */,
+				EE7973EB1F35B0EC0042E236 /* CosmosAccessibility.swift in Sources */,
 				7718984A1EB45A5900FF9D31 /* SliderMenuController.m in Sources */,
 				7751C8501EB33041001B13C1 /* PGDrawerTransition.m in Sources */,
 				EE27C8071F32760B00F7CC73 /* MVPlaceSearchTextField.m in Sources */,
+				EE7973EE1F35B0EC0042E236 /* CosmosLayers.swift in Sources */,
 				35D7AF2E1E82E55F00758DBB /* EPAuthButtonView.swift in Sources */,
 				EE62A50B1EB30EEE00E2C6E1 /* RDVTabBar.m in Sources */,
 				EED89AA91EB768A6009155E0 /* EditProfileViewController.swift in Sources */,
 				35F44B2A1E8DAD2C00D95F22 /* ApiManager.swift in Sources */,
 				EEA915BC1EAA20AD00892743 /* LikeViewController.swift in Sources */,
 				EE27C8091F32760B00F7CC73 /* PlaceDetail.m in Sources */,
+				EE7973F71F35B0EC0042E236 /* RightToLeft.swift in Sources */,
 				EEC4D94F1EC30DDD000E7E15 /* AboutEditViewController.swift in Sources */,
 				EE9151721F3351E600358205 /* UIPlaceHolderTextView.m in Sources */,
 				2C4A3BB51F3076640047D22E /* CreateEventStep2VC.swift in Sources */,
 				EEC4D94B1EC2D51C000E7E15 /* ServicesViewController.swift in Sources */,
 				EE27C8061F32760B00F7CC73 /* MLPAutoCompleteTextField.m in Sources */,
+				EE7973F61F35B0EC0042E236 /* CosmosTouchTarget.swift in Sources */,
 				EED89AA01EB73527009155E0 /* CALayer+RuntimeAttribute.m in Sources */,
 				2C3F307A1F18B9C6001FAA4B /* UserProfile.swift in Sources */,
 				35FE07111E81B85B00255602 /* EPBaseViewController.swift in Sources */,

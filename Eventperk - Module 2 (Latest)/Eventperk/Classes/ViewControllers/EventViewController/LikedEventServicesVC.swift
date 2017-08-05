@@ -50,13 +50,27 @@ class LikedEventServicesVC: UIViewController {
         cell.lblTitle.text = (arrTabs.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "TabTitle") as? String
         
         if (arrTabs.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "isSelected") != nil && (arrTabs.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "isSelected") as! String == "true" {
-            cell.lblTitle.textColor = UIColor.darkGray
+            
+            cell.lblTitle.textColor = UIColor.black
+            cell.imgLine.isHidden = false
             
         }else{
-            
+            cell.lblTitle.textColor = UIColor.lightGray
+            cell.imgLine.isHidden = true
         }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: IndexPath){
+        
+        let index = (arrTabs.value(forKey: "isSelected") as AnyObject).index(of: "true")
+        if index != NSNotFound{
+            (arrTabs.object(at: index) as! NSMutableDictionary).setValue("false", forKey: "isSelected")
+        }
+        
+        (arrTabs.object(at: indexPath.row) as! NSMutableDictionary).setValue("true", forKey: "isSelected")
+        collectionView.reloadData()
     }
     
     func collectionView(_ collectionView : UICollectionView, layout collectionViewLayout:UICollectionViewLayout, sizeForItemAtIndexPath indexPath:NSIndexPath) -> CGSize{

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="s7W-Ah-kFK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="s7W-Ah-kFK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -2171,7 +2171,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GcA-KJ-q01">
-                                <rect key="frame" x="0.0" y="165.5" width="375" height="50"/>
+                                <rect key="frame" x="8" y="165.5" width="359" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="T7x-ia-Y8v"/>
@@ -2232,6 +2232,7 @@
                                             <constraint firstItem="Cjd-vk-oY9" firstAttribute="leading" secondItem="kOa-52-GnC" secondAttribute="leading" constant="8" id="tTc-qT-AHy"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="imgLine" destination="Cjd-vk-oY9" id="cRF-XS-Tv8"/>
                                             <outlet property="lblTitle" destination="3WT-o0-4Qz" id="6LU-rb-KNK"/>
                                         </connections>
                                     </collectionViewCell>
@@ -2241,21 +2242,47 @@
                                     <outlet property="delegate" destination="tlH-YJ-pBM" id="wYr-xt-eGN"/>
                                 </connections>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="3 Liked Services" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eo3-OB-hWV">
+                                <rect key="frame" x="16" y="232" width="343" height="18"/>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="16"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="262" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bbf-sM-Sax">
+                                <rect key="frame" x="0.0" y="266" width="375" height="401"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="262" id="ct4-hT-H4G">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="262"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ct4-hT-H4G" id="4dU-Xj-hvg">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="261.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="KIu-BB-ICH" firstAttribute="top" secondItem="XtC-Fd-Hw4" secondAttribute="top" constant="20" id="0kb-6d-3Bc"/>
+                            <constraint firstAttribute="trailing" secondItem="Eo3-OB-hWV" secondAttribute="trailing" constant="16" id="0rT-SB-CeS"/>
                             <constraint firstAttribute="trailing" secondItem="E7e-Al-G0A" secondAttribute="trailing" constant="22" id="5r5-Fi-cM7"/>
+                            <constraint firstItem="Eo3-OB-hWV" firstAttribute="leading" secondItem="XtC-Fd-Hw4" secondAttribute="leading" constant="16" id="9h0-zd-MCk"/>
+                            <constraint firstItem="bbf-sM-Sax" firstAttribute="top" secondItem="Eo3-OB-hWV" secondAttribute="bottom" constant="16" id="BpP-eB-xVB"/>
                             <constraint firstItem="Xzn-cr-ytc" firstAttribute="top" secondItem="E7e-Al-G0A" secondAttribute="bottom" constant="8" id="FcF-ny-Jft"/>
+                            <constraint firstAttribute="trailing" secondItem="bbf-sM-Sax" secondAttribute="trailing" id="TGL-14-8Xv"/>
+                            <constraint firstItem="OZX-1Z-RJ1" firstAttribute="top" secondItem="bbf-sM-Sax" secondAttribute="bottom" id="TXh-y1-5no"/>
                             <constraint firstAttribute="trailing" secondItem="KIu-BB-ICH" secondAttribute="trailing" id="VN7-2p-aoK"/>
+                            <constraint firstItem="Eo3-OB-hWV" firstAttribute="top" secondItem="GcA-KJ-q01" secondAttribute="bottom" constant="16.5" id="X3m-hY-7dK"/>
                             <constraint firstItem="KIu-BB-ICH" firstAttribute="leading" secondItem="XtC-Fd-Hw4" secondAttribute="leading" id="YUP-tR-edk"/>
                             <constraint firstItem="Xzn-cr-ytc" firstAttribute="leading" secondItem="XtC-Fd-Hw4" secondAttribute="leading" constant="30" id="YhH-cc-X3o"/>
                             <constraint firstAttribute="trailing" secondItem="Xzn-cr-ytc" secondAttribute="trailing" constant="22" id="a6G-ld-hsc"/>
                             <constraint firstItem="E7e-Al-G0A" firstAttribute="top" secondItem="KIu-BB-ICH" secondAttribute="bottom" constant="20" id="bJ7-Lf-bfK"/>
                             <constraint firstItem="E7e-Al-G0A" firstAttribute="leading" secondItem="XtC-Fd-Hw4" secondAttribute="leading" constant="32" id="d7a-b4-6CT"/>
                             <constraint firstItem="GcA-KJ-q01" firstAttribute="top" secondItem="Xzn-cr-ytc" secondAttribute="bottom" constant="32" id="iSM-TC-ZbF"/>
-                            <constraint firstItem="GcA-KJ-q01" firstAttribute="leading" secondItem="XtC-Fd-Hw4" secondAttribute="leading" id="js6-gl-HUf"/>
-                            <constraint firstAttribute="trailing" secondItem="GcA-KJ-q01" secondAttribute="trailing" id="oiI-fL-tZm"/>
+                            <constraint firstItem="GcA-KJ-q01" firstAttribute="leading" secondItem="XtC-Fd-Hw4" secondAttribute="leading" constant="8" id="js6-gl-HUf"/>
+                            <constraint firstAttribute="trailing" secondItem="GcA-KJ-q01" secondAttribute="trailing" constant="8" id="oiI-fL-tZm"/>
+                            <constraint firstItem="bbf-sM-Sax" firstAttribute="leading" secondItem="XtC-Fd-Hw4" secondAttribute="leading" id="xVK-r4-Dwg"/>
                         </constraints>
                     </view>
                     <connections>
@@ -3401,7 +3428,7 @@
                 <navigationController storyboardIdentifier="EPNavigationViewController" title="EPNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="s7W-Ah-kFK" customClass="EPNavigationViewController" customModule="Eventperk" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="g5N-BK-3AT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="g5N-BK-3AT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

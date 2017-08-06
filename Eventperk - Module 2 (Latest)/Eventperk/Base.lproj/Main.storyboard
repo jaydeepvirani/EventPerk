@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="s7W-Ah-kFK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="s7W-Ah-kFK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1733,6 +1733,24 @@
             </objects>
             <point key="canvasLocation" x="5468" y="2470.6146926536735"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="cMW-oT-Vyz">
+            <objects>
+                <viewController id="H8U-bO-TMX" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="T2f-Og-O7l"/>
+                        <viewControllerLayoutGuide type="bottom" id="NIG-eg-Kgx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kV0-IC-QtK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5nR-Ug-fBe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5468" y="3147"/>
+        </scene>
         <!--Event Service ListVC-->
         <scene sceneID="tG3-do-EDz">
             <objects>
@@ -2092,6 +2110,7 @@
                     <connections>
                         <outlet property="btnSave" destination="hxx-M7-G0Z" id="K8u-Wd-myh"/>
                         <outlet property="tblService" destination="LHk-14-Vyk" id="Svg-QJ-s0E"/>
+                        <outlet property="viewServicesIcon" destination="l14-z0-kPO" id="azd-Di-CwQ"/>
                         <segue destination="mo8-pe-nca" kind="show" identifier="eventSubServiceListSegue" id="Kj2-2a-E05"/>
                     </connections>
                 </viewController>
@@ -3752,7 +3771,7 @@
                 <navigationController storyboardIdentifier="EPNavigationViewController" title="EPNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="s7W-Ah-kFK" customClass="EPNavigationViewController" customModule="Eventperk" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="g5N-BK-3AT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="g5N-BK-3AT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

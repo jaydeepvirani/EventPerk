@@ -58,6 +58,7 @@
 		7718984B1EB45A5900FF9D31 /* SliderMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 771898471EB45A5900FF9D31 /* SliderMenuController.xib */; };
 		7751C8501EB33041001B13C1 /* PGDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 7751C84F1EB33041001B13C1 /* PGDrawerTransition.m */; };
 		795629163F56FF9958B4BBDB /* Pods_Eventperk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D718F6924C0C0F51BFF4B03E /* Pods_Eventperk.framework */; };
+		E13C0D2F1F36F10E0046B027 /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13C0D2E1F36F10E0046B027 /* ServicesView.swift */; };
 		EE27C8061F32760B00F7CC73 /* MLPAutoCompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EE27C7FA1F32760B00F7CC73 /* MLPAutoCompleteTextField.m */; };
 		EE27C8071F32760B00F7CC73 /* MVPlaceSearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EE27C7FF1F32760B00F7CC73 /* MVPlaceSearchTextField.m */; };
 		EE27C8081F32760B00F7CC73 /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = EE27C8011F32760B00F7CC73 /* NSString+Levenshtein.m */; };
@@ -181,6 +182,7 @@
 		7751C84E1EB33041001B13C1 /* PGDrawerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGDrawerTransition.h; sourceTree = "<group>"; };
 		7751C84F1EB33041001B13C1 /* PGDrawerTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGDrawerTransition.m; sourceTree = "<group>"; };
 		D718F6924C0C0F51BFF4B03E /* Pods_Eventperk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eventperk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E13C0D2E1F36F10E0046B027 /* ServicesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
 		EE27C7F91F32760B00F7CC73 /* MLPAutoCompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompleteTextField.h; sourceTree = "<group>"; };
 		EE27C7FA1F32760B00F7CC73 /* MLPAutoCompleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLPAutoCompleteTextField.m; sourceTree = "<group>"; };
 		EE27C7FB1F32760B00F7CC73 /* MLPAutoCompleteTextFieldDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompleteTextFieldDataSource.h; sourceTree = "<group>"; };
@@ -436,9 +438,9 @@
 			isa = PBXGroup;
 			children = (
 				2CE215811F1669F700E81728 /* Auth */,
-				2C53ECAF1F2F588C002B8916 /* EventViewController */,
 				EEC4D93D1EC2D460000E7E15 /* VendorViewController */,
 				EEA915B61EAA1B9500892743 /* HomeViewController */,
+				2C53ECAF1F2F588C002B8916 /* EventViewController */,
 				771898411EB45A5900FF9D31 /* MenuViewController */,
 				35FE070F1E81B84A00255602 /* Base */,
 				357C85A31E92D20B00D99863 /* EPNextViewController.swift */,
@@ -449,6 +451,7 @@
 		35FE070C1E81B7F100255602 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E13C0D2E1F36F10E0046B027 /* ServicesView.swift */,
 				35A037861E844BFB00D1F43F /* EPRoundButton.swift */,
 				35D7AF2D1E82E55F00758DBB /* EPAuthButtonView.swift */,
 				35FE071B1E81C26900255602 /* EPAuthFieldView.swift */,
@@ -909,6 +912,7 @@
 				EE62A50B1EB30EEE00E2C6E1 /* RDVTabBar.m in Sources */,
 				EED89AA91EB768A6009155E0 /* EditProfileViewController.swift in Sources */,
 				35F44B2A1E8DAD2C00D95F22 /* ApiManager.swift in Sources */,
+				E13C0D2F1F36F10E0046B027 /* ServicesView.swift in Sources */,
 				EEA915BC1EAA20AD00892743 /* LikeViewController.swift in Sources */,
 				EE27C8091F32760B00F7CC73 /* PlaceDetail.m in Sources */,
 				EE7973F71F35B0EC0042E236 /* RightToLeft.swift in Sources */,

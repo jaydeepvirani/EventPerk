@@ -10,29 +10,26 @@ import UIKit
 
 class ServicesView: UIView {
     
-    var fillColor = UIColor(red: 1.0, green: 0.5, blue: 0.0, alpha: 1.0).cgColor
+    var imgServiceIcon = UIImageView()
+    var intTag = 0
+    var strServiceType = ""
     
-    var boundingBoxColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0).cgColor
-    
-    override func draw(_ rect: CGRect) {
-        if let context = UIGraphicsGetCurrentContext() {
-            context.saveGState()
-            defer {
-                context.restoreGState()
-            }
-            
-            context.clear(rect)
-            
-            let viewWidth = self.bounds.width
-            let viewHeight = self.bounds.height
-            
-            context.setFillColor(fillColor)
-            context.fill(CGRect(x: 0, y: 0, width: viewWidth, height: viewHeight))
-            
-            context.setStrokeColor(boundingBoxColor)
-            context.setLineWidth(1.0)
-            context.stroke(self.bounds)
-        }
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addBehavior()
     }
     
+    convenience init() {
+        self.init(frame: CGRect.zero)
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        fatalError("This class does not support NSCoding")
+    }
+    
+    func addBehavior() {
+        imgServiceIcon = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: 40, height: 40))
+        imgServiceIcon.contentMode = UIViewContentMode.center//scaleAspectFit
+        self.addSubview(imgServiceIcon)
+    }
 }

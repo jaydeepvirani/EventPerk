@@ -64,6 +64,7 @@
 		EE27C8081F32760B00F7CC73 /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = EE27C8011F32760B00F7CC73 /* NSString+Levenshtein.m */; };
 		EE27C8091F32760B00F7CC73 /* PlaceDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = EE27C8031F32760B00F7CC73 /* PlaceDetail.m */; };
 		EE27C80A1F32760B00F7CC73 /* PlaceObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EE27C8051F32760B00F7CC73 /* PlaceObject.m */; };
+		EE2CFC651F3757030071F032 /* ProjectUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2CFC641F3757030071F032 /* ProjectUtilities.swift */; };
 		EE62A50B1EB30EEE00E2C6E1 /* RDVTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62A5061EB30EEE00E2C6E1 /* RDVTabBar.m */; };
 		EE62A50C1EB30EEE00E2C6E1 /* RDVTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62A5081EB30EEE00E2C6E1 /* RDVTabBarController.m */; };
 		EE62A50D1EB30EEE00E2C6E1 /* RDVTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62A50A1EB30EEE00E2C6E1 /* RDVTabBarItem.m */; };
@@ -196,6 +197,7 @@
 		EE27C8031F32760B00F7CC73 /* PlaceDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceDetail.m; sourceTree = "<group>"; };
 		EE27C8041F32760B00F7CC73 /* PlaceObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceObject.h; sourceTree = "<group>"; };
 		EE27C8051F32760B00F7CC73 /* PlaceObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceObject.m; sourceTree = "<group>"; };
+		EE2CFC641F3757030071F032 /* ProjectUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectUtilities.swift; sourceTree = "<group>"; };
 		EE62A5051EB30EEE00E2C6E1 /* RDVTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVTabBar.h; sourceTree = "<group>"; };
 		EE62A5061EB30EEE00E2C6E1 /* RDVTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBar.m; sourceTree = "<group>"; };
 		EE62A5071EB30EEE00E2C6E1 /* RDVTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVTabBarController.h; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 		2C3816791F2888BA00B1A363 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				EE2CFC631F3757030071F032 /* ProjectUtility */,
 				2C38167A1F2888BA00B1A363 /* ProjectConstants */,
 			);
 			path = Utility;
@@ -560,6 +563,14 @@
 			name = MLPAutoCompleteTextField;
 			path = Eventperk/Classes/Helpers/MLPAutoCompleteTextField;
 			sourceTree = SOURCE_ROOT;
+		};
+		EE2CFC631F3757030071F032 /* ProjectUtility */ = {
+			isa = PBXGroup;
+			children = (
+				EE2CFC641F3757030071F032 /* ProjectUtilities.swift */,
+			);
+			path = ProjectUtility;
+			sourceTree = "<group>";
 		};
 		EE62A5031EB30EEE00E2C6E1 /* 3rdPartyController */ = {
 			isa = PBXGroup;
@@ -849,6 +860,7 @@
 				EE79740F1F35CBC70042E236 /* EventServiceListVC.swift in Sources */,
 				35D7AF321E82F91E00758DBB /* EPInputView.swift in Sources */,
 				2CE2157E1F16695300E81728 /* AAPopUp+Global.swift in Sources */,
+				EE2CFC651F3757030071F032 /* ProjectUtilities.swift in Sources */,
 				2CE2158D1F1669F700E81728 /* EPSignUp1ViewController.swift in Sources */,
 				35FE07151E81B91000255602 /* EPNavigationViewController.swift in Sources */,
 				EED89AA51EB75E1E009155E0 /* PhotoCollectionViewCell.swift in Sources */,

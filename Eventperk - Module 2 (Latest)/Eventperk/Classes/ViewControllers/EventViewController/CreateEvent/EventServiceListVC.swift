@@ -16,13 +16,15 @@ class EventServiceListVC: UIViewController {
     
     @IBOutlet var viewServicesIcon: UIView!
     
+    @IBOutlet var constNoteViewHeight: NSLayoutConstraint!
+    
     //MARK: Dragable View
-    var snapX:CGFloat = 40.0 /// must be >= 1.0
-    var snapY:CGFloat = 40.0 /// must be >= 1.0
+    var snapX:CGFloat = 1.0 /// must be >= 1.0
+    var snapY:CGFloat = 1.0 /// must be >= 1.0
     
     var threshold:CGFloat = 0.0 /// how far to move before dragging
     
-    var selectedView:UIView? /// the guy we're dragging
+    var selectedView: UIView? /// the guy we're dragging
     
     var shouldDragY = true /// drag in the Y direction?
     var shouldDragX = true /// drag in the X direction?
@@ -34,36 +36,57 @@ class EventServiceListVC: UIViewController {
     //MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(dictCreateEventDetail)
         self.initialization()
-        self.createServiceArray()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        print(dictCreateEventDetail)
+        
+        self.setUpServicesView()
+    }
+    
     //MARK:- Initialization
     func initialization() {
         btnSave.layer.cornerRadius = 10
-        
-        var myview = ServicesView()
-        viewServicesIcon.addSubview(myview)
-        myview.frame = CGRect(x: 10, y: 40, width: 40, height: 40)
-        
-        myview = ServicesView()
-        viewServicesIcon.addSubview(myview)
-        myview.frame = CGRect(x: 60, y: 80, width: 40, height: 40)
-        myview.fillColor = UIColor(red: 1.0, green: 0.5, blue: 1.0, alpha: 1.0).cgColor
-        
         setupGestures()
+        
+        if dictCreateEventDetail.value(forKey: "EventServices") != nil {
+            arrServiceList = (dictCreateEventDetail.value(forKey: "EventServices") as! NSMutableArray).mutableCopy() as! NSMutableArray
+        }else{
+            createServiceArray()
+        }
+    }
+    
+    //MARK:- Setup Dragable
+    
+    func setUpServicesView() {
+        
+        ProjectUtilities.setUpIconsForServices(arrServices: arrServiceList, viewDragable: viewServicesIcon)
+        
+        var valid = false
+        
+        for i in 0 ..< arrServiceList.count {
+            if (arrServiceList.object(at: i) as! NSMutableDictionary).value(forKey: "SubServices") != nil {
+                for _ in 0 ..< ((arrServiceList.object(at: i) as! NSMutableDictionary).value(forKey: "SubServices") as! NSMutableArray).count {
+                    
+                    valid = true
+                    break
+                }
+            }
+        }
+        self.saveButtonValidation(isSelected: valid)
     }
     
     func setupGestures() {
         let pan = UIPanGestureRecognizer(target:self, action:#selector(self.pan(_:)))
         pan.maximumNumberOfTouches = 1
         pan.minimumNumberOfTouches = 1
-        self.view.addGestureRecognizer(pan)
+        viewServicesIcon.addGestureRecognizer(pan)
     }
     
     //MARK:- Button TouchUp
@@ -71,8 +94,12 @@ class EventServiceListVC: UIViewController {
         _ = self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func btnAddFromLikesAction (_ sender: UIButton) {
+    @IBAction func btnSaveAction (_ sender: UIButton) {
         
+        if btnSave.isSelected == true {
+            dictCreateEventDetail.setValue(arrServiceList, forKey: "EventServices")
+            _ = self.navigationController?.popViewController(animated: true)
+        }
     }
     
     //MARK:- Tableview Delegate
@@ -99,30 +126,41 @@ class EventServiceListVC: UIViewController {
     
     func pan(_ rec:UIPanGestureRecognizer) {
         
-        let p:CGPoint = rec.location(in: self.view)
+        let p:CGPoint = rec.location(in: viewServicesIcon)
         var center:CGPoint = .zero
         
         switch rec.state {
         case .began:
             print("began")
-            selectedView = view.hitTest(p, with: nil)
+            selectedView = viewServicesIcon.hitTest(p, with: nil)
             if selectedView != nil {
-                self.view.bringSubview(toFront: selectedView!)
+                viewServicesIcon.bringSubview(toFront: selectedView!)
             }
             
         case .changed:
             if let subview = selectedView {
                 center = subview.center
                 let distance = sqrt(pow((center.x - p.x), 2.0) + pow((center.y - p.y), 2.0))
-                print("distance \(distance) threshold \(threshold)")
                 
-                if subview is MyView {
+                if subview is ServicesView {
                     if distance > threshold {
                         if shouldDragX {
                             subview.center.x = p.x - (p.x.truncatingRemainder(dividingBy: snapX))
+                            if subview.frame.minX < 0 {
+                                subview.frame = CGRect.init(x: 0, y: subview.frame.minY, width: subview.frame.size.width, height: subview.frame.size.height)
+                            }
+                            if subview.center.x + 20 > Constants.ScreenSize.SCREEN_WIDTH {
+                                subview.frame = CGRect.init(x: Constants.ScreenSize.SCREEN_WIDTH-40, y: subview.frame.minY, width: subview.frame.size.width, height: subview.frame.size.height)
+                            }
                         }
                         if shouldDragY {
                             subview.center.y = p.y - (p.y.truncatingRemainder(dividingBy: snapY))
+                            if subview.frame.minY < 0 {
+                                subview.frame = CGRect.init(x: subview.frame.minX, y: 0, width: subview.frame.size.width, height: subview.frame.size.height)
+                            }
+                            if subview.center.y + 20 > 200 {
+                                subview.frame = CGRect.init(x: subview.frame.minX, y: 160, width: subview.frame.size.width, height: subview.frame.size.height)
+                            }
                         }
                     }
                 }
@@ -131,7 +169,7 @@ class EventServiceListVC: UIViewController {
         case .ended:
             print("ended")
             if let subview = selectedView {
-                if subview is MyView {
+                if subview is ServicesView {
                     // do whatever
                 }
             }
@@ -163,7 +201,7 @@ class EventServiceListVC: UIViewController {
         
         dictService = NSMutableDictionary()
         dictService.setValue("Add Lifestyle Services", forKey: "ServiceTitle")
-        dictService.setValue("Lifestyle Services", forKey: "SubServiceTitle")
+        dictService.setValue("Productivity Services", forKey: "SubServiceTitle")
         arrServiceList.add(dictService)
         
         dictService = NSMutableDictionary()
@@ -179,6 +217,20 @@ class EventServiceListVC: UIViewController {
         }
     }
     
+    func saveButtonValidation(isSelected: Bool) {
+        
+        if isSelected == true {
+                
+            btnSave.backgroundColor = UIColor.init(red: 0.0/255.0, green: 255.0/255.0, blue: 102.0/255.0, alpha: 1.0)
+            btnSave.isSelected = true
+            constNoteViewHeight.constant = 0
+        }else{
+            btnSave.backgroundColor = UIColor.red
+            btnSave.isSelected = true
+            constNoteViewHeight.constant = 46
+        }
+    }
+    
     // MARK:- Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -189,7 +241,7 @@ class EventServiceListVC: UIViewController {
         }else if segue.identifier == "eventSubServiceListSegue" {
             
             let vc: EventSubServiceList = segue.destination as! EventSubServiceList
-            vc.dictCreateEventDetail = dictCreateEventDetail
+            vc.arrServiceList = arrServiceList
             vc.strSelectedSubService = (arrServiceList.object(at: tblService.tag) as! NSMutableDictionary).value(forKey: "SubServiceTitle") as! String
         }
     }

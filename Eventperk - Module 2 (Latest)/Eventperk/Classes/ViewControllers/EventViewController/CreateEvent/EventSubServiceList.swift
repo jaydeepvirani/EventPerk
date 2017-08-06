@@ -16,15 +16,18 @@ class EventSubServiceList: UIViewController {
     @IBOutlet var btnSave: UIButton!
     @IBOutlet var tblSubServiceList: UITableView!
     
+    @IBOutlet var lblNotes: UILabel!
+    @IBOutlet var constViewNotesHeight: NSLayoutConstraint!
+    
     //MARK: Other Objects
-    var dictCreateEventDetail = NSMutableDictionary()
+    var arrServiceList = NSMutableArray()
     var arrSubServiceList = NSMutableArray()
     var strSelectedSubService = ""
     
     //MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(dictCreateEventDetail)
+        print(arrServiceList)
         self.initialization()
     }
     
@@ -37,11 +40,34 @@ class EventSubServiceList: UIViewController {
         
         lblSubServiceName.text = strSelectedSubService
         btnSave.layer.cornerRadius = 10
-        self.createSubServiceArray()
+        
+        let index = (arrServiceList.value(forKey: "SubServiceTitle") as AnyObject).index(of: strSelectedSubService)
+        if index != NSNotFound {
+            
+            if (arrServiceList.object(at: index) as! NSMutableDictionary).value(forKey: "SubServices") != nil{
+                
+                arrSubServiceList = ((arrServiceList.object(at: index) as! NSMutableDictionary).value(forKey: "SubServices") as! NSMutableArray).mutableCopy() as! NSMutableArray
+            }
+        }
+        if arrSubServiceList.count == 0 {
+            self.createSubServiceArray()
+        }
+        self.saveButtonValidation()
     }
     
     //MARK:- Button TouchUp
     @IBAction func btnBackAction (_ sender: UIButton) {
+        _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func btnSaveAction (_ sender: UIButton) {
+        
+        if btnSave.isSelected == true {
+            let index = (arrServiceList.value(forKey: "SubServiceTitle") as AnyObject).index(of: strSelectedSubService)
+            if index != NSNotFound {
+                (arrServiceList.object(at: index) as! NSMutableDictionary).setValue(arrSubServiceList, forKey: "SubServices")
+            }
+        }
         _ = self.navigationController?.popViewController(animated: true)
     }
     
@@ -56,6 +82,7 @@ class EventSubServiceList: UIViewController {
             (arrSubServiceList.object(at: sender.tag) as! NSMutableDictionary).setValue(intItemCount, forKey: "ItemCount")
         }
         tblSubServiceList.reloadData()
+        self.saveButtonValidation()
     }
     
     @IBAction func btnPlusAction (_ sender: UIButton) {
@@ -69,6 +96,7 @@ class EventSubServiceList: UIViewController {
         intItemCount = intItemCount + 1
         (arrSubServiceList.object(at: sender.tag) as! NSMutableDictionary).setValue(intItemCount, forKey: "ItemCount")
         tblSubServiceList.reloadData()
+        self.saveButtonValidation()
     }
     
     //MARK:- Tableview Delegate
@@ -136,6 +164,8 @@ class EventSubServiceList: UIViewController {
             dictService.setValue("Packed Meals", forKey: "SubServiceTitle")
             arrSubServiceList.add(dictService)
             
+            lblNotes.text = "If you need to different variations of services for example fruit juice and alcohol services, you have to select 2."
+            
         }else if strSelectedSubService == "Entertainment Services" {
             
             dictService.setValue("Emcees", forKey: "SubServiceTitle")
@@ -169,7 +199,9 @@ class EventSubServiceList: UIViewController {
             dictService.setValue("Photo Booths", forKey: "SubServiceTitle")
             arrSubServiceList.add(dictService)
             
-        }else if strSelectedSubService == "Lifestyle Services" {
+            lblNotes.text = "If you need to different variations of services for example bouncy castle and face painting services, you have to select 2."
+            
+        }else if strSelectedSubService == "Productivity Services" {
             
             dictService.setValue("Cleanings", forKey: "SubServiceTitle")
             arrSubServiceList.add(dictService)
@@ -201,6 +233,8 @@ class EventSubServiceList: UIViewController {
             dictService = NSMutableDictionary()
             dictService.setValue("Videographers", forKey: "SubServiceTitle")
             arrSubServiceList.add(dictService)
+            
+            lblNotes.text = "If you need to different variations of services for example area cleaning and washing services services, you have to select 2."
   
         }else if strSelectedSubService == "Facility Services" {
             
@@ -227,6 +261,8 @@ class EventSubServiceList: UIViewController {
             dictService.setValue("Tents", forKey: "SubServiceTitle")
             arrSubServiceList.add(dictService)
             
+            lblNotes.text = "If you need to different variations of services for example field ground and carpeted ground services, you have to select 2."
+            
         }else if strSelectedSubService == "Venue Services" {
             
             dictService.setValue("Cafes", forKey: "SubServiceTitle")
@@ -247,7 +283,32 @@ class EventSubServiceList: UIViewController {
             dictService = NSMutableDictionary()
             dictService.setValue("Resorts and Chalets", forKey: "SubServiceTitle")
             arrSubServiceList.add(dictService)
+            
+            lblNotes.text = "If you need to different variations of services for example cafe 1 for morning and cafe 2 for evening services, you have to select 2."
         }
+        
+        /*let index = ((dictCreateEventDetail.value(forKey: "EventServices") as! NSMutableArray).value(forKey: "SubServiceTitle") as AnyObject).index(of: strSelectedSubService)
+        if index != NSNotFound {
+            ((dictCreateEventDetail.value(forKey: "EventServices") as! NSMutableArray).object(at: index) as! NSMutableDictionary).setValue(arrSubServiceList, forKey: "SubServices")
+        }*/
+    }
+    
+    //MARK:- Validations
+    
+    func saveButtonValidation() {
+        
+        for i in 0 ..< arrSubServiceList.count {
+            if (arrSubServiceList.object(at: i) as! NSMutableDictionary).value(forKey: "ItemCount") != nil && (arrSubServiceList.object(at: i) as! NSMutableDictionary).value(forKey: "ItemCount") as! NSInteger != 0 {
+                
+                btnSave.backgroundColor = UIColor.init(red: 0.0/255.0, green: 255.0/255.0, blue: 102.0/255.0, alpha: 1.0)
+                btnSave.isSelected = true
+                constViewNotesHeight.constant = 0
+                return
+            }
+        }
+        btnSave.backgroundColor = UIColor.red
+        btnSave.isSelected = true
+        constViewNotesHeight.constant = 69.5
     }
 }
 

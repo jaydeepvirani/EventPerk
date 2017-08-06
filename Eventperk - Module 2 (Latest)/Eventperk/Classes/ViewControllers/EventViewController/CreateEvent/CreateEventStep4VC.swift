@@ -66,6 +66,10 @@ class CreateEventStep4VC: UIViewController {
         if dictCreateEventDetail.value(forKey: "EventAttributes") != nil {
             dictCreateEventDetail.removeObject(forKey: "EventAttributes")
         }
+        
+        if dictCreateEventDetail.value(forKey: "EventServices") != nil {
+            dictCreateEventDetail.removeObject(forKey: "EventServices")
+        }
     }
     
     // MARK:- Segue

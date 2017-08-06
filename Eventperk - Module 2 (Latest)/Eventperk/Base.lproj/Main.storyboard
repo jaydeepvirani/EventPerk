@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="s7W-Ah-kFK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="s7W-Ah-kFK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1595,13 +1595,6 @@
                                                     <color key="textColor" red="0.0" green="1" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5o-MM-q9Z">
-                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="75"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <connections>
-                                                        <segue destination="h8f-0P-wO3" kind="show" identifier="eventServiceListSegue" id="Xdc-Yq-XgT"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -1613,12 +1606,22 @@
                                                 <constraint firstItem="Udr-IH-rGw" firstAttribute="top" secondItem="x0O-HF-Jnx" secondAttribute="bottom" constant="4" id="wxL-pH-R76"/>
                                             </constraints>
                                         </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5o-MM-q9Z">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
+                                            <connections>
+                                                <segue destination="h8f-0P-wO3" kind="show" identifier="eventServiceListSegue" id="Xdc-Yq-XgT"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
+                                        <constraint firstItem="N5o-MM-q9Z" firstAttribute="leading" secondItem="29L-ul-4VS" secondAttribute="leading" id="45T-4W-azA"/>
                                         <constraint firstAttribute="height" constant="220" id="D5H-Q0-Fnx"/>
+                                        <constraint firstAttribute="trailing" secondItem="N5o-MM-q9Z" secondAttribute="trailing" id="DXC-gf-QLw"/>
                                         <constraint firstItem="vrV-3i-D7D" firstAttribute="centerX" secondItem="29L-ul-4VS" secondAttribute="centerX" id="GCV-km-k6L"/>
                                         <constraint firstItem="vrV-3i-D7D" firstAttribute="centerY" secondItem="29L-ul-4VS" secondAttribute="centerY" id="PCg-nj-i51"/>
+                                        <constraint firstItem="N5o-MM-q9Z" firstAttribute="top" secondItem="29L-ul-4VS" secondAttribute="top" id="yIT-hT-Fk5"/>
+                                        <constraint firstAttribute="bottom" secondItem="N5o-MM-q9Z" secondAttribute="bottom" id="zLh-ss-yjp"/>
                                     </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="Gyz-To-Fqs">
@@ -1795,7 +1798,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="btnSaveAction:" destination="F05-S1-Eyw" eventType="touchUpInside" id="5R5-hA-I8T"/>
+                                            <action selector="btnSaveAction:" destination="h8f-0P-wO3" eventType="touchUpInside" id="o9K-Fz-VsG"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1840,15 +1843,18 @@
                                 <rect key="frame" x="0.0" y="116" width="375" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="QU7-Cu-iQV">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="406"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="398"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l14-z0-kPO">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="208"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="200" id="t0a-IZ-tkL"/>
+                                            </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ibk-mI-kdL">
-                                            <rect key="frame" x="0.0" y="208" width="375" height="55"/>
+                                            <rect key="frame" x="0.0" y="200" width="375" height="55"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkp-Ql-Omx">
                                                     <rect key="frame" x="0.0" y="0.0" width="75" height="55"/>
@@ -1942,7 +1948,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ql-xU-neD">
-                                            <rect key="frame" x="0.0" y="263" width="375" height="87"/>
+                                            <rect key="frame" x="0.0" y="255" width="375" height="87"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick the services that you'll engage for your event" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSR-Ug-p01">
                                                     <rect key="frame" x="67.5" y="7" width="240" height="38"/>
@@ -1969,7 +1975,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hSk-BJ-VnR">
-                                            <rect key="frame" x="0.0" y="350" width="375" height="56"/>
+                                            <rect key="frame" x="0.0" y="342" width="375" height="56"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Add From Likes" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xm4-5p-vB7">
                                                     <rect key="frame" x="8" y="8" width="359" height="18"/>
@@ -1991,7 +1997,6 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9y-qr-L06">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                                     <connections>
-                                                        <action selector="btnAddFromLikesAction:" destination="h8f-0P-wO3" eventType="touchUpInside" id="c2u-Qs-OoK"/>
                                                         <segue destination="tlH-YJ-pBM" kind="show" identifier="likedEventServicesSegue" id="zQY-Ur-1ZY"/>
                                                     </connections>
                                                 </button>
@@ -2037,14 +2042,14 @@
                                         <constraint firstAttribute="trailing" secondItem="l14-z0-kPO" secondAttribute="trailing" id="Y48-lh-S8q"/>
                                         <constraint firstItem="hSk-BJ-VnR" firstAttribute="leading" secondItem="QU7-Cu-iQV" secondAttribute="leading" id="ese-JG-Yw9"/>
                                         <constraint firstAttribute="trailing" secondItem="ibk-mI-kdL" secondAttribute="trailing" id="gyi-BI-zhB"/>
-                                        <constraint firstAttribute="height" constant="406" id="kJe-xQ-C8r"/>
+                                        <constraint firstAttribute="height" constant="398" id="kJe-xQ-C8r"/>
                                         <constraint firstAttribute="trailing" secondItem="3Ql-xU-neD" secondAttribute="trailing" id="qVx-TP-be2"/>
                                         <constraint firstItem="3Ql-xU-neD" firstAttribute="leading" secondItem="QU7-Cu-iQV" secondAttribute="leading" id="rG7-GN-hsi"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventServiceListTableCell" id="NsG-xW-nns" customClass="EventServiceListTableCell" customModule="Eventperk" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="434" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="426" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NsG-xW-nns" id="upU-zy-tgj">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -2109,6 +2114,7 @@
                     </view>
                     <connections>
                         <outlet property="btnSave" destination="hxx-M7-G0Z" id="K8u-Wd-myh"/>
+                        <outlet property="constNoteViewHeight" destination="xqF-8W-YbJ" id="iY4-Pf-CIX"/>
                         <outlet property="tblService" destination="LHk-14-Vyk" id="Svg-QJ-s0E"/>
                         <outlet property="viewServicesIcon" destination="l14-z0-kPO" id="azd-Di-CwQ"/>
                         <segue destination="mo8-pe-nca" kind="show" identifier="eventSubServiceListSegue" id="Kj2-2a-E05"/>
@@ -2458,7 +2464,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="btnSaveAction:" destination="F05-S1-Eyw" eventType="touchUpInside" id="ejE-98-Dk9"/>
+                                            <action selector="btnSaveAction:" destination="mo8-pe-nca" eventType="touchUpInside" id="vI0-cB-nf3"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -2476,7 +2482,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nHE-I8-OcZ">
-                                <rect key="frame" x="0.0" y="69" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="69" width="375" height="69.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please take note." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iuz-x6-AZl">
                                         <rect key="frame" x="140.5" y="7" width="93" height="13.5"/>
@@ -2484,8 +2490,9 @@
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you need to different variations of services for example fruit juice and alcohol services, you have to select 2." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6O-LO-cTb">
-                                        <rect key="frame" x="10" y="25" width="355" height="27"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6O-LO-cTb">
+                                        <rect key="frame" x="10" y="25" width="355" height="40.5"/>
+                                        <string key="text">If you need to different variations of services for example fruit juice and alcohol services, you have to select 2. sadfsdfasdfasdfsdf asdfasdf</string>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -2495,14 +2502,14 @@
                                     <constraint firstItem="j6O-LO-cTb" firstAttribute="top" secondItem="Iuz-x6-AZl" secondAttribute="bottom" constant="4" id="6As-2k-JfX"/>
                                     <constraint firstItem="Iuz-x6-AZl" firstAttribute="top" secondItem="nHE-I8-OcZ" secondAttribute="top" constant="7" id="7LD-IE-LMd"/>
                                     <constraint firstItem="Iuz-x6-AZl" firstAttribute="centerX" secondItem="nHE-I8-OcZ" secondAttribute="centerX" id="QMM-cq-L3F"/>
-                                    <constraint firstAttribute="height" constant="56" id="Smr-Iy-owz"/>
+                                    <constraint firstAttribute="height" constant="69.5" id="RqR-yI-EcB"/>
                                     <constraint firstItem="j6O-LO-cTb" firstAttribute="centerX" secondItem="nHE-I8-OcZ" secondAttribute="centerX" id="UKF-Wm-CzX"/>
                                     <constraint firstItem="j6O-LO-cTb" firstAttribute="leading" secondItem="nHE-I8-OcZ" secondAttribute="leading" constant="10" id="a1e-LD-Mti"/>
                                     <constraint firstAttribute="trailing" secondItem="j6O-LO-cTb" secondAttribute="trailing" constant="10" id="mO5-WK-XmF"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="69" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oBG-Fd-jWX">
-                                <rect key="frame" x="0.0" y="125" width="375" height="542"/>
+                                <rect key="frame" x="0.0" y="138.5" width="375" height="528.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="Tkt-WC-60F">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
@@ -2628,6 +2635,8 @@
                     </view>
                     <connections>
                         <outlet property="btnSave" destination="z8E-vO-61v" id="Sj3-O5-uWK"/>
+                        <outlet property="constViewNotesHeight" destination="RqR-yI-EcB" id="glr-zr-o4x"/>
+                        <outlet property="lblNotes" destination="j6O-LO-cTb" id="ERN-pJ-fxZ"/>
                         <outlet property="lblSubServiceName" destination="Qdu-hW-hgh" id="FpV-vT-BXP"/>
                         <outlet property="tblSubServiceList" destination="oBG-Fd-jWX" id="3QS-b3-SpR"/>
                     </connections>
@@ -3771,7 +3780,7 @@
                 <navigationController storyboardIdentifier="EPNavigationViewController" title="EPNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="s7W-Ah-kFK" customClass="EPNavigationViewController" customModule="Eventperk" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="g5N-BK-3AT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="g5N-BK-3AT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

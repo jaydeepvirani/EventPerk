@@ -68,10 +68,11 @@ class ProjectUtilities: NSObject
         var lastUpdatedY = 0
         
         for view in viewDragable.subviews{
-            view.removeFromSuperview()
+            
+            if !view.isKind(of: UIButton.self) {
+                view.removeFromSuperview()
+            }
         }
-        
-        var valid = false
         
         for i in 0 ..< arrServices.count {
             if (arrServices.object(at: i) as! NSMutableDictionary).value(forKey: "SubServices") != nil {
@@ -93,8 +94,6 @@ class ProjectUtilities: NSObject
                         myview.strServiceType = (arrServices.object(at: i) as! NSMutableDictionary).value(forKey: "SubServiceTitle") as! String
                         
                         lastUpdatedX = lastUpdatedX + 40
-                        
-                        valid = true
                     }
                 }
             }

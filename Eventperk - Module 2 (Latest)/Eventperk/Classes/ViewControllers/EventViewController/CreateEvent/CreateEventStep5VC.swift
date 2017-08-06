@@ -13,10 +13,11 @@ class CreateEventStep5VC: UIViewController {
     //MARK:- Outlet Declaration
     @IBOutlet var btnPreview: UIButton!
     @IBOutlet var progressView: UIProgressView!
-    
     @IBOutlet var tblAttributes: UITableView!
-    
     @IBOutlet var constNoteViewHeight: NSLayoutConstraint!
+    @IBOutlet var viewServices: UIView!
+    @IBOutlet var viewAddServices: UIView!
+    @IBOutlet var btnEventServices: UIButton!
     
     //MARK: Other Objects
     var dictCreateEventDetail = NSMutableDictionary()
@@ -40,6 +41,11 @@ class CreateEventStep5VC: UIViewController {
             }
         }else{
             self.createAttributes()
+        }
+        if dictCreateEventDetail.value(forKey: "EventServices") != nil {
+            ProjectUtilities.setUpIconsForServices(arrServices: dictCreateEventDetail.value(forKey: "EventServices") as! NSMutableArray, viewDragable: viewServices)
+            constNoteViewHeight.constant = 0
+            viewServices.bringSubview(toFront: btnEventServices)
         }
         
         tblAttributes.reloadData()
@@ -95,6 +101,11 @@ class CreateEventStep5VC: UIViewController {
         if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Event Description" {
             
             self.performSegue(withIdentifier: "eventDescriptionSegue", sender: nil)
+        }else{
+            if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Event Budget" {
+                
+                self.performSegue(withIdentifier: "eventTotalBudgetSegue", sender: nil)
+            }
         }
     }
     
@@ -140,6 +151,9 @@ class CreateEventStep5VC: UIViewController {
             vc.dictCreateEventDetail = dictCreateEventDetail
         }else if segue.identifier == "eventServiceListSegue" {
             let vc: EventServiceListVC = segue.destination as! EventServiceListVC
+            vc.dictCreateEventDetail = dictCreateEventDetail
+        }else if segue.identifier == "eventTotalBudgetSegue" {
+            let vc: EventTotalBudgetVC = segue.destination as! EventTotalBudgetVC
             vc.dictCreateEventDetail = dictCreateEventDetail
         }
     }

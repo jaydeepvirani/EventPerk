@@ -58,6 +58,11 @@
 		7718984B1EB45A5900FF9D31 /* SliderMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 771898471EB45A5900FF9D31 /* SliderMenuController.xib */; };
 		7751C8501EB33041001B13C1 /* PGDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 7751C84F1EB33041001B13C1 /* PGDrawerTransition.m */; };
 		795629163F56FF9958B4BBDB /* Pods_Eventperk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D718F6924C0C0F51BFF4B03E /* Pods_Eventperk.framework */; };
+		E1208CB81F37A08E001855CF /* EventDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1208CB31F37A08E001855CF /* EventDescriptionVC.swift */; };
+		E1208CB91F37A08E001855CF /* EventServiceListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1208CB51F37A08E001855CF /* EventServiceListVC.swift */; };
+		E1208CBA1F37A08E001855CF /* EventSubServiceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1208CB61F37A08E001855CF /* EventSubServiceList.swift */; };
+		E1208CBB1F37A08E001855CF /* LikedEventServicesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1208CB71F37A08E001855CF /* LikedEventServicesVC.swift */; };
+		E1208CBD1F37A0DC001855CF /* EventTotalBudgetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1208CBC1F37A0DC001855CF /* EventTotalBudgetVC.swift */; };
 		E13C0D2F1F36F10E0046B027 /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13C0D2E1F36F10E0046B027 /* ServicesView.swift */; };
 		EE27C8061F32760B00F7CC73 /* MLPAutoCompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EE27C7FA1F32760B00F7CC73 /* MLPAutoCompleteTextField.m */; };
 		EE27C8071F32760B00F7CC73 /* MVPlaceSearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EE27C7FF1F32760B00F7CC73 /* MVPlaceSearchTextField.m */; };
@@ -89,10 +94,6 @@
 		EE79740B1F35CBC70042E236 /* CreateEventStep3VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7974021F35CBC60042E236 /* CreateEventStep3VC.swift */; };
 		EE79740C1F35CBC70042E236 /* CreateEventStep4VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7974031F35CBC60042E236 /* CreateEventStep4VC.swift */; };
 		EE79740D1F35CBC70042E236 /* CreateEventStep5VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7974041F35CBC60042E236 /* CreateEventStep5VC.swift */; };
-		EE79740E1F35CBC70042E236 /* EventDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7974051F35CBC60042E236 /* EventDescriptionVC.swift */; };
-		EE79740F1F35CBC70042E236 /* EventServiceListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7974061F35CBC60042E236 /* EventServiceListVC.swift */; };
-		EE7974101F35CBC70042E236 /* EventSubServiceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7974071F35CBC60042E236 /* EventSubServiceList.swift */; };
-		EE7974111F35CBC70042E236 /* LikedEventServicesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7974081F35CBC60042E236 /* LikedEventServicesVC.swift */; };
 		EE9151711F3351E600358205 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE91516E1F3351E600358205 /* CustomTextField.swift */; };
 		EE9151721F3351E600358205 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9151701F3351E600358205 /* UIPlaceHolderTextView.m */; };
 		EE9A2CBF1EC5F2C000509569 /* AddNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A2CBD1EC5F2C000509569 /* AddNumberViewController.swift */; };
@@ -183,6 +184,11 @@
 		7751C84E1EB33041001B13C1 /* PGDrawerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGDrawerTransition.h; sourceTree = "<group>"; };
 		7751C84F1EB33041001B13C1 /* PGDrawerTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGDrawerTransition.m; sourceTree = "<group>"; };
 		D718F6924C0C0F51BFF4B03E /* Pods_Eventperk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eventperk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1208CB31F37A08E001855CF /* EventDescriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDescriptionVC.swift; sourceTree = "<group>"; };
+		E1208CB51F37A08E001855CF /* EventServiceListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventServiceListVC.swift; sourceTree = "<group>"; };
+		E1208CB61F37A08E001855CF /* EventSubServiceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventSubServiceList.swift; sourceTree = "<group>"; };
+		E1208CB71F37A08E001855CF /* LikedEventServicesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedEventServicesVC.swift; sourceTree = "<group>"; };
+		E1208CBC1F37A0DC001855CF /* EventTotalBudgetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTotalBudgetVC.swift; sourceTree = "<group>"; };
 		E13C0D2E1F36F10E0046B027 /* ServicesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
 		EE27C7F91F32760B00F7CC73 /* MLPAutoCompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompleteTextField.h; sourceTree = "<group>"; };
 		EE27C7FA1F32760B00F7CC73 /* MLPAutoCompleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLPAutoCompleteTextField.m; sourceTree = "<group>"; };
@@ -226,10 +232,6 @@
 		EE7974021F35CBC60042E236 /* CreateEventStep3VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventStep3VC.swift; sourceTree = "<group>"; };
 		EE7974031F35CBC60042E236 /* CreateEventStep4VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventStep4VC.swift; sourceTree = "<group>"; };
 		EE7974041F35CBC60042E236 /* CreateEventStep5VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventStep5VC.swift; sourceTree = "<group>"; };
-		EE7974051F35CBC60042E236 /* EventDescriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDescriptionVC.swift; sourceTree = "<group>"; };
-		EE7974061F35CBC60042E236 /* EventServiceListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventServiceListVC.swift; sourceTree = "<group>"; };
-		EE7974071F35CBC60042E236 /* EventSubServiceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventSubServiceList.swift; sourceTree = "<group>"; };
-		EE7974081F35CBC60042E236 /* LikedEventServicesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedEventServicesVC.swift; sourceTree = "<group>"; };
 		EE91516E1F3351E600358205 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		EE91516F1F3351E600358205 /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
 		EE9151701F3351E600358205 /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
@@ -543,6 +545,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E1208CB11F37A04A001855CF /* EventBudget */ = {
+			isa = PBXGroup;
+			children = (
+				E1208CBC1F37A0DC001855CF /* EventTotalBudgetVC.swift */,
+			);
+			path = EventBudget;
+			sourceTree = "<group>";
+		};
+		E1208CB21F37A08E001855CF /* EventDescription */ = {
+			isa = PBXGroup;
+			children = (
+				E1208CB31F37A08E001855CF /* EventDescriptionVC.swift */,
+			);
+			path = EventDescription;
+			sourceTree = "<group>";
+		};
+		E1208CB41F37A08E001855CF /* EventServices */ = {
+			isa = PBXGroup;
+			children = (
+				E1208CB51F37A08E001855CF /* EventServiceListVC.swift */,
+				E1208CB61F37A08E001855CF /* EventSubServiceList.swift */,
+				E1208CB71F37A08E001855CF /* LikedEventServicesVC.swift */,
+			);
+			path = EventServices;
+			sourceTree = "<group>";
+		};
 		EE27C7F81F32760B00F7CC73 /* MLPAutoCompleteTextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -636,10 +664,9 @@
 				EE7974021F35CBC60042E236 /* CreateEventStep3VC.swift */,
 				EE7974031F35CBC60042E236 /* CreateEventStep4VC.swift */,
 				EE7974041F35CBC60042E236 /* CreateEventStep5VC.swift */,
-				EE7974051F35CBC60042E236 /* EventDescriptionVC.swift */,
-				EE7974061F35CBC60042E236 /* EventServiceListVC.swift */,
-				EE7974081F35CBC60042E236 /* LikedEventServicesVC.swift */,
-				EE7974071F35CBC60042E236 /* EventSubServiceList.swift */,
+				E1208CB21F37A08E001855CF /* EventDescription */,
+				E1208CB41F37A08E001855CF /* EventServices */,
+				E1208CB11F37A04A001855CF /* EventBudget */,
 			);
 			path = CreateEvent;
 			sourceTree = "<group>";
@@ -857,18 +884,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE79740F1F35CBC70042E236 /* EventServiceListVC.swift in Sources */,
 				35D7AF321E82F91E00758DBB /* EPInputView.swift in Sources */,
+				E1208CB91F37A08E001855CF /* EventServiceListVC.swift in Sources */,
 				2CE2157E1F16695300E81728 /* AAPopUp+Global.swift in Sources */,
 				EE2CFC651F3757030071F032 /* ProjectUtilities.swift in Sources */,
 				2CE2158D1F1669F700E81728 /* EPSignUp1ViewController.swift in Sources */,
 				35FE07151E81B91000255602 /* EPNavigationViewController.swift in Sources */,
 				EED89AA51EB75E1E009155E0 /* PhotoCollectionViewCell.swift in Sources */,
 				EEC4D9471EC2D4FC000E7E15 /* VendorRevenuesViewController.swift in Sources */,
-				EE7974111F35CBC70042E236 /* LikedEventServicesVC.swift in Sources */,
 				EEA915B51EAA187200892743 /* CommonController.m in Sources */,
 				EE9A2CBF1EC5F2C000509569 /* AddNumberViewController.swift in Sources */,
 				2CC41E631F2731450008B343 /* ObjectiveCMethods.m in Sources */,
+				E1208CBA1F37A08E001855CF /* EventSubServiceList.swift in Sources */,
 				EE7973F21F35B0EC0042E236 /* CosmosSize.swift in Sources */,
 				771898481EB45A5900FF9D31 /* MenuTableViewCell.m in Sources */,
 				EEA915C01EAA20D200892743 /* InboxViewController.swift in Sources */,
@@ -888,7 +915,6 @@
 				EE79740D1F35CBC70042E236 /* CreateEventStep5VC.swift in Sources */,
 				EE7973F01F35B0EC0042E236 /* CosmosRating.swift in Sources */,
 				EEA915C21EAA20DF00892743 /* ProfileViewController.swift in Sources */,
-				EE7974101F35CBC70042E236 /* EventSubServiceList.swift in Sources */,
 				EE7973F31F35B0EC0042E236 /* CosmosText.swift in Sources */,
 				EE7974091F35CBC60042E236 /* CreateEventStep1VC.swift in Sources */,
 				EEB191A61EB862E900CEC946 /* ViewAllEventsViewController.swift in Sources */,
@@ -909,13 +935,13 @@
 				35FE06F51E81B36300255602 /* AppDelegate.swift in Sources */,
 				2CE215901F1669F700E81728 /* EPSignUp4ViewController.swift in Sources */,
 				EE7973EF1F35B0EC0042E236 /* CosmosLocalizedRating.swift in Sources */,
-				EE79740E1F35CBC70042E236 /* EventDescriptionVC.swift in Sources */,
 				2CE215801F16695300E81728 /* AAPopUp.swift in Sources */,
 				EE7973FA1F35B0EC0042E236 /* StarLayer.swift in Sources */,
 				357C85A41E92D20B00D99863 /* EPNextViewController.swift in Sources */,
 				EEB191AA1EB88AD900CEC946 /* FollowViewController.swift in Sources */,
 				2C53ECB11F2F588C002B8916 /* EventViewController.swift in Sources */,
 				EE7973EB1F35B0EC0042E236 /* CosmosAccessibility.swift in Sources */,
+				E1208CBD1F37A0DC001855CF /* EventTotalBudgetVC.swift in Sources */,
 				7718984A1EB45A5900FF9D31 /* SliderMenuController.m in Sources */,
 				7751C8501EB33041001B13C1 /* PGDrawerTransition.m in Sources */,
 				EE27C8071F32760B00F7CC73 /* MVPlaceSearchTextField.m in Sources */,
@@ -923,10 +949,12 @@
 				35D7AF2E1E82E55F00758DBB /* EPAuthButtonView.swift in Sources */,
 				EE62A50B1EB30EEE00E2C6E1 /* RDVTabBar.m in Sources */,
 				EED89AA91EB768A6009155E0 /* EditProfileViewController.swift in Sources */,
+				E1208CBB1F37A08E001855CF /* LikedEventServicesVC.swift in Sources */,
 				35F44B2A1E8DAD2C00D95F22 /* ApiManager.swift in Sources */,
 				E13C0D2F1F36F10E0046B027 /* ServicesView.swift in Sources */,
 				EEA915BC1EAA20AD00892743 /* LikeViewController.swift in Sources */,
 				EE27C8091F32760B00F7CC73 /* PlaceDetail.m in Sources */,
+				E1208CB81F37A08E001855CF /* EventDescriptionVC.swift in Sources */,
 				EE7973F71F35B0EC0042E236 /* RightToLeft.swift in Sources */,
 				EEC4D94F1EC30DDD000E7E15 /* AboutEditViewController.swift in Sources */,
 				EE9151721F3351E600358205 /* UIPlaceHolderTextView.m in Sources */,

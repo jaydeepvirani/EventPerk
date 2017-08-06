@@ -30,6 +30,7 @@ class ServicesView: UIView {
     func addBehavior() {
         imgServiceIcon = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: 40, height: 40))
         imgServiceIcon.contentMode = UIViewContentMode.center//scaleAspectFit
+//        imgServiceIcon.backgroundColor = UIColor.darkGray
         self.addSubview(imgServiceIcon)
     }
 }

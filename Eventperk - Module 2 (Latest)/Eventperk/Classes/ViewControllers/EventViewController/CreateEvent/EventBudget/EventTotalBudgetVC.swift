@@ -53,7 +53,8 @@ class EventTotalBudgetVC: UIViewController {
         let attrString = NSMutableAttributedString(string: "Total Budget Tip:", attributes: attrsDictionary as? [String : Any] ?? [String : Any]())
         font = UIFont.systemFont(ofSize: 14.0)
         attrsDictionary = [ NSFontAttributeName : font]
-        let newAttString = NSAttributedString(string: " $0.00 SGD", attributes: attrsDictionary as? [String : Any] ?? [String : Any]())
+        let newAttString = NSMutableAttributedString(string: " $0.00 SGD", attributes: attrsDictionary as? [String : Any] ?? [String : Any]())
+        
         attrString.append(newAttString)
     }
 }

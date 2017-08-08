@@ -23,6 +23,10 @@ class EventTotalBudgetVC: UIViewController, UITextFieldDelegate {
     @IBOutlet var btnNext: UIButton!
     @IBOutlet var imgNext: UIImageView!
     
+    @IBOutlet var viewBack: UIView!
+    @IBOutlet var btnBack: UIButton!
+    @IBOutlet var imgBack: UIImageView!
+    
     //MARK: Other Objects
     var dictCreateEventDetail = NSMutableDictionary()
     var dictEventBudget = NSMutableDictionary()
@@ -71,13 +75,12 @@ class EventTotalBudgetVC: UIViewController, UITextFieldDelegate {
         
         self.view.endEditing(true)
         if btnNext.isSelected == true {
-            if strBudgetCurrentState == "Total Budget" {
-                isEventTapGestureEnable = true
-                strBudgetCurrentState = "Individual Budget"
-                lblSetTotalEventBudget.text = "Set Individual budget"
-            }else{
-            }
+            self.setBudgetValidation()
         }
+    }
+    
+    @IBAction func btnBackBudgetAction (_ sender: UIButton) {
+        
     }
     
     //MARK:- Gesture
@@ -115,7 +118,7 @@ class EventTotalBudgetVC: UIViewController, UITextFieldDelegate {
                         selectedServiceView?.layer.borderWidth = 1
                     }
                     
-                    lblTotalBudget.text = selectedServiceView?.strServiceType
+                    lblSetTotalEventBudget.text = selectedServiceView?.strServiceType
                 }
             }
         }
@@ -124,6 +127,21 @@ class EventTotalBudgetVC: UIViewController, UITextFieldDelegate {
     //MARK:- TextField Delegate
     @IBAction func textFielTextdDidChanged(_ sender: Any) {
         self.setNextButtonState()
+    }
+    
+    //MARK:- Budget Validation
+    
+    func setBudgetValidation() {
+        
+        if strBudgetCurrentState == "Total Budget" {
+            isEventTapGestureEnable = true
+            strBudgetCurrentState = "Individual Budget"
+            self.budgetTypeAttributedString(strBudgetType: "Individual")
+            dictEventBudget.setValue(txtBudget.text, forKey: "TotalEventBudget")
+            txtBudget.text = "0"
+        }else{
+            
+        }
     }
     
     //MARK:- Set Next Button State

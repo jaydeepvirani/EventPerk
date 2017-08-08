@@ -89,6 +89,14 @@ class CreateEventStep5VC: UIViewController {
                 cell.lblAttributeName.text = dictRowData.value(forKey: "AttributeTitle") as? String
                 cell.lblAttributeDescription.text = dictRowData.value(forKey: "AttributeDescription") as? String
             }
+        }else if indexPath.row == 1 {
+            if dictRowData.value(forKey: "TotalEventBudget") != nil  {
+                cell.lblAttributeName.text = dictRowData.value(forKey: "TotalEventBudget") as? String
+                cell.lblAttributeDescription.text = dictRowData.value(forKey: "BudgetWhenAttributeChanged") as? String
+            }else{
+                cell.lblAttributeName.text = dictRowData.value(forKey: "AttributeTitle") as? String
+                cell.lblAttributeDescription.text = dictRowData.value(forKey: "AttributeDescription") as? String
+            }
         }else{
             cell.lblAttributeName.text = dictRowData.value(forKey: "AttributeTitle") as? String
             cell.lblAttributeDescription.text = dictRowData.value(forKey: "AttributeDescription") as? String
@@ -101,11 +109,12 @@ class CreateEventStep5VC: UIViewController {
         if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Event Description" {
             
             self.performSegue(withIdentifier: "eventDescriptionSegue", sender: nil)
-        }else{
-            if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Event Budget" {
+        }else if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Event Budget" {
                 
-                self.performSegue(withIdentifier: "eventTotalBudgetSegue", sender: nil)
-            }
+            self.performSegue(withIdentifier: "eventTotalBudgetSegue", sender: nil)
+        }else if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Event Venue" {
+            
+            self.performSegue(withIdentifier: "venueSegue", sender: nil)
         }
     }
     
@@ -120,6 +129,7 @@ class CreateEventStep5VC: UIViewController {
         dictAttribute = NSMutableDictionary()
         dictAttribute.setValue("Event Budget", forKey: "AttributeTitle")
         dictAttribute.setValue("Input budget for your event and each services", forKey: "AttributeDescription")
+        dictAttribute.setValue("Edit budget of event and each services", forKey: "BudgetWhenAttributeChanged")
         arrAttributes.add(dictAttribute)
         
         dictAttribute = NSMutableDictionary()
@@ -155,6 +165,10 @@ class CreateEventStep5VC: UIViewController {
         }else if segue.identifier == "eventTotalBudgetSegue" {
             let vc: EventTotalBudgetVC = segue.destination as! EventTotalBudgetVC
             vc.dictCreateEventDetail = dictCreateEventDetail
+        }else if segue.identifier == "venueSegue" {
+            let vc: CreateEventStep3VC = segue.destination as! CreateEventStep3VC
+            vc.dictCreateEventDetail = dictCreateEventDetail
+            vc.isFromCreateEventStep5 = true
         }
     }
 }

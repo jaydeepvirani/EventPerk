@@ -94,7 +94,7 @@ class ProjectUtilities: NSObject
                         myView.imgServiceIcon.image = UIImage(named: (((arrServices.object(at: i) as! NSMutableDictionary).value(forKey: "SubServices") as! NSMutableArray).object(at: j) as! NSMutableDictionary).value(forKey: "SubServiceTitle") as! String)
                         
                         myView.tag = j
-                        myView.strServiceType = (arrServices.object(at: i) as! NSMutableDictionary).value(forKey: "SubServiceTitle") as! String
+                        myView.strServiceType = (((arrServices.object(at: i) as! NSMutableDictionary).value(forKey: "SubServices") as! NSMutableArray).object(at: j) as! NSMutableDictionary).value(forKey: "SubServiceTitle") as! String
                         
                         lastUpdatedX = lastUpdatedX + 40
                         

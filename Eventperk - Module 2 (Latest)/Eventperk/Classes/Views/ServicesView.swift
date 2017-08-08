@@ -13,6 +13,7 @@ class ServicesView: UIView {
     var imgServiceIcon = UIImageView()
     var intTag = 0
     var strServiceType = ""
+    var strEventBudget = ""
     
     override init(frame: CGRect) {
         super.init(frame: frame)

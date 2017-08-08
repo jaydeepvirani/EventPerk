@@ -2,4 +2,70 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Eventperk/Classes/ViewControllers/EventViewController/CreateEvent/EventBudget/EventTotalBudgetVC.swift"
+            timestampString = "523912498.646578"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
+            landmarkName = "textFieldDidEndEditing(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Eventperk/Classes/ViewControllers/EventViewController/CreateEvent/EventBudget/EventTotalBudgetVC.swift"
+            timestampString = "523912498.646578"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "tapGesture(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Eventperk.EventTotalBudgetVC.tapGesture (__ObjC.UITapGestureRecognizer) -&gt; ()"
+                  moduleName = "Eventperk"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cizotech/Desktop/Cizo%20Works/Current%20Projects/Event%20Perk/Eventperk%20-%20Module%202%20(Latest)/Eventperk/Classes/ViewControllers/EventViewController/CreateEvent/EventBudget/EventTotalBudgetVC.swift"
+                  timestampString = "523915037.591965"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
+                  offsetFromSymbolStart = "1247">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Eventperk.EventTotalBudgetVC.tapGesture (__ObjC.UITapGestureRecognizer) -&gt; ()"
+                  moduleName = "Eventperk"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cizotech/Desktop/Cizo%20Works/Current%20Projects/Event%20Perk/Eventperk%20-%20Module%202%20(Latest)/Eventperk/Classes/ViewControllers/EventViewController/CreateEvent/EventBudget/EventTotalBudgetVC.swift"
+                  timestampString = "523915037.594703"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
+                  offsetFromSymbolStart = "1302">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

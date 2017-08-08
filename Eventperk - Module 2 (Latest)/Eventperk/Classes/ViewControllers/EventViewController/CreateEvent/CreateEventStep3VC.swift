@@ -13,14 +13,17 @@ import MapKit
 class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSearchTextFieldDelegate, UIScrollViewDelegate, UITextFieldDelegate {
 
     //MARK:- Outlet Declaration
+    @IBOutlet var lblTitle: UILabel!
     @IBOutlet var scrlView: UIScrollView!
     @IBOutlet var viewLocationInput: UIView!
     @IBOutlet var txtAddress: MVPlaceSearchTextField!
     @IBOutlet var mapView: MKMapView!
+    @IBOutlet var btnNext: UIButton!
     
     //MARK: Other Objects
     var dictCreateEventDetail = NSMutableDictionary()
     var annotation = MKPointAnnotation()
+    var isFromCreateEventStep5 = false
     
     //MARK:- View Life Cycle
     override func viewDidLoad() {
@@ -61,6 +64,10 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
         let location = CLLocationCoordinate2D(latitude: Constants.appDelegate.latitude, longitude: Constants.appDelegate.longitude)
         let viewRegion = MKCoordinateRegionMakeWithDistance(location, 200, 200)
         mapView.setRegion(viewRegion, animated: false)
+        
+        if isFromCreateEventStep5 == true {
+            lblTitle.text = "Venue"
+        }
     }
     
     //MARK:- Button TouchUp
@@ -72,6 +79,9 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
         txtAddress.text = ""
         txtAddress.becomeFirstResponder()
         
+        btnNext.isSelected = false
+        btnNext.backgroundColor = UIColor.red
+        
         let location = CLLocationCoordinate2D(latitude: Constants.appDelegate.latitude, longitude: Constants.appDelegate.longitude)
         let viewRegion = MKCoordinateRegionMakeWithDistance(location, 200, 200)
         mapView.setRegion(viewRegion, animated: false)
@@ -79,8 +89,17 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
         mapView.removeAnnotation(annotation)
     }
     
-    //MARK:- Address
+    @IBAction func btnNextAction (_ sender: UIButton) {
+        if btnNext.isSelected == true {
+            if isFromCreateEventStep5 == false {
+                self.performSegue(withIdentifier: "createEventStep4Segue", sender: nil)
+            }else{
+                
+            }
+        }
+    }
     
+    //MARK:- Address
     func getAddressFromLocation(){
         
         let location = CLLocation(latitude: Constants.appDelegate.latitude, longitude: Constants.appDelegate.longitude)
@@ -108,6 +127,9 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
                     }
                     print(strAddress)
                     self.txtAddress.text = strAddress
+                    
+                    self.btnNext.isSelected = true
+                    self.btnNext.backgroundColor = UIColor.init(red: 0.0/255.0, green: 255.0/255.0, blue: 102.0/255.0, alpha: 1.0)
                 }
             }
             else {
@@ -129,6 +151,9 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
         mapView.addAnnotation(annotation)
         let viewRegion = MKCoordinateRegionMakeWithDistance(location, 200, 200)
         mapView.setRegion(viewRegion, animated: false)
+        
+        btnNext.isSelected = true
+        btnNext.backgroundColor = UIColor.init(red: 0.0/255.0, green: 255.0/255.0, blue: 102.0/255.0, alpha: 1.0)
     }
     
     public func placeSearchWillShowResult() {
@@ -158,6 +183,14 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         scrlView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: true)
+        
+        if txtAddress.text != "" {
+            btnNext.isSelected = true
+            btnNext.backgroundColor = UIColor.init(red: 0.0/255.0, green: 255.0/255.0, blue: 102.0/255.0, alpha: 1.0)
+        }else{
+            btnNext.isSelected = false
+            btnNext.backgroundColor = UIColor.red
+        }
     }
     
     // MARK:- Segue

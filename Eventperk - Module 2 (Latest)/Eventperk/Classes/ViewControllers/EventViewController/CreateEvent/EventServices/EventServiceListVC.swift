@@ -82,13 +82,6 @@ class EventServiceListVC: UIViewController {
         self.saveButtonValidation(isSelected: valid)
     }
     
-    func setupGestures() {
-        let pan = UIPanGestureRecognizer(target:self, action:#selector(self.pan(_:)))
-        pan.maximumNumberOfTouches = 1
-        pan.minimumNumberOfTouches = 1
-        viewServicesIcon.addGestureRecognizer(pan)
-    }
-    
     //MARK:- Button TouchUp
     @IBAction func btnBackAction (_ sender: UIButton) {
         _ = self.navigationController?.popViewController(animated: true)
@@ -123,6 +116,13 @@ class EventServiceListVC: UIViewController {
     }
     
     //MARK:- Gesture
+    
+    func setupGestures() {
+        let pan = UIPanGestureRecognizer(target:self, action:#selector(self.pan(_:)))
+        pan.maximumNumberOfTouches = 1
+        pan.minimumNumberOfTouches = 1
+        viewServicesIcon.addGestureRecognizer(pan)
+    }
     
     func pan(_ rec:UIPanGestureRecognizer) {
         

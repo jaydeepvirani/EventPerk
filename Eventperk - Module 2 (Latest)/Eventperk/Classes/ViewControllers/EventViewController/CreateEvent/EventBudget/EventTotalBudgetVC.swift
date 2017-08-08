@@ -8,18 +8,31 @@
 
 import UIKit
 
-class EventTotalBudgetVC: UIViewController {
+class EventTotalBudgetVC: UIViewController, UITextFieldDelegate {
 
     //MARK:- Outlet Declaration
     @IBOutlet var viewServices: UIView!
     @IBOutlet var viewEventBudget: UIView!
     @IBOutlet var constNoteViewHeight: NSLayoutConstraint!
     
+    @IBOutlet var txtBudget: UITextField!
     @IBOutlet var lblTotalBudget: UILabel!
+    @IBOutlet var lblSetTotalEventBudget: UILabel!
+    
+    @IBOutlet var viewNext: UIView!
+    @IBOutlet var btnNext: UIButton!
+    @IBOutlet var imgNext: UIImageView!
     
     //MARK: Other Objects
     var dictCreateEventDetail = NSMutableDictionary()
+    var dictEventBudget = NSMutableDictionary()
+    var strBudgetCurrentState = "Total Budget"
+    var isEventTapGestureEnable = false
+    
+    var arrViewServices = NSMutableArray()
+    
     var selectedView: UIView?
+    var selectedServiceView: ServicesView?
     
     //MARK:- View Life Cycle
     override func viewDidLoad() {
@@ -35,9 +48,8 @@ class EventTotalBudgetVC: UIViewController {
     func initialization() {
         
         if dictCreateEventDetail.value(forKey: "EventServices") != nil {
-            ProjectUtilities.setUpIconsForServices(arrServices: dictCreateEventDetail.value(forKey: "EventServices") as! NSMutableArray, viewDragable: viewServices)
+            arrViewServices = ProjectUtilities.setUpIconsForServices(arrServices: dictCreateEventDetail.value(forKey: "EventServices") as! NSMutableArray, viewDragable: viewServices)
             constNoteViewHeight.constant = 0
-            
             self.totalAttributedString(strTipBudget: "1500")
         }else{
             self.totalAttributedString(strTipBudget: "0.00")
@@ -47,11 +59,25 @@ class EventTotalBudgetVC: UIViewController {
         viewEventBudget.layer.borderColor = UIColor.init(red: 95.0/255.0, green: 95.0/255.0, blue: 95.0/255.0, alpha: 1.0).cgColor
         
         self.setupTapGestures()
+        self.setNextButtonState()
     }
     
     //MARK:- Button TouchUp
     @IBAction func btnBackAction (_ sender: UIButton) {
         _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func btnNextAction (_ sender: UIButton) {
+        
+        self.view.endEditing(true)
+        if btnNext.isSelected == true {
+            if strBudgetCurrentState == "Total Budget" {
+                isEventTapGestureEnable = true
+                strBudgetCurrentState = "Individual Budget"
+                lblSetTotalEventBudget.text = "Set Individual budget"
+            }else{
+            }
+        }
     }
     
     //MARK:- Gesture
@@ -62,18 +88,56 @@ class EventTotalBudgetVC: UIViewController {
     }
     
     func tapGesture(_ rec:UITapGestureRecognizer) {
-        let p:CGPoint = rec.location(in: viewServices)
-        selectedView = viewServices.hitTest(p, with: nil)
-        if selectedView != nil {
-            viewServices.bringSubview(toFront: selectedView!)
-        }
-        if let subview = selectedView {
-            
-            if subview is ServicesView {
-                let view = subview as! ServicesView
-                view.layer.borderColor = UIColor.init(red: 0.0/255.0, green: 255.0/255.0, blue: 102.0/255.0, alpha: 1.0).cgColor
-                view.layer.borderWidth = 1
+        self.view.endEditing(true)
+        
+        if isEventTapGestureEnable == true {
+            let p:CGPoint = rec.location(in: viewServices)
+            selectedView = viewServices.hitTest(p, with: nil)
+            if selectedView != nil {
+                viewServices.bringSubview(toFront: selectedView!)
             }
+            if let subview = selectedView {
+                if subview is ServicesView {
+                    
+                    if strBudgetCurrentState == "Individual Budget" {
+                        for i in 0 ..< arrViewServices.count {
+                            
+                            let view = (arrViewServices.object(at: i) as! ServicesView)
+                            view.layer.borderWidth = 0
+                        }
+                    }
+                    selectedServiceView = subview as? ServicesView
+                    
+                    if selectedServiceView?.layer.borderWidth == 1 {
+                        selectedServiceView?.layer.borderWidth = 0
+                    }else{
+                        selectedServiceView?.layer.borderColor = UIColor.init(red: 0.0/255.0, green: 255.0/255.0, blue: 102.0/255.0, alpha: 1.0).cgColor
+                        selectedServiceView?.layer.borderWidth = 1
+                    }
+                    
+                    lblTotalBudget.text = selectedServiceView?.strServiceType
+                }
+            }
+        }
+    }
+    
+    //MARK:- TextField Delegate
+    @IBAction func textFielTextdDidChanged(_ sender: Any) {
+        self.setNextButtonState()
+    }
+    
+    //MARK:- Set Next Button State
+    func setNextButtonState() {
+        
+        viewNext.isHidden = false
+        if dictCreateEventDetail.value(forKey: "EventServices") == nil {
+            viewNext.isHidden = true
+        }else if txtBudget.text == "0" || txtBudget.text == "" {
+            btnNext.isSelected = false
+            imgNext.backgroundColor = UIColor.red
+        }else{
+            btnNext.isSelected = true
+            imgNext.backgroundColor = UIColor.init(red: 0.0/255.0, green: 255.0/255.0, blue: 102.0/255.0, alpha: 1.0)
         }
     }
     
@@ -97,5 +161,26 @@ class EventTotalBudgetVC: UIViewController {
         attrString.addAttribute(NSForegroundColorAttributeName, value: UIColor.init(red: 0.0/255.0, green: 255.0/255.0, blue: 102.0/255.0, alpha: 1.0), range: (attrString.string as NSString).range(of: " $\(strTipBudget) SGD"))
         
         lblTotalBudget.attributedText = attrString
+    }
+    
+    func budgetTypeAttributedString(strBudgetType: String) {
+        var font = UIFont.systemFont(ofSize: 14.0)
+        var attrsDictionary: [AnyHashable: Any] = [NSFontAttributeName : font]
+        
+        let attrString = NSMutableAttributedString(string: "Set a ", attributes: attrsDictionary as? [String : Any] ?? [String : Any]())
+        
+        font = UIFont.systemFont(ofSize: 14.0)
+        attrsDictionary = [ NSFontAttributeName : font]
+        var newAttString = NSMutableAttributedString(string: strBudgetType, attributes: attrsDictionary as? [String : Any] ?? [String : Any]())
+        attrString.append(newAttString)
+        
+        font = UIFont.systemFont(ofSize: 14.0)
+        attrsDictionary = [ NSFontAttributeName : font]
+        newAttString = NSMutableAttributedString(string: " budget", attributes: attrsDictionary as? [String : Any] ?? [String : Any]())
+        attrString.append(newAttString)
+        
+        attrString.addAttribute(NSForegroundColorAttributeName, value: UIColor.init(red: 0.0/255.0, green: 255.0/255.0, blue: 102.0/255.0, alpha: 1.0), range: (attrString.string as NSString).range(of: strBudgetType))
+        
+        lblSetTotalEventBudget.attributedText = attrString
     }
 }

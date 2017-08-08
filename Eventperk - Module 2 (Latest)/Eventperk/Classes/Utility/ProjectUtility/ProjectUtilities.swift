@@ -62,7 +62,7 @@ class ProjectUtilities: NSObject
     }
     
     //MARK:- Setup Dragable Services
-    class func setUpIconsForServices(arrServices: NSMutableArray, viewDragable: UIView) {
+    class func setUpIconsForServices(arrServices: NSMutableArray, viewDragable: UIView) -> NSMutableArray {
         
         var lastUpdatedX = 0
         var lastUpdatedY = 0
@@ -73,6 +73,8 @@ class ProjectUtilities: NSObject
                 view.removeFromSuperview()
             }
         }
+        
+        let arrViewService = NSMutableArray()
         
         for i in 0 ..< arrServices.count {
             if (arrServices.object(at: i) as! NSMutableDictionary).value(forKey: "SubServices") != nil {
@@ -85,18 +87,23 @@ class ProjectUtilities: NSObject
                             lastUpdatedX = 0
                         }
                         
-                        let myview = ServicesView()
-                        viewDragable.addSubview(myview)
-                        myview.frame = CGRect(x: lastUpdatedX, y: lastUpdatedY, width: 40, height: 40)
-                        myview.imgServiceIcon.image = UIImage(named: (((arrServices.object(at: i) as! NSMutableDictionary).value(forKey: "SubServices") as! NSMutableArray).object(at: j) as! NSMutableDictionary).value(forKey: "SubServiceTitle") as! String)
+                        let myView = ServicesView()
+                        viewDragable.addSubview(myView)
                         
-                        myview.tag = j
-                        myview.strServiceType = (arrServices.object(at: i) as! NSMutableDictionary).value(forKey: "SubServiceTitle") as! String
+                        myView.frame = CGRect(x: lastUpdatedX, y: lastUpdatedY, width: 40, height: 40)
+                        myView.imgServiceIcon.image = UIImage(named: (((arrServices.object(at: i) as! NSMutableDictionary).value(forKey: "SubServices") as! NSMutableArray).object(at: j) as! NSMutableDictionary).value(forKey: "SubServiceTitle") as! String)
+                        
+                        myView.tag = j
+                        myView.strServiceType = (arrServices.object(at: i) as! NSMutableDictionary).value(forKey: "SubServiceTitle") as! String
                         
                         lastUpdatedX = lastUpdatedX + 40
+                        
+                        arrViewService.add(myView)
                     }
                 }
             }
         }
+        
+        return arrViewService
     }
 }

@@ -43,7 +43,7 @@ class CreateEventStep5VC: UIViewController {
             self.createAttributes()
         }
         if dictCreateEventDetail.value(forKey: "EventServices") != nil {
-            ProjectUtilities.setUpIconsForServices(arrServices: dictCreateEventDetail.value(forKey: "EventServices") as! NSMutableArray, viewDragable: viewServices)
+            _ = ProjectUtilities.setUpIconsForServices(arrServices: dictCreateEventDetail.value(forKey: "EventServices") as! NSMutableArray, viewDragable: viewServices)
             constNoteViewHeight.constant = 0
             viewServices.bringSubview(toFront: btnEventServices)
         }

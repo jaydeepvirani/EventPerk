@@ -66,7 +66,7 @@ class EventServiceListVC: UIViewController {
     
     func setUpServicesView() {
         
-        ProjectUtilities.setUpIconsForServices(arrServices: arrServiceList, viewDragable: viewServicesIcon)
+        _ = ProjectUtilities.setUpIconsForServices(arrServices: arrServiceList, viewDragable: viewServicesIcon)
         
         var valid = false
         

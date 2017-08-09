@@ -12,3 +12,4 @@
 #import "MVPlaceSearchTextField.h"
 #import "MLPAutoCompleteTextField.h"
 #import "UIPlaceHolderTextView.h"
+#import "UIImageViewModeScaleAspect.h"

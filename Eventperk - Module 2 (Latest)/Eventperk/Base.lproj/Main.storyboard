@@ -5312,7 +5312,7 @@ UGxlYXNlIGFkZCBzZXJ2aWNlIHRvIHN0YXJ0IBB5b3VyIGJ1ZGdldCBzZXR0aW5nLg
                 <navigationController storyboardIdentifier="EPNavigationViewController" title="EPNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="s7W-Ah-kFK" customClass="EPNavigationViewController" customModule="Eventperk" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="g5N-BK-3AT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="g5N-BK-3AT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

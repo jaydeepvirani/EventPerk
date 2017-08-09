@@ -19,8 +19,6 @@
 #ifndef REALM_THREAD_SAFE_REFERENCE_HPP
 #define REALM_THREAD_SAFE_REFERENCE_HPP
 
-#include "descriptor_ordering.hpp"
-
 #include <realm/group_shared.hpp>
 
 namespace realm {
@@ -112,7 +110,8 @@ private:
     friend Realm;
 
     std::unique_ptr<SharedGroup::Handover<Query>> m_query;
-    DescriptorOrdering::HandoverPatch m_ordering_patch;
+    SortDescriptor::HandoverPatch m_sort_order;
+    SortDescriptor::HandoverPatch m_distinct_descriptor;
 
     // Precondition: The associated Realm is for the current thread and is not in a write transaction;.
     ThreadSafeReference(Results const& value);

@@ -229,10 +229,7 @@ private:
     SyncSession(_impl::SyncClient&, std::string realm_path, SyncConfig);
     // }
 
-
     void handle_error(SyncError);
-    enum class ShouldBackup { yes, no };
-    void update_error_and_mark_file_for_deletion(SyncError&, ShouldBackup);
     static std::string get_recovery_file_path();
     void handle_progress_update(uint64_t, uint64_t, uint64_t, uint64_t, bool);
 

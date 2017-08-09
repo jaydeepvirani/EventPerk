@@ -110,12 +110,6 @@ public:
         return m_results.async(std::move(target));
     }
 
-    // Add a notification callback to this Results.
-    NotificationToken add_notification_callback(CollectionChangeCallback cb) &
-    {
-        return m_results.add_notification_callback(std::move(cb));
-    }
-
     // Create a new instance by further filtering this instance.
     PermissionResults filter(Query&& q) const
     {

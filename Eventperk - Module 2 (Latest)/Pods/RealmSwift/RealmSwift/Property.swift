@@ -27,7 +27,7 @@ import Realm
 
  Property instances map to columns in the core database.
  */
-public struct Property: CustomStringConvertible {
+public final class Property: CustomStringConvertible {
 
     // MARK: Properties
 

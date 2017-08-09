@@ -228,11 +228,14 @@ force_xcode_82() {
 ######################################
 
 test_devices() {
-    local serial_numbers=()
-    local serial_numbers_text=$(/usr/sbin/system_profiler SPUSBDataType | /usr/bin/awk '/^ +Serial Number: / { match($0, /^ +Serial Number: /); print substr($0, RLENGTH + 1) }')
-    while read -r number; do
-        serial_numbers+=("$number")
-    done <<< "$serial_numbers_text"
+    serial_numbers_str=$(system_profiler SPUSBDataType | grep "Serial Number: ")
+    serial_numbers=()
+    while read -r line; do
+        number=${line:15} # Serial number starts at position 15
+        if [[ ${#number} == 40 ]]; then
+            serial_numbers+=("$number")
+        fi
+    done <<< "$serial_numbers_str"
     if [[ ${#serial_numbers[@]} == 0 ]]; then
         echo "At least one iOS/tvOS device must be connected to this computer to run device tests"
         if [ -z "${JENKINS_HOME}" ]; then
@@ -309,7 +312,7 @@ kill_object_server() {
 
 download_object_server() {
     local archive_name="realm-object-server-bundled_node_darwin-developer-$REALM_OBJECT_SERVER_VERSION.tar.gz"
-    /usr/bin/curl -L -O "https://static.realm.io/downloads/object-server/$archive_name"
+    curl -L -O "https://static.realm.io/downloads/object-server/$archive_name"
     rm -rf sync
     mkdir sync
     tar xf $archive_name -C sync
@@ -343,7 +346,7 @@ download_common() {
     temp_path="${tar_path}.tmp"
         
     while [ 0 -lt $tries_left ] && [ ! -f "$tar_path" ]; do
-        if ! error=$(/usr/bin/curl --fail --silent --show-error --location "$url" --output "$temp_path" 2>&1); then
+        if ! error=$(curl --fail --silent --show-error --location "$url" --output "$temp_path" 2>&1); then
             tries_left=$[$tries_left-1]
         else
             mv "$temp_path" "$tar_path"
@@ -382,7 +385,7 @@ download_sync() {
 COMMAND="$1"
 
 # Use Debug config if command ends with -debug, otherwise default to Release
-# Set IS_RUNNING_PACKAGING when running packaging steps to avoid running iOS static tests with Xcode 8.3.3
+# Set IS_RUNNING_PACKAGING when running packaging steps to avoid running iOS static tests with Xcode 8.3.2
 case "$COMMAND" in
     *-debug)
         COMMAND="${COMMAND%-debug}"
@@ -1068,15 +1071,9 @@ EOM
             export CONFIGURATION=$configuration
             export REALM_EXTRA_BUILD_ARGUMENTS='GCC_GENERATE_DEBUGGING_SYMBOLS=NO REALM_PREFIX_HEADER=Realm/RLMPrefix.h'
             sh build.sh prelaunch-simulator
-
-            # Reset CoreSimulator.log
-            mkdir -p "~/Library/Logs/CoreSimulator"
-            echo > "~/Library/Logs/CoreSimulator/CoreSimulator.log"
-
-            if [ -d "~/Library/Developer/CoreSimulator/Devices/" ]; then
-                # Verify that no Realm files still exist
-                ! find "~/Library/Developer/CoreSimulator/Devices/" -name '*.realm' | grep -q .
-            fi
+            rm ~/Library/Logs/CoreSimulator/CoreSimulator.log
+            # Verify that no Realm files still exist
+            ! find ~/Library/Developer/CoreSimulator/Devices/ -name '*.realm' | grep -q .
 
             failed=0
             sh build.sh verify-$target 2>&1 | tee build/build.log | xcpretty -r junit -o build/reports/junit.xml || failed=1
@@ -1093,8 +1090,8 @@ EOM
                 sh build.sh verify-$target | tee build/build.log | xcpretty -r junit -o build/reports/junit.xml || failed=1
             fi
             if [ "$failed" = "1" ]; then
-                echo "\n\n***\nbuild/build.log\n***\n\n" && cat build/build.log || true
-                echo "\n\n***\nCoreSimulator.log\n***\n\n" && cat "~/Library/Logs/CoreSimulator/CoreSimulator.log"
+                echo "\n\n***\nbuild/build.log\n***\n\n" && cat build/build.log
+                echo "\n\n***\nCoreSimulator.log\n***\n\n" && tail -n2000 ~/Library/Logs/CoreSimulator/CoreSimulator.log
                 exit 1
             fi
         fi
@@ -1174,7 +1171,7 @@ EOM
 
     "package-ios-swift")
         cd tightdb_objc
-        for version in 8.0 8.1 8.2 8.3.3; do
+        for version in 8.0 8.1 8.2 8.3.2; do
             REALM_XCODE_VERSION=$version
             REALM_SWIFT_VERSION=
             set_xcode_and_swift_versions
@@ -1188,7 +1185,7 @@ EOM
 
     "package-osx-swift")
         cd tightdb_objc
-        for version in 8.0 8.1 8.2 8.3.3; do
+        for version in 8.0 8.1 8.2 8.3.2; do
             REALM_XCODE_VERSION=$version
             REALM_SWIFT_VERSION=
             set_xcode_and_swift_versions
@@ -1211,7 +1208,7 @@ EOM
 
     "package-watchos-swift")
         cd tightdb_objc
-        for version in 8.0 8.1 8.2 8.3.3; do
+        for version in 8.0 8.1 8.2 8.3.2; do
             REALM_XCODE_VERSION=$version
             REALM_SWIFT_VERSION=
             set_xcode_and_swift_versions
@@ -1234,7 +1231,7 @@ EOM
 
     "package-tvos-swift")
         cd tightdb_objc
-        for version in 8.0 8.1 8.2 8.3.3; do
+        for version in 8.0 8.1 8.2 8.3.2; do
             REALM_XCODE_VERSION=$version
             REALM_SWIFT_VERSION=
             set_xcode_and_swift_versions

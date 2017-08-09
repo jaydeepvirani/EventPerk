@@ -223,11 +223,7 @@ extension Realm {
             configuration.schemaVersion = self.schemaVersion
             configuration.migrationBlock = self.migrationBlock.map { accessorMigrationBlock($0) }
             configuration.deleteRealmIfMigrationNeeded = self.deleteRealmIfMigrationNeeded
-            if let shouldCompactOnLaunch = self.shouldCompactOnLaunch {
-                configuration.shouldCompactOnLaunch = ObjectiveCSupport.convert(object: shouldCompactOnLaunch)
-            } else {
-                configuration.shouldCompactOnLaunch = nil
-            }
+            configuration.shouldCompactOnLaunch = self.shouldCompactOnLaunch.map(ObjectiveCSupport.convert)
             configuration.customSchema = self.customSchema
             configuration.disableFormatUpgrade = self.disableFormatUpgrade
             return configuration

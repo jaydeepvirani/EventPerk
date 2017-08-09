@@ -81,7 +81,8 @@ public final class Results<T: Object>: NSObject, NSFastEnumeration {
 
     /// A human-readable description of the objects represented by the results.
     public override var description: String {
-        return RLMDescriptionWithMaxDepth("Results<\(rlmResults.objectClassName)>", rlmResults, RLMDescriptionMaxDepth)
+        let type = "Results<\(rlmResults.objectClassName)>"
+        return gsub(pattern: "RLMResults <0x[a-z0-9]+>", template: type, string: rlmResults.description) ?? type
     }
 
     // MARK: Fast Enumeration

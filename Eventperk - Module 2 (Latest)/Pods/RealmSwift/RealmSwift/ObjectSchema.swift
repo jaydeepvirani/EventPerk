@@ -26,7 +26,7 @@ import Realm
 
  Object schemas map to tables in the core database.
  */
-public struct ObjectSchema: CustomStringConvertible {
+public final class ObjectSchema: CustomStringConvertible {
 
     // MARK: Properties
 

@@ -20,7 +20,6 @@
 #define REALM_RESULTS_HPP
 
 #include "collection_notifications.hpp"
-#include "descriptor_ordering.hpp"
 #include "shared_realm.hpp"
 #include "impl/collection_notifier.hpp"
 
@@ -44,8 +43,8 @@ public:
     // the tableview as needed
     Results();
     Results(SharedRealm r, Table& table);
-    Results(SharedRealm r, Query q, DescriptorOrdering o = {});
-    Results(SharedRealm r, TableView tv, DescriptorOrdering o = {});
+    Results(SharedRealm r, Query q, SortDescriptor s = {}, SortDescriptor d = {});
+    Results(SharedRealm r, TableView tv, SortDescriptor s = {}, SortDescriptor d = {});
     Results(SharedRealm r, LinkViewRef lv, util::Optional<Query> q = {}, SortDescriptor s = {});
     ~Results();
 
@@ -65,8 +64,11 @@ public:
     // Returned query will not be valid if the current mode is Empty
     Query get_query() const;
 
-    // Get the list of sort and distinct operations applied for this Results.
-    DescriptorOrdering const& get_descriptor_ordering() const noexcept { return m_descriptor_ordering; }
+    // Get the currently applied sort order for this Results
+    SortDescriptor const& get_sort() const noexcept { return m_sort; }
+
+    // Get the currently applied distinct condition for this Results
+    SortDescriptor const& get_distinct() const noexcept { return m_distinct; }
 
     // Get a tableview containing the same rows as this Results
     TableView get_tableview();
@@ -119,10 +121,13 @@ public:
     // Create a new Results by further filtering or sorting this Results
     Results filter(Query&& q) const;
     Results sort(SortDescriptor&& sort) const;
-    Results sort(std::vector<std::pair<std::string, bool>> const& keypaths) const;
 
     // Create a new Results by removing duplicates
-    Results distinct(DistinctDescriptor&& uniqueness);
+    // FIXME: The current implementation of distinct() breaks the Results API.
+    // This is tracked by the following issues:
+    // - https://github.com/realm/realm-object-store/issues/266
+    // - https://github.com/realm/realm-core/issues/2332
+    Results distinct(SortDescriptor&& uniqueness);
 
     // Return a snapshot of this Results that never updates to reflect changes in the underlying data.
     Results snapshot() const &;
@@ -217,7 +222,8 @@ private:
     TableView m_table_view;
     LinkViewRef m_link_view;
     TableRef m_table;
-    DescriptorOrdering m_descriptor_ordering;
+    SortDescriptor m_sort;
+    SortDescriptor m_distinct;
 
     _impl::CollectionNotifier::Handle<_impl::ResultsNotifier> m_notifier;
 

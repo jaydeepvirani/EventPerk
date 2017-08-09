@@ -98,7 +98,8 @@ open class Object: RLMObjectBase, ThreadConfined {
      - parameter value:  The value used to populate the object.
      */
     public init(value: Any) {
-        super.init(value: value, schema: .partialPrivateShared())
+        type(of: self).sharedSchema() // ensure this class' objectSchema is loaded in the partialSharedSchema
+        super.init(value: value, schema: RLMSchema.partialShared())
     }
 
 

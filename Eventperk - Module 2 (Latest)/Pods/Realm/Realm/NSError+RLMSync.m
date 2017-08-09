@@ -29,13 +29,6 @@
     return nil;
 }
 
-- (void(^)(void))rlmSync_deleteRealmBlock {
-    if (self.domain == RLMSyncErrorDomain && self.code == RLMSyncErrorPermissionDeniedError) {
-        return self.userInfo[kRLMSyncInitiateDeleteRealmBlockKey];
-    }
-    return nil;
-}
-
 - (NSString *)rlmSync_clientResetBackedUpRealmPath {
     if (self.domain == RLMSyncErrorDomain && self.code == RLMSyncErrorClientResetError) {
         return self.userInfo[kRLMSyncPathOfRealmBackupCopyKey];

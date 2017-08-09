@@ -50,7 +50,6 @@ pod 'HCSStarRatingView', '~> 1.5'
 pod 'YIPopupTextView'
 pod 'OpalImagePicker'
 pod 'CountryPicker', '~> 1.3'
-pod 'BSImagePicker', '~> 2.4'
 
 # Camera
 #pod 'CardIO'

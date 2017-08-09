@@ -22,7 +22,6 @@
 // THE SOFTWARE.
 
 
-import Foundation
 import UIKit
 
 private var kIQBarTitleInvocationTarget     = "kIQBarTitleInvocationTarget"

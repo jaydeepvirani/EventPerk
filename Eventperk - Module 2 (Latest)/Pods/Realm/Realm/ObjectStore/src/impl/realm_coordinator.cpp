@@ -119,8 +119,6 @@ void RealmCoordinator::set_config(const Realm::Config& config)
         throw std::logic_error("Realms opened in Additive-only schema mode do not use a migration function");
     if (config.schema_mode == SchemaMode::ReadOnly && config.migration_function)
         throw std::logic_error("Realms opened in read-only mode do not use a migration function");
-    if (config.schema_mode == SchemaMode::ReadOnly && config.initialization_function)
-        throw std::logic_error("Realms opened in read-only mode do not use an initialization function");
     if (config.schema && config.schema_version == ObjectStore::NotVersioned)
         throw std::logic_error("A schema version must be specified when the schema is specified");
     if (!config.realm_data.is_null() && (!config.read_only() || !config.in_memory))
@@ -197,7 +195,6 @@ std::shared_ptr<Realm> RealmCoordinator::get_realm(Realm::Config config)
 
     auto schema = std::move(config.schema);
     auto migration_function = std::move(config.migration_function);
-    auto initialization_function = std::move(config.initialization_function);
     config.schema = {};
 
     if (config.cache) {
@@ -239,8 +236,7 @@ std::shared_ptr<Realm> RealmCoordinator::get_realm(Realm::Config config)
 
     if (schema) {
         lock.unlock();
-        realm->update_schema(std::move(*schema), config.schema_version, std::move(migration_function),
-                             std::move(initialization_function));
+        realm->update_schema(std::move(*schema), config.schema_version, std::move(migration_function));
     }
 
     return realm;

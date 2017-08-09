@@ -79,7 +79,7 @@ RLMClassInfo &RLMClassInfo::linkTargetType(size_t propertyIndex) {
 }
 
 RLMClassInfo &RLMClassInfo::linkTargetType(realm::Property const& property) {
-    REALM_ASSERT(property.type == PropertyType::Object);
+    REALM_ASSERT(property.type == PropertyType::Object || property.type == PropertyType::Array);
     return linkTargetType(&property - &objectSchema->persisted_properties[0]);
 }
 

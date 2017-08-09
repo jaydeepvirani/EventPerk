@@ -19,8 +19,6 @@
 #ifndef REALM_UTIL_FORMAT_HPP
 #define REALM_UTIL_FORMAT_HPP
 
-#include <realm/string_data.hpp>
-
 #include <cstdint>
 #include <iosfwd>
 #include <initializer_list>
@@ -42,8 +40,8 @@ public:
     Printable(long value) : m_type(Type::Int), m_int(value) { }
     Printable(long long value) : m_type(Type::Int), m_int(value) { }
     Printable(const char* value) : m_type(Type::String), m_string(value) { }
-    Printable(std::string const& value) : m_type(Type::String), m_string(value) { }
-    Printable(StringData value) : m_type(Type::String), m_string(value) { }
+    Printable(std::string const& value) : m_type(Type::String), m_string(value.c_str()) { }
+    Printable(StringData value);
 
     void print(std::ostream& out) const;
 
@@ -58,7 +56,7 @@ private:
     union {
         uintmax_t m_uint;
         intmax_t m_int;
-        StringData m_string;
+        const char* m_string;
     };
 };
 std::string format(const char* fmt, std::initializer_list<Printable>);

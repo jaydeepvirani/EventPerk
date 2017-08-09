@@ -18,11 +18,12 @@
 
 #import "RLMSyncSessionRefreshHandle.hpp"
 
-#import "RLMJSONModels.h"
+#import "RLMAuthResponseModel.h"
 #import "RLMNetworkClient.h"
 #import "RLMSyncManager_Private.h"
 #import "RLMSyncUser_Private.hpp"
 #import "RLMSyncUtil_Private.hpp"
+#import "RLMTokenModels.h"
 #import "RLMUtil.hpp"
 
 #import "sync/sync_session.hpp"
@@ -39,8 +40,6 @@ void unregisterRefreshHandle(const std::weak_ptr<SyncUser>& user, const std::str
 
 }
 
-static const NSTimeInterval RLMRefreshBuffer = 10;
-
 @interface RLMSyncSessionRefreshHandle () {
     std::weak_ptr<SyncUser> _user;
     std::string _path;
@@ -49,6 +48,7 @@ static const NSTimeInterval RLMRefreshBuffer = 10;
 }
 
 @property (nonatomic) NSTimer *timer;
+@property (nonatomic) NSString *identity;
 
 @property (nonatomic) NSURL *realmURL;
 @property (nonatomic) NSURL *authServerURL;
@@ -59,22 +59,23 @@ static const NSTimeInterval RLMRefreshBuffer = 10;
 @implementation RLMSyncSessionRefreshHandle
 
 - (instancetype)initWithRealmURL:(NSURL *)realmURL
-                            user:(std::shared_ptr<realm::SyncUser>)user
+                            user:(RLMSyncUser *)user
                          session:(std::shared_ptr<realm::SyncSession>)session
                  completionBlock:(RLMSyncBasicErrorReportingBlock)completionBlock {
     if (self = [super init]) {
         NSString *path = [realmURL path];
         _path = [path UTF8String];
-        self.authServerURL = [NSURL URLWithString:@(user->server_url().c_str())];
-        if (!self.authServerURL) {
-            @throw RLMException(@"User object isn't configured with an auth server URL.");
+        self.identity = user.identity;
+        if (!self.identity) {
+            @throw RLMException(@"Refresh handles cannot be created for users without a valid identity.");
         }
+        self.authServerURL = user.authenticationServer;
         self.completionBlock = completionBlock;
         self.realmURL = realmURL;
         // For the initial bind, we want to prolong the session's lifetime.
         _strongSession = std::move(session);
         _session = _strongSession;
-        _user = user;
+        _user = [user _syncUser];
         // Immediately fire off the network request.
         [self _timerFired:nil];
         return self;
@@ -92,7 +93,8 @@ static const NSTimeInterval RLMRefreshBuffer = 10;
 }
 
 + (NSDate *)fireDateForTokenExpirationDate:(NSDate *)date nowDate:(NSDate *)nowDate {
-    NSDate *fireDate = [date dateByAddingTimeInterval:-RLMRefreshBuffer];
+    static const NSTimeInterval refreshBuffer = 10;
+    NSDate *fireDate = [date dateByAddingTimeInterval:-refreshBuffer];
     // Only fire times in the future are valid.
     return ([fireDate compare:nowDate] == NSOrderedDescending ? fireDate : nil);
 }
@@ -190,7 +192,7 @@ static const NSTimeInterval RLMRefreshBuffer = 10;
             case NSURLErrorDNSLookupFailed:
             case NSURLErrorCannotFindHost:
                 // FIXME: 10 seconds is an arbitrarily chosen value, consider rationalizing it.
-                nextTryDate = [NSDate dateWithTimeIntervalSinceNow:RLMRefreshBuffer + 10];
+                nextTryDate = [NSDate dateWithTimeIntervalSinceNow:10];
                 break;
             default:
                 break;
@@ -255,7 +257,7 @@ static const NSTimeInterval RLMRefreshBuffer = 10;
     RLMSyncCompletionBlock handler = ^(NSError *error, NSDictionary *json) {
         [weakSelf _onRefreshCompletionWithError:error json:json];
     };
-    [RLMNetworkClient sendRequestToEndpoint:[RLMSyncAuthEndpoint endpoint]
+    [RLMNetworkClient postRequestToEndpoint:RLMServerEndpointAuth
                                      server:self.authServerURL
                                        JSON:json
                                  completion:handler];

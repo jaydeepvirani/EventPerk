@@ -24,7 +24,6 @@
 
 namespace realm {
 class SyncSession;
-class SyncUser;
 }
 
 @class RLMSyncUser;
@@ -34,7 +33,7 @@ class SyncUser;
 NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithRealmURL:(NSURL *)realmURL
-                            user:(std::shared_ptr<realm::SyncUser>)user
+                            user:(RLMSyncUser *)user
                          session:(std::shared_ptr<realm::SyncSession>)session
                  completionBlock:(nullable RLMSyncBasicErrorReportingBlock)completionBlock;
 

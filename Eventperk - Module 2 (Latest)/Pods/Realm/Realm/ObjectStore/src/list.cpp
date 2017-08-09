@@ -215,53 +215,42 @@ void List::delete_all()
     m_link_view->remove_all_target_rows();
 }
 
-Results List::sort(SortDescriptor order) const
+Results List::sort(SortDescriptor order)
 {
     verify_attached();
     return Results(m_realm, m_link_view, util::none, std::move(order));
 }
 
-Results List::sort(std::vector<std::pair<std::string, bool>> const& keypaths) const
-{
-    verify_attached();
-    return as_results().sort(keypaths);
-}
-
-Results List::filter(Query q) const
+Results List::filter(Query q)
 {
     verify_attached();
     return Results(m_realm, m_link_view, get_query().and_query(std::move(q)));
 }
 
-Results List::as_results() const
-{
-    verify_attached();
-    return Results(m_realm, m_link_view);
-}
-
 Results List::snapshot() const
 {
-    return as_results().snapshot();
+    verify_attached();
+    return Results(m_realm, m_link_view).snapshot();
 }
 
 util::Optional<Mixed> List::max(size_t column)
 {
-    return as_results().max(column);
+    return Results(m_realm, m_link_view).max(column);
 }
 
 util::Optional<Mixed> List::min(size_t column)
 {
-    return as_results().min(column);
+    return Results(m_realm, m_link_view).min(column);
 }
 
 util::Optional<Mixed> List::sum(size_t column)
 {
-    return as_results().sum(column);
+    return Results(m_realm, m_link_view).sum(column);
 }
 
 util::Optional<Mixed> List::average(size_t column)
 {
-    return as_results().average(column);
+    return Results(m_realm, m_link_view).average(column);
 }
 
 // These definitions rely on that LinkViews are interned by core

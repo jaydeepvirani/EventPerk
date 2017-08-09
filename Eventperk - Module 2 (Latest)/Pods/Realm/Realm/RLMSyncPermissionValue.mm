@@ -60,8 +60,6 @@ RLMSyncAccessLevel objCAccessLevelForAccessLevel(Permission::AccessLevel level) 
 @interface RLMSyncPermissionValue () {
 @private
     NSString *_userID;
-    NSString *_key;
-    NSString *_value;
     util::Optional<Permission> _underlying;
     RLMSyncAccessLevel _accessLevel;
     NSString *_path;
@@ -78,36 +76,25 @@ RLMSyncAccessLevel objCAccessLevelForAccessLevel(Permission::AccessLevel level) 
         _accessLevel = accessLevel;
         _path = path;
         _userID = userID;
-        if (!_userID) {
-            @throw RLMException(@"A permission value cannot be created without a valid user ID");
-        }
-        _updatedAt = [NSDate date];
-    }
-    return self;
-}
-
-- (instancetype)initWithRealmPath:(NSString *)path
-                         username:(NSString *)username
-                      accessLevel:(RLMSyncAccessLevel)accessLevel {
-    if (self = [super init]) {
-        _accessLevel = accessLevel;
-        _path = path;
-        _userID = nil;
-        // This is correct; we internally call this key 'email' even though it doesn't have to be...
-        _key = @"email";
-        // FIXME: this should be done on the server, not the client.
-        _value = [username lowercaseString];
         _updatedAt = [NSDate date];
     }
     return self;
 }
 
 - (instancetype)initWithPermission:(Permission)permission {
-    if (self = [super init]) {
-        _underlying = util::make_optional<Permission>(std::move(permission));
-        return self;
+    switch (permission.condition.type) {
+        case ConditionType::UserId:
+            self = [super init];
+            break;
+        case ConditionType::KeyValue:
+            @throw RLMException(@"Key-value permissions are not yet supported in Realm Objective-C or Realm Swift.");
+            break;
     }
-    return nil;
+    if (!self) {
+        return nil;
+    }
+    _underlying = util::make_optional<Permission>(std::move(permission));
+    return self;
 }
 
 - (NSString *)path {
@@ -141,30 +128,8 @@ RLMSyncAccessLevel objCAccessLevelForAccessLevel(Permission::AccessLevel level) 
     if (!_underlying) {
         return _userID;
     }
-    if (_underlying->condition.type == ConditionType::UserId) {
-        return @(_underlying->condition.user_id.c_str());
-    }
-    return nil;
-}
-
-- (NSString *)key {
-    if (!_underlying) {
-        return _key;
-    }
-    if (_underlying->condition.type == ConditionType::KeyValue) {
-        return @(_underlying->condition.key_value.first.c_str());
-    }
-    return nil;
-}
-
-- (NSString *)value {
-    if (!_underlying) {
-        return _value;
-    }
-    if (_underlying->condition.type == ConditionType::KeyValue) {
-        return @(_underlying->condition.key_value.second.c_str());
-    }
-    return nil;
+    REALM_ASSERT(_underlying->condition.type == ConditionType::UserId);
+    return @(_underlying->condition.user_id.c_str());
 }
 
 - (NSDate *)updatedAt {
@@ -178,13 +143,10 @@ RLMSyncAccessLevel objCAccessLevelForAccessLevel(Permission::AccessLevel level) 
     if (_underlying) {
         return *_underlying;
     }
-    auto condition = (_userID
-                      ? Permission::Condition([_userID UTF8String])
-                      : Permission::Condition([_key UTF8String], [_value UTF8String]));
     return Permission{
         [_path UTF8String],
         accessLevelForObjcAccessLevel(_accessLevel),
-        std::move(condition)
+        Permission::Condition([_userID UTF8String])
     };
 }
 
@@ -207,14 +169,8 @@ RLMSyncAccessLevel objCAccessLevelForAccessLevel(Permission::AccessLevel level) 
 }
 
 - (NSString *)description {
-    NSString *typeDescription = nil;
-    if (self.userId) {
-        typeDescription = [NSString stringWithFormat:@"user ID: %@", self.userId];
-    } else {
-        typeDescription = [NSString stringWithFormat:@"key: %@, value: %@", self.key, self.value];
-    }
-    return [NSString stringWithFormat:@"<RLMSyncPermissionValue> %@, path: %@, access level: %@",
-            typeDescription,
+    return [NSString stringWithFormat:@"<RLMSyncPermissionValue> user ID: %@, path: %@, access level: %@",
+            self.userId,
             self.path,
             @(Permission::description_for_access_level(accessLevelForObjcAccessLevel(self.accessLevel)).c_str())];
 }

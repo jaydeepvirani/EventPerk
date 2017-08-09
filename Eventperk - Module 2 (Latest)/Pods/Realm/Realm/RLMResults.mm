@@ -101,9 +101,6 @@ static void throwError(NSString *aggregateMethod) {
                             RLMTypeToString((RLMPropertyType)e.column_type),
                             e.column_name.data());
     }
-    catch (std::exception const& e) {
-        @throw RLMException(e);
-    }
 }
 
 template<typename Function>
@@ -156,7 +153,18 @@ static inline void RLMResultsValidateInWriteTransaction(__unsafe_unretained RLMR
     if (!_info) {
         return 0;
     }
-    return RLMFastEnumerate(state, len, self);
+
+    __autoreleasing RLMFastEnumerator *enumerator;
+    if (state->state == 0) {
+        enumerator = [[RLMFastEnumerator alloc] initWithCollection:self objectSchema:*_info];
+        state->extra[0] = (long)enumerator;
+        state->extra[1] = self.count;
+    }
+    else {
+        enumerator = (__bridge id)(void *)state->extra[0];
+    }
+
+    return [enumerator countByEnumeratingWithState:state count:len];
 }
 
 - (NSUInteger)indexOfObjectWhere:(NSString *)predicateFormat, ... {
@@ -347,8 +355,8 @@ static inline void RLMResultsValidateInWriteTransaction(__unsafe_unretained RLMR
         if (_results.get_mode() == Results::Mode::Empty) {
             return self;
         }
-        return [RLMResults resultsWithObjectInfo:*_info
-                                         results:_results.sort(RLMSortDescriptorsToKeypathArray(properties))];
+
+        return [RLMResults resultsWithObjectInfo:*_info results:_results.sort(RLMSortDescriptorFromDescriptors(*_info, properties))];
     });
 }
 
@@ -407,13 +415,6 @@ static inline void RLMResultsValidateInWriteTransaction(__unsafe_unretained RLMR
 
 - (realm::TableView)tableView {
     return translateErrors([&] { return _results.get_tableview(); });
-}
-
-- (RLMFastEnumerator *)fastEnumerator {
-    return translateErrors([&] {
-        return [[RLMFastEnumerator alloc] initWithResults:_results collection:self
-                                                    realm:_realm classInfo:*_info];
-    });
 }
 
 // The compiler complains about the method's argument type not matching due to

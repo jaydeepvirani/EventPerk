@@ -100,10 +100,10 @@ using namespace realm;
     if (hasSwiftName) {
         className = [RLMSwiftSupport demangleClassName:className];
     }
-
+    
     static Class s_swiftObjectClass = NSClassFromString(@"RealmSwiftObject");
     bool isSwift = hasSwiftName || [objectClass isSubclassOfClass:s_swiftObjectClass];
-
+    
     schema.className = className;
     schema.objectClass = objectClass;
     schema.accessorClass = objectClass;
@@ -114,8 +114,7 @@ using namespace realm;
     Class superClass = class_getSuperclass(cls);
     NSArray *allProperties = @[];
     while (superClass && superClass != RLMObjectBase.class) {
-        allProperties = [[RLMObjectSchema propertiesForClass:cls isSwift:isSwift]
-                         arrayByAddingObjectsFromArray:allProperties];
+        allProperties = [[RLMObjectSchema propertiesForClass:cls isSwift:isSwift] arrayByAddingObjectsFromArray:allProperties];
         cls = superClass;
         superClass = class_getSuperclass(superClass);
     }
@@ -132,14 +131,14 @@ using namespace realm;
     // verify that we didn't add any properties twice due to inheritance
     if (allProperties.count != [NSSet setWithArray:[allProperties valueForKey:@"name"]].count) {
         NSCountedSet *countedPropertyNames = [NSCountedSet setWithArray:[allProperties valueForKey:@"name"]];
-        NSArray *duplicatePropertyNames = [countedPropertyNames filteredSetUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id object, NSDictionary *) {
+        NSSet *duplicatePropertyNames = [countedPropertyNames filteredSetUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id object, NSDictionary *) {
             return [countedPropertyNames countForObject:object] > 1;
-        }]].allObjects;
+        }]];
 
         if (duplicatePropertyNames.count == 1) {
-            @throw RLMException(@"Property '%@' is declared multiple times in the class hierarchy of '%@'", duplicatePropertyNames.firstObject, className);
+            @throw RLMException(@"Property '%@' is declared multiple times in the class hierarchy of '%@'", duplicatePropertyNames.allObjects.firstObject, className);
         } else {
-            @throw RLMException(@"Object '%@' has properties that are declared multiple times in its class hierarchy: '%@'", className, [duplicatePropertyNames componentsJoinedByString:@"', '"]);
+            @throw RLMException(@"Object '%@' has properties that are declared multiple times in its class hierarchy: '%@'", className, [duplicatePropertyNames.allObjects componentsJoinedByString:@"', '"]);
         }
     }
 
@@ -162,7 +161,7 @@ using namespace realm;
     }
 
     for (RLMProperty *prop in schema.properties) {
-        if (prop.optional && (prop.type == RLMPropertyTypeArray || prop.type == RLMPropertyTypeLinkingObjects)) {
+        if (prop.optional && !RLMPropertyTypeIsNullable(prop.type)) {
             @throw RLMException(@"Property '%@.%@' cannot be made optional because optional '%@' properties are not supported.",
                                 className, prop.name, RLMTypeToString(prop.type));
         }
@@ -190,7 +189,7 @@ using namespace realm;
     id swiftObjectInstance = isSwiftClass ? [[objectClass alloc] init] : nil;
 
     unsigned int count;
-    std::unique_ptr<objc_property_t[], decltype(&free)> props(class_copyPropertyList(objectClass, &count), &free);
+    objc_property_t *props = class_copyPropertyList(objectClass, &count);
     NSMutableArray *propArray = [NSMutableArray arrayWithCapacity:count];
     NSSet *indexed = [[NSSet alloc] initWithArray:[objectUtil indexedPropertiesForClass:objectClass]];
     for (unsigned int i = 0; i < count; i++) {
@@ -218,81 +217,87 @@ using namespace realm;
             [propArray addObject:prop];
          }
     }
-
-    auto existingPropertyIndex = [=](NSString *name) -> NSUInteger {
-        return [propArray indexOfObjectPassingTest:^BOOL(RLMProperty *obj, NSUInteger, BOOL *) {
-            return [obj.name isEqualToString:name];
-        }];
-    };
-    auto addProperty = [=](RLMProperty *prop) {
-        NSUInteger existing = existingPropertyIndex(prop.name);
-        if (existing != NSNotFound) {
-            propArray[existing] = prop;
-        }
-        else {
-            [propArray addObject:prop];
-        }
-    };
+    free(props);
 
     if (isSwiftClass) {
         // List<> properties don't show up as objective-C properties due to
         // being generic, so use Swift reflection to get a list of them, and
         // then access their ivars directly
         for (NSString *propName in [objectUtil getGenericListPropertyNames:swiftObjectInstance]) {
-            addProperty([[RLMProperty alloc] initSwiftListPropertyWithName:propName instance:swiftObjectInstance]);
+            Ivar ivar = class_getInstanceVariable(objectClass, propName.UTF8String);
+            id value = object_getIvar(swiftObjectInstance, ivar);
+            NSString *className = [value _rlmArray].objectClassName;
+            NSUInteger existing = [propArray indexOfObjectPassingTest:^BOOL(RLMProperty *obj, __unused NSUInteger idx, __unused BOOL *stop) {
+                return [obj.name isEqualToString:propName];
+            }];
+            if (existing != NSNotFound) {
+                [propArray removeObjectAtIndex:existing];
+            }
+            [propArray addObject:[[RLMProperty alloc] initSwiftListPropertyWithName:propName
+                                                                               ivar:ivar
+                                                                    objectClassName:className]];
         }
 
         // Ditto for LinkingObjects<> properties.
-        [[objectUtil getLinkingObjectsProperties:swiftObjectInstance]
-         enumerateKeysAndObjectsUsingBlock:^(NSString *propName, NSDictionary *info, BOOL *) {
-             Ivar ivar = class_getInstanceVariable(objectClass, propName.UTF8String);
-             addProperty([[RLMProperty alloc] initSwiftLinkingObjectsPropertyWithName:propName
-                                                                                 ivar:ivar
-                                                                      objectClassName:info[@"class"]
-                                                               linkOriginPropertyName:info[@"property"]]);
-         }];
+        NSDictionary *linkingObjectsProperties = [objectUtil getLinkingObjectsProperties:swiftObjectInstance];
+        for (NSString *propName in linkingObjectsProperties) {
+            NSDictionary *info = linkingObjectsProperties[propName];
+            Ivar ivar = class_getInstanceVariable(objectClass, propName.UTF8String);
+
+            NSUInteger existing = [propArray indexOfObjectPassingTest:^BOOL(RLMProperty *obj, __unused NSUInteger idx, __unused BOOL *stop) {
+                return [obj.name isEqualToString:propName];
+            }];
+            if (existing != NSNotFound) {
+                [propArray removeObjectAtIndex:existing];
+            }
+
+            [propArray addObject:[[RLMProperty alloc] initSwiftLinkingObjectsPropertyWithName:propName
+                                                                                         ivar:ivar
+                                                                              objectClassName:info[@"class"]
+                                                                       linkOriginPropertyName:info[@"property"]]];
+        }
     }
 
     if (auto optionalProperties = [objectUtil getOptionalProperties:swiftObjectInstance]) {
         for (RLMProperty *property in propArray) {
             property.optional = false;
         }
-        [optionalProperties enumerateKeysAndObjectsUsingBlock:^(NSString *propertyName, NSNumber *propertyType, BOOL *) {
+        [optionalProperties enumerateKeysAndObjectsUsingBlock:^(NSString *propertyName, NSNumber *propertyType, __unused BOOL *stop) {
             if ([ignoredProperties containsObject:propertyName]) {
                 return;
             }
-
-            NSUInteger existing = existingPropertyIndex(propertyName);
+            NSUInteger existing = [propArray indexOfObjectPassingTest:^BOOL(RLMProperty *obj, __unused NSUInteger idx, __unused BOOL *stop) {
+                return [obj.name isEqualToString:propertyName];
+            }];
             RLMProperty *property;
             if (existing != NSNotFound) {
                 property = propArray[existing];
                 property.optional = true;
             }
-            auto type = RLMCoerceToNil(propertyType);
-            if (!type) {
-                return;
-            }
-            if (property) {
-                property.type = RLMPropertyType(type.intValue);
-                return;
-            }
-
-            // Check to see if this optional property is an underlying storage property for a Swift lazy var.
-            // Managed lazy vars aren't allowed.
-            // NOTE: Revisit this once property behaviors are implemented in Swift.
-            if (NSString *lazyPropertyBaseName = [self baseNameForLazySwiftProperty:propertyName]) {
-                if ([ignoredProperties containsObject:lazyPropertyBaseName]) {
-                    // This property is the storage property for a ignored lazy Swift property. Just continue.
-                    return;
+            if (auto type = RLMCoerceToNil(propertyType)) {
+                if (existing == NSNotFound) {
+                    // Check to see if this optional property is an underlying storage property for a Swift lazy var.
+                    // Managed lazy vars are't allowed.
+                    // NOTE: Revisit this once property behaviors are implemented in Swift.
+                    if (NSString *lazyPropertyBaseName = [self baseNameForLazySwiftProperty:propertyName]) {
+                        if ([ignoredProperties containsObject:lazyPropertyBaseName]) {
+                            // This property is the storage property for a ignored lazy Swift property. Just continue.
+                            return;
+                        } else {
+                            @throw RLMException(@"Lazy managed property '%@' is not allowed on a Realm Swift object class. Either add the property to the ignored properties list or make it non-lazy.", lazyPropertyBaseName);
+                        }
+                    }
+                    // The current property isn't a storage property for a lazy Swift property.
+                    property = [[RLMProperty alloc] initSwiftOptionalPropertyWithName:propertyName
+                                                                              indexed:[indexed containsObject:propertyName]
+                                                                                 ivar:class_getInstanceVariable(objectClass, propertyName.UTF8String)
+                                                                         propertyType:RLMPropertyType(type.intValue)];
+                    [propArray addObject:property];
                 }
-                @throw RLMException(@"Lazy managed property '%@' is not allowed on a Realm Swift object class. Either add the property to the ignored properties list or make it non-lazy.", lazyPropertyBaseName);
+                else {
+                    property.type = RLMPropertyType(type.intValue);
+                }
             }
-            // The current property isn't a storage property for a lazy Swift property.
-            property = [[RLMProperty alloc] initSwiftOptionalPropertyWithName:propertyName
-                                                                      indexed:[indexed containsObject:propertyName]
-                                                                         ivar:class_getInstanceVariable(objectClass, propertyName.UTF8String)
-                                                                 propertyType:RLMPropertyType(type.intValue)];
-            [propArray addObject:property];
         }];
     }
     if (auto requiredProperties = [objectUtil requiredPropertiesForClass:objectClass]) {
@@ -307,9 +312,8 @@ using namespace realm;
     }
 
     for (RLMProperty *property in propArray) {
-        if (!property.optional && property.type == RLMPropertyTypeObject) {
-            @throw RLMException(@"The `%@.%@` property must be marked as being optional.",
-                                [objectClass className], property.name);
+        if (!property.optional && property.type == RLMPropertyTypeObject) { // remove if/when core supports required link columns
+            @throw RLMException(@"The `%@.%@` property must be marked as being optional.", [objectClass className], property.name);
         }
     }
 
@@ -409,7 +413,7 @@ using namespace realm;
     schema.objectClass = RLMObject.class;
     schema.accessorClass = RLMDynamicObject.class;
     schema.unmanagedClass = RLMObject.class;
-
+    
     return schema;
 }
 

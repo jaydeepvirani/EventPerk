@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "158"
             endingLineNumber = "158"
-            landmarkName = "textFieldDidEndEditing(_:)"
+            landmarkName = "textFielTextdDidChanged(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,7 +42,7 @@
                   moduleName = "Eventperk"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cizotech/Desktop/Cizo%20Works/Current%20Projects/Event%20Perk/Eventperk%20-%20Module%202%20(Latest)/Eventperk/Classes/ViewControllers/EventViewController/CreateEvent/EventBudget/EventTotalBudgetVC.swift"
-                  timestampString = "523915037.591965"
+                  timestampString = "523980387.0499"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "131"
@@ -57,7 +57,7 @@
                   moduleName = "Eventperk"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cizotech/Desktop/Cizo%20Works/Current%20Projects/Event%20Perk/Eventperk%20-%20Module%202%20(Latest)/Eventperk/Classes/ViewControllers/EventViewController/CreateEvent/EventBudget/EventTotalBudgetVC.swift"
-                  timestampString = "523915037.594703"
+                  timestampString = "523980387.052967"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "131"

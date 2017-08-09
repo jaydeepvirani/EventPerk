@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="s7W-Ah-kFK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="s7W-Ah-kFK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1309,10 +1309,14 @@
                                             <constraint firstAttribute="width" constant="74" id="Ufy-aH-6qq"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="13"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <state key="normal" title="Save">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="selected" title="Save"/>
+                                        <connections>
+                                            <action selector="btnSaveAction:" destination="fxW-4Q-FDq" eventType="touchUpInside" id="A4B-un-2TV"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1345,7 +1349,11 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                        <connections>
+                                            <action selector="textFieldDidChanged:" destination="fxW-4Q-FDq" eventType="editingChanged" id="rJV-bb-E6j"/>
+                                            <outlet property="delegate" destination="fxW-4Q-FDq" id="A72-gf-dHb"/>
+                                        </connections>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lpw-Es-ZyX">
                                         <rect key="frame" x="0.0" y="35" width="375" height="1"/>
@@ -1361,7 +1369,11 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                        <connections>
+                                            <action selector="textFieldDidChanged:" destination="fxW-4Q-FDq" eventType="editingChanged" id="tK4-hh-HEq"/>
+                                            <outlet property="delegate" destination="fxW-4Q-FDq" id="Fb2-Q4-VUw"/>
+                                        </connections>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1kp-ht-BhA">
                                         <rect key="frame" x="0.0" y="70" width="375" height="1"/>
@@ -1377,10 +1389,15 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
+                                        <connections>
+                                            <action selector="textFieldDidChanged:" destination="fxW-4Q-FDq" eventType="editingChanged" id="bIb-QJ-0Q1"/>
+                                            <outlet property="delegate" destination="fxW-4Q-FDq" id="kHJ-24-f5z"/>
+                                        </connections>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bST-cR-LOl">
                                         <rect key="frame" x="188" y="71" width="1" height="34"/>
+                                        <color key="backgroundColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="1" id="6CA-bx-sDd"/>
                                             <constraint firstAttribute="height" constant="34" id="PJ2-bd-fSB"/>
@@ -1393,7 +1410,11 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
+                                        <connections>
+                                            <action selector="textFieldDidChanged:" destination="fxW-4Q-FDq" eventType="editingChanged" id="qeI-3c-8fG"/>
+                                            <outlet property="delegate" destination="fxW-4Q-FDq" id="RlU-UW-jXa"/>
+                                        </connections>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uwa-f2-KRB">
                                         <rect key="frame" x="0.0" y="105" width="375" height="1"/>
@@ -1409,7 +1430,11 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
+                                        <connections>
+                                            <action selector="textFieldDidChanged:" destination="fxW-4Q-FDq" eventType="editingChanged" id="9kY-rY-Gub"/>
+                                            <outlet property="delegate" destination="fxW-4Q-FDq" id="EhL-qD-dLb"/>
+                                        </connections>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ofF-si-mcf">
                                         <rect key="frame" x="0.0" y="140" width="375" height="1"/>
@@ -1425,7 +1450,11 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
+                                        <connections>
+                                            <action selector="textFieldDidChanged:" destination="fxW-4Q-FDq" eventType="editingChanged" id="StP-WZ-T9u"/>
+                                            <outlet property="delegate" destination="fxW-4Q-FDq" id="KUU-r4-Cwu"/>
+                                        </connections>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NJE-FW-C4f">
                                         <rect key="frame" x="0.0" y="175" width="375" height="1"/>
@@ -1491,11 +1520,93 @@
                     </view>
                     <connections>
                         <outlet property="btnSave" destination="1Px-YY-URW" id="9GD-iS-H1n"/>
+                        <outlet property="txtCity" destination="toA-uN-WmS" id="V3z-xR-gac"/>
+                        <outlet property="txtCountry" destination="LiI-HT-kri" id="cve-x2-ZyF"/>
+                        <outlet property="txtPostal" destination="CHU-qv-gSf" id="bqQ-KL-NLP"/>
+                        <outlet property="txtState" destination="S3V-GQ-Kgz" id="niE-9x-sR9"/>
+                        <outlet property="txtStreet" destination="zWS-Xf-tEW" id="cjk-Mi-kQG"/>
+                        <outlet property="txtUnit" destination="jMv-mC-jit" id="UZl-e1-m6B"/>
+                        <segue destination="9Vf-rO-7YB" kind="show" identifier="venuePhotosSegue" id="saF-uo-889"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MmA-JR-mH7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4064.8000000000002" y="3210.9445277361324"/>
+        </scene>
+        <!--Venue PhotosVC-->
+        <scene sceneID="Wg2-vm-oWc">
+            <objects>
+                <viewController storyboardIdentifier="VenuePhotosVC" id="9Vf-rO-7YB" customClass="VenuePhotosVC" customModule="Eventperk" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1cx-c5-k3n"/>
+                        <viewControllerLayoutGuide type="bottom" id="bO5-El-eE7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qJH-JX-ZB0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uTj-KF-3Z8">
+                                <rect key="frame" x="0.0" y="20" width="375" height="48"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Venue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhB-si-l3h">
+                                        <rect key="frame" x="165" y="15.5" width="45.5" height="18"/>
+                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u9W-wJ-EB8">
+                                        <rect key="frame" x="0.0" y="0.0" width="66" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="66" id="StZ-es-XGV"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="back_icon"/>
+                                        <connections>
+                                            <action selector="btnBackAction:" destination="9Vf-rO-7YB" eventType="touchUpInside" id="XhZ-JC-yaS"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="im8-a0-Je2">
+                                        <rect key="frame" x="293" y="10" width="74" height="28"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="74" id="y7i-4e-1qs"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="13"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" title="Done"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="50X-fP-ojx"/>
+                                    <constraint firstAttribute="bottom" secondItem="u9W-wJ-EB8" secondAttribute="bottom" id="62L-WJ-bjI"/>
+                                    <constraint firstItem="u9W-wJ-EB8" firstAttribute="leading" secondItem="uTj-KF-3Z8" secondAttribute="leading" id="CwC-CS-j5t"/>
+                                    <constraint firstItem="vhB-si-l3h" firstAttribute="centerY" secondItem="uTj-KF-3Z8" secondAttribute="centerY" id="MVK-WR-IMU"/>
+                                    <constraint firstAttribute="trailing" secondItem="im8-a0-Je2" secondAttribute="trailing" constant="8" id="Px0-Qw-O0L"/>
+                                    <constraint firstItem="vhB-si-l3h" firstAttribute="centerX" secondItem="uTj-KF-3Z8" secondAttribute="centerX" id="Ugj-rM-owU"/>
+                                    <constraint firstItem="im8-a0-Je2" firstAttribute="top" secondItem="uTj-KF-3Z8" secondAttribute="top" constant="10" id="VKd-Wq-yAj"/>
+                                    <constraint firstAttribute="bottom" secondItem="im8-a0-Je2" secondAttribute="bottom" constant="10" id="szw-V9-Qcc"/>
+                                    <constraint firstItem="u9W-wJ-EB8" firstAttribute="top" secondItem="uTj-KF-3Z8" secondAttribute="top" id="urM-nn-gv9"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="uTj-KF-3Z8" firstAttribute="leading" secondItem="qJH-JX-ZB0" secondAttribute="leading" id="1vz-OA-ZPd"/>
+                            <constraint firstAttribute="trailing" secondItem="uTj-KF-3Z8" secondAttribute="trailing" id="Fgc-uR-MNZ"/>
+                            <constraint firstItem="uTj-KF-3Z8" firstAttribute="top" secondItem="qJH-JX-ZB0" secondAttribute="top" constant="20" id="LaR-NW-FId"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btnDone" destination="im8-a0-Je2" id="0ru-Eu-7OJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FCi-Sa-RUb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4065" y="3918"/>
         </scene>
         <!--Create Event Step4VC-->
         <scene sceneID="gHy-pV-tVy">
@@ -5201,7 +5312,7 @@ UGxlYXNlIGFkZCBzZXJ2aWNlIHRvIHN0YXJ0IBB5b3VyIGJ1ZGdldCBzZXR0aW5nLg
                 <navigationController storyboardIdentifier="EPNavigationViewController" title="EPNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="s7W-Ah-kFK" customClass="EPNavigationViewController" customModule="Eventperk" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="g5N-BK-3AT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="g5N-BK-3AT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

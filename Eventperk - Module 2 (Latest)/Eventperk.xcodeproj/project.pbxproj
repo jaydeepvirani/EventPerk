@@ -64,6 +64,8 @@
 		E1208CBB1F37A08E001855CF /* LikedEventServicesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1208CB71F37A08E001855CF /* LikedEventServicesVC.swift */; };
 		E1208CBD1F37A0DC001855CF /* EventTotalBudgetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1208CBC1F37A0DC001855CF /* EventTotalBudgetVC.swift */; };
 		E13C0D2F1F36F10E0046B027 /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13C0D2E1F36F10E0046B027 /* ServicesView.swift */; };
+		E1FE5E631F3B504100D79400 /* EventVenueLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FE5E621F3B504100D79400 /* EventVenueLocationVC.swift */; };
+		E1FE5E651F3B509600D79400 /* VenuePhotosVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FE5E641F3B509600D79400 /* VenuePhotosVC.swift */; };
 		EE27C8061F32760B00F7CC73 /* MLPAutoCompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EE27C7FA1F32760B00F7CC73 /* MLPAutoCompleteTextField.m */; };
 		EE27C8071F32760B00F7CC73 /* MVPlaceSearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = EE27C7FF1F32760B00F7CC73 /* MVPlaceSearchTextField.m */; };
 		EE27C8081F32760B00F7CC73 /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = EE27C8011F32760B00F7CC73 /* NSString+Levenshtein.m */; };
@@ -123,7 +125,6 @@
 		EED89AA61EB75E1E009155E0 /* PhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EED89AA41EB75E1E009155E0 /* PhotoCollectionViewCell.xib */; };
 		EED89AA91EB768A6009155E0 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED89AA71EB768A6009155E0 /* EditProfileViewController.swift */; };
 		EED89AAA1EB768A6009155E0 /* EditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EED89AA81EB768A6009155E0 /* EditProfileViewController.xib */; };
-		EEF1813D1F3A56CA009EB1E5 /* EventVenueLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF1813C1F3A56CA009EB1E5 /* EventVenueLocationVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -194,6 +195,8 @@
 		E1208CB71F37A08E001855CF /* LikedEventServicesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedEventServicesVC.swift; sourceTree = "<group>"; };
 		E1208CBC1F37A0DC001855CF /* EventTotalBudgetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTotalBudgetVC.swift; sourceTree = "<group>"; };
 		E13C0D2E1F36F10E0046B027 /* ServicesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
+		E1FE5E621F3B504100D79400 /* EventVenueLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventVenueLocationVC.swift; sourceTree = "<group>"; };
+		E1FE5E641F3B509600D79400 /* VenuePhotosVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenuePhotosVC.swift; sourceTree = "<group>"; };
 		EE27C7F91F32760B00F7CC73 /* MLPAutoCompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompleteTextField.h; sourceTree = "<group>"; };
 		EE27C7FA1F32760B00F7CC73 /* MLPAutoCompleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLPAutoCompleteTextField.m; sourceTree = "<group>"; };
 		EE27C7FB1F32760B00F7CC73 /* MLPAutoCompleteTextFieldDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompleteTextFieldDataSource.h; sourceTree = "<group>"; };
@@ -269,7 +272,6 @@
 		EED89AA41EB75E1E009155E0 /* PhotoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoCollectionViewCell.xib; sourceTree = "<group>"; };
 		EED89AA71EB768A6009155E0 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		EED89AA81EB768A6009155E0 /* EditProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProfileViewController.xib; sourceTree = "<group>"; };
-		EEF1813C1F3A56CA009EB1E5 /* EventVenueLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventVenueLocationVC.swift; sourceTree = "<group>"; };
 		F77CB137BFD8CA6A97DD5966 /* Pods-Eventperk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eventperk.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eventperk/Pods-Eventperk.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -579,6 +581,15 @@
 			path = EventServices;
 			sourceTree = "<group>";
 		};
+		E1FE5E611F3B504100D79400 /* EventVenue */ = {
+			isa = PBXGroup;
+			children = (
+				E1FE5E621F3B504100D79400 /* EventVenueLocationVC.swift */,
+				E1FE5E641F3B509600D79400 /* VenuePhotosVC.swift */,
+			);
+			path = EventVenue;
+			sourceTree = "<group>";
+		};
 		EE27C7F81F32760B00F7CC73 /* MLPAutoCompleteTextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -675,7 +686,7 @@
 				E1208CB21F37A08E001855CF /* EventDescription */,
 				E1208CB41F37A08E001855CF /* EventServices */,
 				E1208CB11F37A04A001855CF /* EventBudget */,
-				EEF1813B1F3A56A6009EB1E5 /* EventVenueLocation */,
+				E1FE5E611F3B504100D79400 /* EventVenue */,
 				EEA332491F3AF37B0048182C /* EventOptionalInformation */,
 			);
 			path = CreateEvent;
@@ -752,14 +763,6 @@
 				EED89A9F1EB73527009155E0 /* CALayer+RuntimeAttribute.m */,
 			);
 			path = "CALayer+RuntimeAttribute";
-			sourceTree = "<group>";
-		};
-		EEF1813B1F3A56A6009EB1E5 /* EventVenueLocation */ = {
-			isa = PBXGroup;
-			children = (
-				EEF1813C1F3A56CA009EB1E5 /* EventVenueLocationVC.swift */,
-			);
-			path = EventVenueLocation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -920,7 +923,6 @@
 				35FE07151E81B91000255602 /* EPNavigationViewController.swift in Sources */,
 				EED89AA51EB75E1E009155E0 /* PhotoCollectionViewCell.swift in Sources */,
 				EEC4D9471EC2D4FC000E7E15 /* VendorRevenuesViewController.swift in Sources */,
-				EEF1813D1F3A56CA009EB1E5 /* EventVenueLocationVC.swift in Sources */,
 				EEA915B51EAA187200892743 /* CommonController.m in Sources */,
 				EE9A2CBF1EC5F2C000509569 /* AddNumberViewController.swift in Sources */,
 				2CC41E631F2731450008B343 /* ObjectiveCMethods.m in Sources */,
@@ -941,6 +943,7 @@
 				EE7973F11F35B0EC0042E236 /* CosmosSettings.swift in Sources */,
 				35A037871E844BFB00D1F43F /* EPRoundButton.swift in Sources */,
 				EE79740B1F35CBC70042E236 /* CreateEventStep3VC.swift in Sources */,
+				E1FE5E631F3B504100D79400 /* EventVenueLocationVC.swift in Sources */,
 				2CE2157F1F16695300E81728 /* AAPopUp+Helper.swift in Sources */,
 				EE79740D1F35CBC70042E236 /* CreateEventStep5VC.swift in Sources */,
 				EE7973F01F35B0EC0042E236 /* CosmosRating.swift in Sources */,
@@ -989,6 +992,7 @@
 				E1208CB81F37A08E001855CF /* EventDescriptionVC.swift in Sources */,
 				EE7973F71F35B0EC0042E236 /* RightToLeft.swift in Sources */,
 				EEC4D94F1EC30DDD000E7E15 /* AboutEditViewController.swift in Sources */,
+				E1FE5E651F3B509600D79400 /* VenuePhotosVC.swift in Sources */,
 				EE9151721F3351E600358205 /* UIPlaceHolderTextView.m in Sources */,
 				EEC4D94B1EC2D51C000E7E15 /* ServicesViewController.swift in Sources */,
 				EE27C8061F32760B00F7CC73 /* MLPAutoCompleteTextField.m in Sources */,

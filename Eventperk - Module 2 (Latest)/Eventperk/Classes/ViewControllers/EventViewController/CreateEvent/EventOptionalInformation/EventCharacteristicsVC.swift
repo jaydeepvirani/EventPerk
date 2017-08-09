@@ -39,7 +39,9 @@ class EventCharacteristicsVC: UIViewController {
         
         lblEventType.text = dictCreateEventDetail.value(forKey: "EventType") as? String
         lblEventCategory.text = dictCreateEventDetail.value(forKey: "EventCategory") as? String
-        lblCounty.text = dictCreateEventDetail.value(forKey: "Country") as? String
+        if (dictCreateEventDetail.value(forKey:"EventLocationInDetial") as! NSMutableDictionary).value(forKey: "Country") != nil {
+            lblCounty.text = (dictCreateEventDetail.value(forKey:"EventLocationInDetial") as! NSMutableDictionary).value(forKey: "Country") as? String
+        }
         lblGuest.text = dictCreateEventDetail.value(forKey: "NumberOfGuest") as? String
         lblVenue.text = dictCreateEventDetail.value(forKey: "HaveVenue") as? String
     }

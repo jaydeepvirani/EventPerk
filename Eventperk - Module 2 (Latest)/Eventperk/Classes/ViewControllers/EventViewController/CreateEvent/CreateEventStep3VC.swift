@@ -31,8 +31,6 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
     var annotation = MKPointAnnotation()
     var isFromCreateEventStep5 = false
     
-    var strCountry = ""
-    
     //MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,6 +97,8 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
         mapView.setRegion(viewRegion, animated: false)
         
         mapView.removeAnnotation(annotation)
+        
+        dictLocationInDetail = NSMutableDictionary()
     }
     
     @IBAction func btnNextAction (_ sender: UIButton) {
@@ -126,18 +126,37 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
                 return
             }
             
+            self.dictLocationInDetail = NSMutableDictionary()
+            
             if (placemarks?.count)! > 0 {
                 if let containsPlacemark = (placemarks?[0]) {
                     
                     var strAddress = ""
+                    if containsPlacemark.subThoroughfare != nil {
+                        strAddress = strAddress + containsPlacemark.subThoroughfare! + " "
+                        self.dictLocationInDetail.setValue(containsPlacemark.subThoroughfare, forKey: "Unit")
+                    }
+                    if containsPlacemark.thoroughfare != nil {
+                        strAddress = strAddress + containsPlacemark.thoroughfare! + " "
+                        self.dictLocationInDetail.setValue(containsPlacemark.thoroughfare, forKey: "Street")
+                    }
                     if containsPlacemark.locality != nil {
-                        strAddress = strAddress + containsPlacemark.locality! + ", "
+                        strAddress = strAddress + containsPlacemark.locality! + " "
+                        self.dictLocationInDetail.setValue(containsPlacemark.locality, forKey: "City")
+                    }
+                    if containsPlacemark.administrativeArea != nil {
+                        strAddress = strAddress + containsPlacemark.administrativeArea! + " "
+                        self.dictLocationInDetail.setValue(containsPlacemark.administrativeArea, forKey: "State")
+                    }
+                    if containsPlacemark.postalCode != nil {
+                        strAddress = strAddress + containsPlacemark.postalCode! + " "
+                        self.dictLocationInDetail.setValue(containsPlacemark.postalCode, forKey: "PostalCode")
                     }
                     if containsPlacemark.country != nil {
                         strAddress = strAddress + containsPlacemark.country!
-                        
-                        self.strCountry = containsPlacemark.country!
+                        self.dictLocationInDetail.setValue(containsPlacemark.country, forKey: "Country")
                     }
+                    
                     print(strAddress)
                     self.txtAddress.text = strAddress
                     
@@ -167,6 +186,38 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
         
         btnNext.isSelected = true
         btnNext.backgroundColor = UIColor.init(red: 0.0/255.0, green: 255.0/255.0, blue: 102.0/255.0, alpha: 1.0)
+        
+        dictLocationInDetail = NSMutableDictionary()
+        if responseDict.value(forKey: "result") != nil && (responseDict.value(forKey: "result") as! NSDictionary).value(forKey: "address_components") != nil{
+            
+            if let arrTemp = (responseDict.value(forKey: "result") as! NSDictionary).value(forKey: "address_components") as? NSArray {
+                
+                for i in 0 ..< arrTemp.count {
+                    
+                    let strKeyName = ((arrTemp.object(at: i) as! NSDictionary).value(forKey: "types") as! NSArray).object(at: 0) as! String
+                    let strValue = (arrTemp.object(at: i) as! NSDictionary).value(forKey: "long_name") as! String
+                    
+                    if  strKeyName == "street_number" {
+                        dictLocationInDetail.setValue(strValue, forKey: "Unit")
+                    }
+                    if  strKeyName == "route" {
+                        dictLocationInDetail.setValue(strValue, forKey: "Street")
+                    }
+                    if  strKeyName == "locality" {
+                        dictLocationInDetail.setValue(strValue, forKey: "City")
+                    }
+                    if  strKeyName == "administrative_area_level_1" {
+                        dictLocationInDetail.setValue(strValue, forKey: "State")
+                    }
+                    if  strKeyName == "country" {
+                        dictLocationInDetail.setValue(strValue, forKey: "Country")
+                    }
+                    if  strKeyName == "postal_code" {
+                        dictLocationInDetail.setValue(strValue, forKey: "PostalCode")
+                    }
+                }
+            }
+        }
     }
     
     public func placeSearchWillShowResult() {
@@ -190,6 +241,7 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
+        dictLocationInDetail = NSMutableDictionary()
         scrlView.setContentOffset(CGPoint.init(x: 0, y: 120), animated: true)
         return true
     }
@@ -212,7 +264,7 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
         if segue.identifier == "createEventStep4Segue" {
             
             dictCreateEventDetail.setValue(txtAddress.text, forKey: "Location")
-            dictCreateEventDetail.setValue(self.strCountry, forKey: "Country")
+            dictCreateEventDetail.setValue(dictLocationInDetail, forKey: "EventLocationInDetial")
             
             let vc: CreateEventStep4VC = segue.destination as! CreateEventStep4VC
             vc.dictCreateEventDetail = dictCreateEventDetail
@@ -220,6 +272,7 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
         }else if segue.identifier == "venueLocationSegue"{
             
             dictCreateEventDetail.setValue(txtAddress.text, forKey: "VenueLocation")
+            dictCreateEventDetail.setValue(dictLocationInDetail, forKey: "VenueLocationInDetial")
            
             let vc: EventVenueLocationVC = segue.destination as! EventVenueLocationVC
             vc.dictCreateEventDetail = dictCreateEventDetail

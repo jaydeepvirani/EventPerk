@@ -1,17 +1,17 @@
 //
-//  EventVenueLocationVC.swift
+//  VenuePhotosVC.swift
 //  Eventperk
 //
-//  Created by Bhavik iOS Developer on 09/08/17.
+//  Created by CIZO on 09/08/17.
 //  Copyright © 2017 Eventperk. All rights reserved.
 //
 
 import UIKit
 
-class EventVenueLocationVC: UIViewController {
+class VenuePhotosVC: UIViewController {
 
     //MARK:- Outlet Declaration
-    @IBOutlet var btnSave: UIButton!
+    @IBOutlet var btnDone: UIButton!
     
     //MARK: Other Objects
     var dictCreateEventDetail = NSMutableDictionary()
@@ -29,7 +29,7 @@ class EventVenueLocationVC: UIViewController {
     
     //MARK:- Initialization
     func initialization() {
-        btnSave.layer.cornerRadius = 10
+        btnDone.layer.cornerRadius = 10
     }
     
     //MARK:- Button TouchUp

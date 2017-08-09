@@ -14,16 +14,24 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
 
     //MARK:- Outlet Declaration
     @IBOutlet var lblTitle: UILabel!
+    @IBOutlet var lblTypeDescription: UILabel!
+    @IBOutlet var lblLocationDescription: UILabel!
+    
     @IBOutlet var scrlView: UIScrollView!
     @IBOutlet var viewLocationInput: UIView!
     @IBOutlet var txtAddress: MVPlaceSearchTextField!
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var btnNext: UIButton!
     
+    @IBOutlet var constNoteViewHeight: NSLayoutConstraint!
+    
     //MARK: Other Objects
     var dictCreateEventDetail = NSMutableDictionary()
+    var dictLocationInDetail = NSMutableDictionary()
     var annotation = MKPointAnnotation()
     var isFromCreateEventStep5 = false
+    
+    var strCountry = ""
     
     //MARK:- View Life Cycle
     override func viewDidLoad() {
@@ -67,6 +75,10 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
         
         if isFromCreateEventStep5 == true {
             lblTitle.text = "Venue"
+            lblTypeDescription.text = "Input your event location and upload images to make your profile look great!"
+            lblLocationDescription.text = "Please search and set you location"
+        }else{
+            constNoteViewHeight.constant = 0
         }
     }
     
@@ -94,7 +106,7 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
             if isFromCreateEventStep5 == false {
                 self.performSegue(withIdentifier: "createEventStep4Segue", sender: nil)
             }else{
-                
+                self.performSegue(withIdentifier: "venueLocationSegue", sender: nil)
             }
         }
     }
@@ -118,12 +130,13 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
                 if let containsPlacemark = (placemarks?[0]) {
                     
                     var strAddress = ""
-                    
                     if containsPlacemark.locality != nil {
                         strAddress = strAddress + containsPlacemark.locality! + ", "
                     }
                     if containsPlacemark.country != nil {
                         strAddress = strAddress + containsPlacemark.country!
+                        
+                        self.strCountry = containsPlacemark.country!
                     }
                     print(strAddress)
                     self.txtAddress.text = strAddress
@@ -199,8 +212,16 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
         if segue.identifier == "createEventStep4Segue" {
             
             dictCreateEventDetail.setValue(txtAddress.text, forKey: "Location")
+            dictCreateEventDetail.setValue(self.strCountry, forKey: "Country")
             
             let vc: CreateEventStep4VC = segue.destination as! CreateEventStep4VC
+            vc.dictCreateEventDetail = dictCreateEventDetail
+            
+        }else if segue.identifier == "venueLocationSegue"{
+            
+            dictCreateEventDetail.setValue(txtAddress.text, forKey: "VenueLocation")
+           
+            let vc: EventVenueLocationVC = segue.destination as! EventVenueLocationVC
             vc.dictCreateEventDetail = dictCreateEventDetail
         }
     }

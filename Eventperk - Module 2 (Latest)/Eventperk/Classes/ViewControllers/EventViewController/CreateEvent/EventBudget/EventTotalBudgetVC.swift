@@ -141,6 +141,8 @@ class EventTotalBudgetVC: UIViewController, UITextFieldDelegate {
                     }else{
                         selectedServiceView?.layer.borderColor = UIColor.init(red: 0.0/255.0, green: 255.0/255.0, blue: 102.0/255.0, alpha: 1.0).cgColor
                         selectedServiceView?.layer.borderWidth = 1
+                        
+                        txtBudget.text = "0"
                     }
                    self.budgetTypeAttributedString(strBudgetType: (selectedServiceView?.strServiceType)!)
                 }

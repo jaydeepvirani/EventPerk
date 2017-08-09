@@ -98,6 +98,9 @@
 		EE9151721F3351E600358205 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9151701F3351E600358205 /* UIPlaceHolderTextView.m */; };
 		EE9A2CBF1EC5F2C000509569 /* AddNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9A2CBD1EC5F2C000509569 /* AddNumberViewController.swift */; };
 		EE9A2CC01EC5F2C000509569 /* AddNumberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE9A2CBE1EC5F2C000509569 /* AddNumberViewController.xib */; };
+		EEA3324B1F3AF3B20048182C /* EventOptionalInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA3324A1F3AF3B20048182C /* EventOptionalInformation.swift */; };
+		EEA3324D1F3AF90B0048182C /* EventDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA3324C1F3AF90B0048182C /* EventDetailsVC.swift */; };
+		EEA3324F1F3B08C10048182C /* EventCharacteristicsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA3324E1F3B08C10048182C /* EventCharacteristicsVC.swift */; };
 		EEA915B51EAA187200892743 /* CommonController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA915B41EAA187200892743 /* CommonController.m */; };
 		EEA915BA1EAA203A00892743 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA915B91EAA203A00892743 /* ExploreViewController.swift */; };
 		EEA915BC1EAA20AD00892743 /* LikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA915BB1EAA20AD00892743 /* LikeViewController.swift */; };
@@ -120,6 +123,7 @@
 		EED89AA61EB75E1E009155E0 /* PhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EED89AA41EB75E1E009155E0 /* PhotoCollectionViewCell.xib */; };
 		EED89AA91EB768A6009155E0 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED89AA71EB768A6009155E0 /* EditProfileViewController.swift */; };
 		EED89AAA1EB768A6009155E0 /* EditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EED89AA81EB768A6009155E0 /* EditProfileViewController.xib */; };
+		EEF1813D1F3A56CA009EB1E5 /* EventVenueLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF1813C1F3A56CA009EB1E5 /* EventVenueLocationVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -237,6 +241,9 @@
 		EE9151701F3351E600358205 /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
 		EE9A2CBD1EC5F2C000509569 /* AddNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNumberViewController.swift; sourceTree = "<group>"; };
 		EE9A2CBE1EC5F2C000509569 /* AddNumberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNumberViewController.xib; sourceTree = "<group>"; };
+		EEA3324A1F3AF3B20048182C /* EventOptionalInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventOptionalInformation.swift; sourceTree = "<group>"; };
+		EEA3324C1F3AF90B0048182C /* EventDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailsVC.swift; sourceTree = "<group>"; };
+		EEA3324E1F3B08C10048182C /* EventCharacteristicsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCharacteristicsVC.swift; sourceTree = "<group>"; };
 		EEA915B21EAA187100892743 /* Eventperk-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Eventperk-Bridging-Header.h"; sourceTree = "<group>"; };
 		EEA915B31EAA187200892743 /* CommonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonController.h; sourceTree = "<group>"; };
 		EEA915B41EAA187200892743 /* CommonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonController.m; sourceTree = "<group>"; };
@@ -262,6 +269,7 @@
 		EED89AA41EB75E1E009155E0 /* PhotoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoCollectionViewCell.xib; sourceTree = "<group>"; };
 		EED89AA71EB768A6009155E0 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		EED89AA81EB768A6009155E0 /* EditProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProfileViewController.xib; sourceTree = "<group>"; };
+		EEF1813C1F3A56CA009EB1E5 /* EventVenueLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventVenueLocationVC.swift; sourceTree = "<group>"; };
 		F77CB137BFD8CA6A97DD5966 /* Pods-Eventperk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eventperk.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eventperk/Pods-Eventperk.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -667,6 +675,8 @@
 				E1208CB21F37A08E001855CF /* EventDescription */,
 				E1208CB41F37A08E001855CF /* EventServices */,
 				E1208CB11F37A04A001855CF /* EventBudget */,
+				EEF1813B1F3A56A6009EB1E5 /* EventVenueLocation */,
+				EEA332491F3AF37B0048182C /* EventOptionalInformation */,
 			);
 			path = CreateEvent;
 			sourceTree = "<group>";
@@ -688,6 +698,16 @@
 				EE9A2CBE1EC5F2C000509569 /* AddNumberViewController.xib */,
 			);
 			path = NumberVeryfyViewController;
+			sourceTree = "<group>";
+		};
+		EEA332491F3AF37B0048182C /* EventOptionalInformation */ = {
+			isa = PBXGroup;
+			children = (
+				EEA3324A1F3AF3B20048182C /* EventOptionalInformation.swift */,
+				EEA3324C1F3AF90B0048182C /* EventDetailsVC.swift */,
+				EEA3324E1F3B08C10048182C /* EventCharacteristicsVC.swift */,
+			);
+			path = EventOptionalInformation;
 			sourceTree = "<group>";
 		};
 		EEA915B61EAA1B9500892743 /* HomeViewController */ = {
@@ -732,6 +752,14 @@
 				EED89A9F1EB73527009155E0 /* CALayer+RuntimeAttribute.m */,
 			);
 			path = "CALayer+RuntimeAttribute";
+			sourceTree = "<group>";
+		};
+		EEF1813B1F3A56A6009EB1E5 /* EventVenueLocation */ = {
+			isa = PBXGroup;
+			children = (
+				EEF1813C1F3A56CA009EB1E5 /* EventVenueLocationVC.swift */,
+			);
+			path = EventVenueLocation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -892,6 +920,7 @@
 				35FE07151E81B91000255602 /* EPNavigationViewController.swift in Sources */,
 				EED89AA51EB75E1E009155E0 /* PhotoCollectionViewCell.swift in Sources */,
 				EEC4D9471EC2D4FC000E7E15 /* VendorRevenuesViewController.swift in Sources */,
+				EEF1813D1F3A56CA009EB1E5 /* EventVenueLocationVC.swift in Sources */,
 				EEA915B51EAA187200892743 /* CommonController.m in Sources */,
 				EE9A2CBF1EC5F2C000509569 /* AddNumberViewController.swift in Sources */,
 				2CC41E631F2731450008B343 /* ObjectiveCMethods.m in Sources */,
@@ -908,6 +937,7 @@
 				35FE071C1E81C26900255602 /* EPAuthFieldView.swift in Sources */,
 				EE9151711F3351E600358205 /* CustomTextField.swift in Sources */,
 				2CE2158B1F1669F700E81728 /* EPForgotPasswordViewController.swift in Sources */,
+				EEA3324D1F3AF90B0048182C /* EventDetailsVC.swift in Sources */,
 				EE7973F11F35B0EC0042E236 /* CosmosSettings.swift in Sources */,
 				35A037871E844BFB00D1F43F /* EPRoundButton.swift in Sources */,
 				EE79740B1F35CBC70042E236 /* CreateEventStep3VC.swift in Sources */,
@@ -936,10 +966,12 @@
 				2CE215901F1669F700E81728 /* EPSignUp4ViewController.swift in Sources */,
 				EE7973EF1F35B0EC0042E236 /* CosmosLocalizedRating.swift in Sources */,
 				2CE215801F16695300E81728 /* AAPopUp.swift in Sources */,
+				EEA3324F1F3B08C10048182C /* EventCharacteristicsVC.swift in Sources */,
 				EE7973FA1F35B0EC0042E236 /* StarLayer.swift in Sources */,
 				357C85A41E92D20B00D99863 /* EPNextViewController.swift in Sources */,
 				EEB191AA1EB88AD900CEC946 /* FollowViewController.swift in Sources */,
 				2C53ECB11F2F588C002B8916 /* EventViewController.swift in Sources */,
+				EEA3324B1F3AF3B20048182C /* EventOptionalInformation.swift in Sources */,
 				EE7973EB1F35B0EC0042E236 /* CosmosAccessibility.swift in Sources */,
 				E1208CBD1F37A0DC001855CF /* EventTotalBudgetVC.swift in Sources */,
 				7718984A1EB45A5900FF9D31 /* SliderMenuController.m in Sources */,

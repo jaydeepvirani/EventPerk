@@ -63,7 +63,7 @@ class CreateEventStep2VC: UIViewController {
     
     func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath){
         
-        dictCreateEventDetail.setValue(arrSubEventTitles.object(at: indexPath.row) as! String, forKey: "SubEventType")
+        dictCreateEventDetail.setValue(arrSubEventTitles.object(at: indexPath.row) as! String, forKey: "EventCategory")
         
         self.performSegue(withIdentifier: "createEventStep3Segue", sender: nil)
     }

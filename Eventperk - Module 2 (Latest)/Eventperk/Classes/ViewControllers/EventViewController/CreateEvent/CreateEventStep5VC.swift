@@ -69,6 +69,10 @@ class CreateEventStep5VC: UIViewController {
         _ = self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func btnOptionalInformationAction (_ sender: UIButton) {
+        self.performSegue(withIdentifier: "optionalInformationSegue", sender: nil)
+    }
+    
     //MARK:- Tableview Delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         
@@ -81,7 +85,7 @@ class CreateEventStep5VC: UIViewController {
         
         let dictRowData = arrAttributes.object(at: indexPath.row) as! NSMutableDictionary
         
-        if indexPath.row == 0 {
+        if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Event Description" {
             if dictRowData.value(forKey: "EventTitle") != nil  {
                 cell.lblAttributeName.text = dictRowData.value(forKey: "EventTitle") as? String
                 cell.lblAttributeDescription.text = dictRowData.value(forKey: "DescriptionWhenAttributeChanged") as? String
@@ -89,15 +93,27 @@ class CreateEventStep5VC: UIViewController {
                 cell.lblAttributeName.text = dictRowData.value(forKey: "AttributeTitle") as? String
                 cell.lblAttributeDescription.text = dictRowData.value(forKey: "AttributeDescription") as? String
             }
-        }else if indexPath.row == 1 {
-            if dictRowData.value(forKey: "TotalEventBudget") != nil  {
-                cell.lblAttributeName.text = dictRowData.value(forKey: "TotalEventBudget") as? String
+        }else if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Event Budget" {
+            
+            if dictCreateEventDetail.value(forKey: "TotalEventBudget") != nil  {
+                cell.lblAttributeName.text = "$\(dictCreateEventDetail.value(forKey: "TotalEventBudget") as! String) SGD"
                 cell.lblAttributeDescription.text = dictRowData.value(forKey: "BudgetWhenAttributeChanged") as? String
             }else{
                 cell.lblAttributeName.text = dictRowData.value(forKey: "AttributeTitle") as? String
                 cell.lblAttributeDescription.text = dictRowData.value(forKey: "AttributeDescription") as? String
             }
-        }else{
+            
+        }else if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Event Venue" {
+            
+            if dictCreateEventDetail.value(forKey: "VenueLocation") != nil {
+                    cell.lblAttributeName.text = dictCreateEventDetail.value(forKey: "VenueLocation") as? String
+                    cell.lblAttributeDescription.text = dictRowData.value(forKey: "VenueWhenAttributeChanged") as? String
+            }else{
+                cell.lblAttributeName.text = dictRowData.value(forKey: "AttributeTitle") as? String
+                cell.lblAttributeDescription.text = dictRowData.value(forKey: "AttributeDescription") as? String
+            }
+        }
+        else{
             cell.lblAttributeName.text = dictRowData.value(forKey: "AttributeTitle") as? String
             cell.lblAttributeDescription.text = dictRowData.value(forKey: "AttributeDescription") as? String
         }
@@ -115,6 +131,8 @@ class CreateEventStep5VC: UIViewController {
         }else if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Event Venue" {
             
             self.performSegue(withIdentifier: "venueSegue", sender: nil)
+        }else if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Sourcing Settings" {
+            
         }
     }
     
@@ -141,6 +159,7 @@ class CreateEventStep5VC: UIViewController {
             dictAttribute = NSMutableDictionary()
             dictAttribute.setValue("Event Venue", forKey: "AttributeTitle")
             dictAttribute.setValue("Input the location of your event venue", forKey: "AttributeDescription")
+            dictAttribute.setValue("Only tendered vendors are able to view address", forKey: "VenueWhenAttributeChanged")
             arrAttributes.add(dictAttribute)
         }
         
@@ -169,6 +188,9 @@ class CreateEventStep5VC: UIViewController {
             let vc: CreateEventStep3VC = segue.destination as! CreateEventStep3VC
             vc.dictCreateEventDetail = dictCreateEventDetail
             vc.isFromCreateEventStep5 = true
+        }else if segue.identifier == "optionalInformationSegue" {
+            let vc: EventOptionalInformation = segue.destination as! EventOptionalInformation
+            vc.dictCreateEventDetail = dictCreateEventDetail
         }
     }
 }

@@ -15,6 +15,7 @@ class EventDescriptionVC: UIViewController, UITextViewDelegate {
     @IBOutlet var btnSave: UIButton!
     @IBOutlet var lblTitle: UILabel!
     @IBOutlet var lblSummary: UILabel!
+    @IBOutlet var viewNote: UIView!
     
     //MARK: TextInput View
     @IBOutlet var viewTextInputView: UIView!
@@ -39,6 +40,7 @@ class EventDescriptionVC: UIViewController, UITextViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     //MARK:- Initialization
     func initialization() {
         btnSave.layer.cornerRadius = 10
@@ -92,7 +94,6 @@ class EventDescriptionVC: UIViewController, UITextViewDelegate {
     }
     
     //MARK:- TextView Delegate
-    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
         if textView == txtViewTitle{
@@ -129,18 +130,17 @@ class EventDescriptionVC: UIViewController, UITextViewDelegate {
         self.checkForValidation()
     }
     
-    
-    
     //MARK:- Validations
-    
     func checkForValidation() {
         
         if lblTitle.text != "Give your event a headline" && lblSummary.text != "Give a highlight of your event" {
             btnSave.backgroundColor = UIColor.init(red: 0.0/255.0, green: 255.0/255.0, blue: 102.0/255.0, alpha: 1.0)
             btnSave.isSelected = true
+            viewNote.isHidden = true
         }else{
             btnSave.backgroundColor = UIColor.red
             btnSave.isSelected = false
+            viewNote.isHidden = false
         }
     }
 }

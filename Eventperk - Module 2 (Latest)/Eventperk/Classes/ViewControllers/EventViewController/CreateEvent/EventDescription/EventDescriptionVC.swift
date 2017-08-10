@@ -52,10 +52,10 @@ class EventDescriptionVC: UIViewController, UITextViewDelegate {
         
         if ((dictCreateEventDetail.value(forKey: "EventAttributes") as! NSMutableArray).object(at: 0) as! NSMutableDictionary).value(forKey: "EventTitle") != nil {
             
-            lblTitle.text = ((dictCreateEventDetail.value(forKey: "EventAttributes") as! NSMutableArray).object(at: 0) as! NSMutableDictionary).value(forKey: "EventTitle") as? String
+            lblTitle.text = dictCreateEventDetail.value(forKey: "EventTitle") as? String
             txtViewTitle.text = lblTitle.text
             
-            lblSummary.text = ((dictCreateEventDetail.value(forKey: "EventAttributes") as! NSMutableArray).object(at: 0) as! NSMutableDictionary).value(forKey: "EventDescription") as? String
+            lblSummary.text = dictCreateEventDetail.value(forKey: "EventDescription") as? String
             txtViewSummary.text = lblSummary.text
             
             let numberOfChars = txtViewTitle.text.characters.count
@@ -87,8 +87,8 @@ class EventDescriptionVC: UIViewController, UITextViewDelegate {
     
     @IBAction func btnSaveAction (_ sender: UIButton) {
         if btnSave.isSelected {
-            ((dictCreateEventDetail.value(forKey: "EventAttributes") as! NSMutableArray).object(at: 0) as! NSMutableDictionary).setValue(lblTitle.text, forKey: "EventTitle")
-            ((dictCreateEventDetail.value(forKey: "EventAttributes") as! NSMutableArray).object(at: 0) as! NSMutableDictionary).setValue(lblSummary.text, forKey: "EventDescription")
+            dictCreateEventDetail.setValue(lblTitle.text, forKey: "EventTitle")
+            dictCreateEventDetail.setValue(lblSummary.text, forKey: "EventDescription")
             _ = self.navigationController?.popViewController(animated: true)
         }
     }

@@ -106,4 +106,50 @@ class ProjectUtilities: NSObject
         
         return arrViewService
     }
+    
+    class func checkForServices(arrServices: NSMutableArray) -> Bool {
+        
+        for i in 0 ..< arrServices.count {
+            if (arrServices.object(at: i) as! NSMutableDictionary).value(forKey: "SubServices") != nil {
+                for j in 0 ..< ((arrServices.object(at: i) as! NSMutableDictionary).value(forKey: "SubServices") as! NSMutableArray).count {
+                    
+                    if (((arrServices.object(at: i) as! NSMutableDictionary).value(forKey: "SubServices") as! NSMutableArray).object(at: j) as! NSMutableDictionary).value(forKey: "ItemCount") != nil && (((arrServices.object(at: i) as! NSMutableDictionary).value(forKey: "SubServices") as! NSMutableArray).object(at: j) as! NSMutableDictionary).value(forKey: "ItemCount") as! NSInteger != 0 {
+                        
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
+}
+
+extension UIImageView {
+    
+    override func shake() {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.isAdditive = true
+        animation.duration = 0.07
+        animation.repeatCount = .infinity
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint.init(x: -1, y: 1))
+        animation.toValue = NSValue(cgPoint: CGPoint.init(x: 1, y: -1))
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        self.layer.add(animation, forKey: "position")
+    }
+}
+
+extension UIButton {
+    
+    override func shake() {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.isAdditive = true
+        animation.duration = 0.07
+        animation.repeatCount = .infinity
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint.init(x: -1, y: 1))
+        animation.toValue = NSValue(cgPoint: CGPoint.init(x: 1, y: -1))
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        self.layer.add(animation, forKey: "position")
+    }
 }

@@ -18,10 +18,14 @@ class CreateEventStep5VC: UIViewController {
     @IBOutlet var viewServices: UIView!
     @IBOutlet var viewAddServices: UIView!
     @IBOutlet var btnEventServices: UIButton!
+    @IBOutlet var constStartButtonHeight: NSLayoutConstraint!
+    
     
     //MARK: Other Objects
     var dictCreateEventDetail = NSMutableDictionary()
     var arrAttributes = NSMutableArray()
+    
+    var isAllAttributeFulfilled = false
     
     //MARK:- View Life Cycle
     override func viewDidLoad() {
@@ -36,19 +40,18 @@ class CreateEventStep5VC: UIViewController {
         if dictCreateEventDetail.value(forKey: "EventAttributes") != nil {
             arrAttributes = dictCreateEventDetail.value(forKey: "EventAttributes") as! NSMutableArray
             
-            if (arrAttributes.object(at: 0) as! NSMutableDictionary).value(forKey: "EventTitle") != nil {
-                constNoteViewHeight.constant = 0
-            }
         }else{
             self.createAttributes()
         }
         if dictCreateEventDetail.value(forKey: "EventServices") != nil {
+            
             _ = ProjectUtilities.setUpIconsForServices(arrServices: dictCreateEventDetail.value(forKey: "EventServices") as! NSMutableArray, viewDragable: viewServices)
-            constNoteViewHeight.constant = 0
             viewServices.bringSubview(toFront: btnEventServices)
         }
         
         tblAttributes.reloadData()
+        
+        self.checkAttributeValidation()
     }
     
     override func didReceiveMemoryWarning() {
@@ -85,35 +88,43 @@ class CreateEventStep5VC: UIViewController {
         
         let dictRowData = arrAttributes.object(at: indexPath.row) as! NSMutableDictionary
         
+        var isNeedToSetDefaultTitle = false
+        
         if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Event Description" {
-            if dictRowData.value(forKey: "EventTitle") != nil  {
-                cell.lblAttributeName.text = dictRowData.value(forKey: "EventTitle") as? String
+            if dictCreateEventDetail.value(forKey: "EventTitle") != nil  {
+                cell.lblAttributeName.text = dictCreateEventDetail.value(forKey: "EventTitle") as? String
                 cell.lblAttributeDescription.text = dictRowData.value(forKey: "DescriptionWhenAttributeChanged") as? String
-            }else{
-                cell.lblAttributeName.text = dictRowData.value(forKey: "AttributeTitle") as? String
-                cell.lblAttributeDescription.text = dictRowData.value(forKey: "AttributeDescription") as? String
+                
+                isNeedToSetDefaultTitle = true
             }
         }else if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Event Budget" {
             
             if dictCreateEventDetail.value(forKey: "TotalEventBudget") != nil  {
                 cell.lblAttributeName.text = "$\(dictCreateEventDetail.value(forKey: "TotalEventBudget") as! String) SGD"
                 cell.lblAttributeDescription.text = dictRowData.value(forKey: "BudgetWhenAttributeChanged") as? String
-            }else{
-                cell.lblAttributeName.text = dictRowData.value(forKey: "AttributeTitle") as? String
-                cell.lblAttributeDescription.text = dictRowData.value(forKey: "AttributeDescription") as? String
+                
+                isNeedToSetDefaultTitle = true
             }
+        }else if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Event Date and Duration" {
             
-        }else if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Event Venue" {
-            
-            if dictCreateEventDetail.value(forKey: "VenueLocation") != nil {
-                    cell.lblAttributeName.text = dictCreateEventDetail.value(forKey: "VenueLocation") as? String
-                    cell.lblAttributeDescription.text = dictRowData.value(forKey: "VenueWhenAttributeChanged") as? String
-            }else{
-                cell.lblAttributeName.text = dictRowData.value(forKey: "AttributeTitle") as? String
-                cell.lblAttributeDescription.text = dictRowData.value(forKey: "AttributeDescription") as? String
+            if dictCreateEventDetail.value(forKey: "EventStartDate") != nil {
+                cell.lblAttributeName.text = dictCreateEventDetail.value(forKey: "EventStartDate") as? String
+                cell.lblAttributeDescription.text = dictRowData.value(forKey: "DateWhenAttributeChanged") as? String
+                
+                isNeedToSetDefaultTitle = true
             }
         }
-        else{
+        else if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Event Venue" {
+            
+            if dictCreateEventDetail.value(forKey: "VenueLocation") != nil {
+                cell.lblAttributeName.text = dictCreateEventDetail.value(forKey: "VenueLocation") as? String
+                cell.lblAttributeDescription.text = dictRowData.value(forKey: "VenueWhenAttributeChanged") as? String
+                
+                isNeedToSetDefaultTitle = true
+            }
+        }
+        
+        if isNeedToSetDefaultTitle == false {
             cell.lblAttributeName.text = dictRowData.value(forKey: "AttributeTitle") as? String
             cell.lblAttributeDescription.text = dictRowData.value(forKey: "AttributeDescription") as? String
         }
@@ -128,11 +139,15 @@ class CreateEventStep5VC: UIViewController {
         }else if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Event Budget" {
                 
             self.performSegue(withIdentifier: "eventTotalBudgetSegue", sender: nil)
+        }else if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Event Date and Duration" {
+            
+            self.performSegue(withIdentifier: "dateAndDurationSegue", sender: nil)
         }else if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Event Venue" {
             
             self.performSegue(withIdentifier: "venueSegue", sender: nil)
         }else if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Sourcing Settings" {
             
+            self.performSegue(withIdentifier: "sourcingOptionsSegue", sender: nil)
         }
     }
     
@@ -153,6 +168,7 @@ class CreateEventStep5VC: UIViewController {
         dictAttribute = NSMutableDictionary()
         dictAttribute.setValue("Event Date and Duration", forKey: "AttributeTitle")
         dictAttribute.setValue("Input day and time of your event", forKey: "AttributeDescription")
+        dictAttribute.setValue("Edit date and time of your event", forKey: "DateWhenAttributeChanged")
         arrAttributes.add(dictAttribute)
         
         if dictCreateEventDetail.value(forKey: "HaveVenue") as! String == "true" {
@@ -171,7 +187,78 @@ class CreateEventStep5VC: UIViewController {
         dictCreateEventDetail.setValue(arrAttributes, forKey: "EventAttributes")
     }
     
-    // MARK:- Segue
+    //MARK:- Attribute Validation
+    
+    func checkAttributeValidation() {
+        
+        isAllAttributeFulfilled = true
+        var isNeedToSetNoteView = true
+        
+        if dictCreateEventDetail.value(forKey: "EventServices") == nil {
+            
+            isAllAttributeFulfilled = false
+            
+        }else if ProjectUtilities.checkForServices(arrServices: dictCreateEventDetail.value(forKey: "EventServices") as! NSMutableArray) == false {
+            
+            isAllAttributeFulfilled = false
+        }else{
+            isNeedToSetNoteView = false
+        }
+        
+        if dictCreateEventDetail.value(forKey: "EventTitle") == nil {
+            isAllAttributeFulfilled = false
+        }else{
+            isNeedToSetNoteView = false
+        }
+        
+        if dictCreateEventDetail.value(forKey: "TotalEventBudget") == nil  {
+            isAllAttributeFulfilled = false
+        }else{
+            isNeedToSetNoteView = false
+        }
+        
+        if dictCreateEventDetail.value(forKey: "EventStartDate") == nil  {
+            isAllAttributeFulfilled = false
+        }else{
+            isNeedToSetNoteView = false
+        }
+        if dictCreateEventDetail.value(forKey: "EventEndDate") == nil  {
+            isAllAttributeFulfilled = false
+        }else{
+            isNeedToSetNoteView = false
+        }
+        
+        if dictCreateEventDetail.value(forKey: "HaveVenue") as! String == "true" && dictCreateEventDetail.value(forKey: "VenueLocation") == nil {
+            
+            isAllAttributeFulfilled = false
+        }else{
+            isNeedToSetNoteView = false
+        }
+        
+        if dictCreateEventDetail.value(forKey: "SourcingOption") == nil {
+            isAllAttributeFulfilled = false
+        }else{
+            isNeedToSetNoteView = false
+        }
+        
+        if isAllAttributeFulfilled == true {
+            btnPreview.backgroundColor = UIColor.init(red: 0.0/255.0, green: 255.0/255.0, blue: 102.0/255.0, alpha: 1.0)
+            btnPreview.isSelected = true
+            constStartButtonHeight.constant = 40
+        }else{
+            btnPreview.backgroundColor = UIColor.red
+            btnPreview.isSelected = false
+            constStartButtonHeight.constant = 0
+        }
+        
+        if isNeedToSetNoteView == true{
+            constNoteViewHeight.constant = 63.5
+        }else{
+            constNoteViewHeight.constant = 0
+        }
+    }
+    
+    //MARK:- Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "eventDescriptionSegue" {
@@ -184,12 +271,18 @@ class CreateEventStep5VC: UIViewController {
         }else if segue.identifier == "eventTotalBudgetSegue" {
             let vc: EventTotalBudgetVC = segue.destination as! EventTotalBudgetVC
             vc.dictCreateEventDetail = dictCreateEventDetail
+        }else if segue.identifier == "dateAndDurationSegue" {
+            let vc: EventDateAndDurationVC = segue.destination as! EventDateAndDurationVC
+            vc.dictCreateEventDetail = dictCreateEventDetail
         }else if segue.identifier == "venueSegue" {
             let vc: CreateEventStep3VC = segue.destination as! CreateEventStep3VC
             vc.dictCreateEventDetail = dictCreateEventDetail
             vc.isFromCreateEventStep5 = true
         }else if segue.identifier == "optionalInformationSegue" {
             let vc: EventOptionalInformation = segue.destination as! EventOptionalInformation
+            vc.dictCreateEventDetail = dictCreateEventDetail
+        }else if segue.identifier == "sourcingOptionsSegue" {
+            let vc: SourcingOptionsVC = segue.destination as! SourcingOptionsVC
             vc.dictCreateEventDetail = dictCreateEventDetail
         }
     }

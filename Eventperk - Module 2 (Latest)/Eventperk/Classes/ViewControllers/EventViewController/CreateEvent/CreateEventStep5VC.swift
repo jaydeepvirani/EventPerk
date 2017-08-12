@@ -72,6 +72,12 @@ class CreateEventStep5VC: UIViewController {
         _ = self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func btnPreviewAction (_ sender: UIButton) {
+//        if btnPreview.isSelected == true {
+            self.performSegue(withIdentifier: "previewEventProfileSegue", sender: nil)
+//        }
+    }
+    
     @IBAction func btnOptionalInformationAction (_ sender: UIButton) {
         self.performSegue(withIdentifier: "optionalInformationSegue", sender: nil)
     }
@@ -107,8 +113,8 @@ class CreateEventStep5VC: UIViewController {
             }
         }else if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Event Date and Duration" {
             
-            if dictCreateEventDetail.value(forKey: "EventStartDate") != nil {
-                cell.lblAttributeName.text = dictCreateEventDetail.value(forKey: "EventStartDate") as? String
+            if dictCreateEventDetail.value(forKey: "EventStartDate1") != nil {
+                cell.lblAttributeName.text = dictCreateEventDetail.value(forKey: "EventStartDate1") as? String
                 cell.lblAttributeDescription.text = dictRowData.value(forKey: "DateWhenAttributeChanged") as? String
                 
                 isNeedToSetDefaultTitle = true
@@ -284,7 +290,11 @@ class CreateEventStep5VC: UIViewController {
         }else if segue.identifier == "sourcingOptionsSegue" {
             let vc: SourcingOptionsVC = segue.destination as! SourcingOptionsVC
             vc.dictCreateEventDetail = dictCreateEventDetail
+        }else if segue.identifier == "previewEventProfileSegue" {
+            let vc: PreviewEventProfileVC = segue.destination as! PreviewEventProfileVC
+            vc.dictCreateEventDetail = dictCreateEventDetail
         }
+        
     }
 }
 

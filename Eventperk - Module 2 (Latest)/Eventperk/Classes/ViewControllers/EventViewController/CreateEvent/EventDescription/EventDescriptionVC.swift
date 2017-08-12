@@ -50,7 +50,7 @@ class EventDescriptionVC: UIViewController, UITextViewDelegate {
         self.view.addSubview(viewTextInputView)
         viewTextInputView.isHidden = true
         
-        if ((dictCreateEventDetail.value(forKey: "EventAttributes") as! NSMutableArray).object(at: 0) as! NSMutableDictionary).value(forKey: "EventTitle") != nil {
+        if dictCreateEventDetail.value(forKey: "EventTitle") != nil {
             
             lblTitle.text = dictCreateEventDetail.value(forKey: "EventTitle") as? String
             txtViewTitle.text = lblTitle.text

@@ -85,24 +85,28 @@ class EventDetailsVC: UIViewController {
             }else{
                 lblEvent.text = textView.text
             }
+            dictCreateEventDetail.setValue(textView.text, forKey: "TheEvent")
         }else if viewTextInputView.tag == 2 {
             if textView.text == "" {
                 lblItinerary.text = "What schedules do you have for your event ?"
             }else{
                 lblItinerary.text = textView.text
             }
+            dictCreateEventDetail.setValue(textView.text, forKey: "TheItinerary")
         }else if viewTextInputView.tag == 3 {
             if textView.text == "" {
                 lblLogistics.text = "What arrangements do you have for your event ?"
             }else{
                 lblLogistics.text = textView.text
             }
+            dictCreateEventDetail.setValue(textView.text, forKey: "TheLogistics")
         }else if viewTextInputView.tag == 4 {
             if textView.text == "" {
                 lblAdditional.text = "Any other information to share ?"
             }else{
                 lblAdditional.text = textView.text
             }
+            dictCreateEventDetail.setValue(textView.text, forKey: "TheAdditional")
         }
         
         viewTextInputView.isHidden = true

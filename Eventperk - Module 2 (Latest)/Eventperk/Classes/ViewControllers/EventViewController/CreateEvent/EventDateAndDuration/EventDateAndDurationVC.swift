@@ -185,13 +185,15 @@ extension EventDateAndDurationVC: CVCalendarViewDelegate, CVCalendarMenuViewDele
                 if self.isStartDateSelected == true {
                     self.lblStartDateTime.text = ProjectUtilities.stringFromDate(date: self.selectedDay.date.convertedDate()!, strFormatter: "dd/MM/yy") + ", " + ProjectUtilities.stringFromDate(date: selectedDate as! Date, strFormatter: "hh:mm a")
                     
-                    self.dictCreateEventDetail.setValue(ProjectUtilities.stringFromDate(date: self.selectedDay.date.convertedDate()!, strFormatter: "MMM dd, yyyy") + " at " + ProjectUtilities.stringFromDate(date: selectedDate as! Date, strFormatter: "hh:mm a"), forKey: "EventStartDate")
+                    self.dictCreateEventDetail.setValue(ProjectUtilities.stringFromDate(date: self.selectedDay.date.convertedDate()!, strFormatter: "MMM dd, yyyy") + " " + ProjectUtilities.stringFromDate(date: selectedDate as! Date, strFormatter: "hh:mm a"), forKey: "EventStartDate")
+                    self.dictCreateEventDetail.setValue(ProjectUtilities.stringFromDate(date: self.selectedDay.date.convertedDate()!, strFormatter: "MMM dd, yyyy") + " at " + ProjectUtilities.stringFromDate(date: selectedDate as! Date, strFormatter: "hh:mm a"), forKey: "EventStartDate1")
                     
                     
                 }else{
                     self.lblEndDateTime.text = ProjectUtilities.stringFromDate(date: self.selectedDay.date.convertedDate()!, strFormatter: "dd/MM/yy") + ", " + ProjectUtilities.stringFromDate(date: selectedDate as! Date, strFormatter: "hh:mm a")
                     
-                    self.dictCreateEventDetail.setValue(ProjectUtilities.stringFromDate(date: self.selectedDay.date.convertedDate()!, strFormatter: "MMM dd, yyyy") + " at " + ProjectUtilities.stringFromDate(date: selectedDate as! Date, strFormatter: "hh:mm a"), forKey: "EventEndDate")
+                    self.dictCreateEventDetail.setValue(ProjectUtilities.stringFromDate(date: self.selectedDay.date.convertedDate()!, strFormatter: "MMM dd, yyyy") + " " + ProjectUtilities.stringFromDate(date: selectedDate as! Date, strFormatter: "hh:mm a"), forKey: "EventEndDate")
+                    self.dictCreateEventDetail.setValue(ProjectUtilities.stringFromDate(date: self.selectedDay.date.convertedDate()!, strFormatter: "MMM dd, yyyy") + " at " + ProjectUtilities.stringFromDate(date: selectedDate as! Date, strFormatter: "hh:mm a"), forKey: "EventEndDate1")
                 }
                 
             }, cancel: { (ActionSheetDatePicker) in

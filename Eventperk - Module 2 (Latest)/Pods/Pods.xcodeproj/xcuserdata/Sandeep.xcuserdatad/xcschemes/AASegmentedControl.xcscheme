@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '437AF466D16A29D02FD436B6AFE5D3BE'
+               BlueprintIdentifier = 'A6A526285F77CD8A742BE394C62C3135'
                BlueprintName = 'AASegmentedControl'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'AASegmentedControl.framework'>

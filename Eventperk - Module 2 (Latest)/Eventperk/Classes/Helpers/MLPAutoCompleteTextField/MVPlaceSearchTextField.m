@@ -62,9 +62,9 @@
 //        NSString *aStrURl=[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/queryautocomplete/json?&key=%@&sensor=false&input=%@",_strApiKey,aQuery];
         NSString *aStrURl;
         if(_strApiKey){
-            aStrURl=[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&sensor=true&key=%@",aQuery,_strApiKey];
+            aStrURl=[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@%@&sensor=true&key=%@",aQuery,_strCities,_strApiKey];
         }else{
-            aStrURl=[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&sensor=true",aQuery];
+            aStrURl=[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@%@&sensor=true",aQuery,_strCities];
         }
         
         NSMutableDictionary *aResultDict=[self stringWithUrl:[NSURL URLWithString:aStrURl]].mutableCopy;

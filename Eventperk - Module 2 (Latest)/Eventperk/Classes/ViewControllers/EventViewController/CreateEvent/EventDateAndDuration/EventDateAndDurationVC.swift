@@ -29,9 +29,6 @@ class EventDateAndDurationVC: UIViewController {
     
     var currentCalendar: Calendar?
     
-    var isStartDateSelected = true
-    var isSelectedDateButton = false
-    
     override func awakeFromNib() {
         let timeZoneBias = 480 // (UTC+08:00)
         currentCalendar = Calendar.init(identifier: .gregorian)
@@ -78,6 +75,13 @@ class EventDateAndDurationVC: UIViewController {
         if let currentCalendar = currentCalendar {
             lblMonthYear.text = CVDate(date: Date(), calendar: currentCalendar).globalDescription
         }
+        
+        if dictCreateEventDetail.value(forKey: "EventStartDate") != nil {
+            lblStartDateTime.text = ProjectUtilities.changeDateFormate(strDate: dictCreateEventDetail.value(forKey: "EventStartDate") as! String, strFormatter1: "MMM dd, yyyy hh:mm a", strFormatter2: "dd/MM/yy, hh:mm a") as String
+        }
+        if dictCreateEventDetail.value(forKey: "EventEndDate") != nil {
+            lblEndDateTime.text = ProjectUtilities.changeDateFormate(strDate: dictCreateEventDetail.value(forKey: "EventEndDate") as! String, strFormatter1: "MMM dd, yyyy hh:mm a", strFormatter2: "dd/MM/yy, hh:mm a") as String
+        }
     }
     
     //MARK:- Button TouchUp
@@ -91,7 +95,8 @@ class EventDateAndDurationVC: UIViewController {
         lblEndDateTime.text = "Date/Time"
         
         if dictCreateEventDetail.value(forKey: "EventStartDate") != nil {
-           dictCreateEventDetail.removeObject(forKey: "EventStartDate")
+            dictCreateEventDetail.removeObject(forKey: "EventStartDate")
+            
         }
         if dictCreateEventDetail.value(forKey: "EventEndDate") != nil {
             dictCreateEventDetail.removeObject(forKey: "EventEndDate")
@@ -100,11 +105,35 @@ class EventDateAndDurationVC: UIViewController {
     
     @IBAction func btnDateAndTimeAction (_ sender: UIButton) {
         
-        isSelectedDateButton = true
         if sender.tag == 1 {
-            isStartDateSelected = true
+            if lblStartDateTime.text != "Date/Time" {
+    
+                ActionSheetDatePicker.show(withTitle: "Select start Time", datePickerMode: .time, selectedDate: Date(), doneBlock: { (picker,selectedDate,origin) in
+                    
+                    self.lblStartDateTime.text = ProjectUtilities.stringFromDate(date: self.selectedDay.date.convertedDate()!, strFormatter: "dd/MM/yy") + ", " + ProjectUtilities.stringFromDate(date: selectedDate as! Date, strFormatter: "hh:mm a")
+                    
+                    self.dictCreateEventDetail.setValue(ProjectUtilities.stringFromDate(date: self.selectedDay.date.convertedDate()!, strFormatter: "MMM dd, yyyy") + " " + ProjectUtilities.stringFromDate(date: selectedDate as! Date, strFormatter: "hh:mm a"), forKey: "EventStartDate")
+                    
+                }, cancel: { (ActionSheetDatePicker) in
+                    
+                }, origin: sender)
+            }
         }else{
-            isStartDateSelected = false
+            
+            if lblEndDateTime.text != "Date/Time" {
+                
+                ActionSheetDatePicker.show(withTitle: "Select start Time", datePickerMode: .time, selectedDate: Date(), doneBlock: { (picker,selectedDate,origin) in
+                    
+                    self.lblEndDateTime.text = ProjectUtilities.stringFromDate(date: self.selectedDay.date.convertedDate()!, strFormatter: "dd/MM/yy") + ", " + ProjectUtilities.stringFromDate(date: selectedDate as! Date, strFormatter: "hh:mm a")
+                    
+                    self.dictCreateEventDetail.setValue(ProjectUtilities.stringFromDate(date: self.selectedDay.date.convertedDate()!, strFormatter: "MMM dd, yyyy") + " " + ProjectUtilities.stringFromDate(date: selectedDate as! Date, strFormatter: "hh:mm a"), forKey: "EventEndDate")
+
+                    
+                }, cancel: { (ActionSheetDatePicker) in
+                    
+                }, origin: sender)
+                
+            }
         }
     }
     
@@ -170,35 +199,21 @@ extension EventDateAndDurationVC: CVCalendarViewDelegate, CVCalendarMenuViewDele
         selectedDay = dayView
         print(selectedDay.date.convertedDate()!)
         
-//        if ProjectUtilities.stringFromDate(date: selectedDay.date.convertedDate()!, strFormatter: "yyyyMMdd") == ProjectUtilities.stringFromDate(date: Date(), strFormatter: "yyyyMMdd") {
-//            
-//        }
+        self.lblStartDateTime.text = ProjectUtilities.stringFromDate(date: self.selectedDay.date.convertedDate()!, strFormatter: "dd/MM/yy") + ", " + "12:00 AM"
         
-        if isSelectedDateButton == true {
-            let minDate = self.MinSelectionDate(Date())
-            let maxDate = self.MaxSelectionDate(NSDate() as Date)
+        self.dictCreateEventDetail.setValue(ProjectUtilities.stringFromDate(date: self.selectedDay.date.convertedDate()!, strFormatter: "MMM dd, yyyy") + " " + "12:00 AM", forKey: "EventStartDate")
+        
+        self.lblEndDateTime.text = ProjectUtilities.stringFromDate(date: self.selectedDay.date.convertedDate()!, strFormatter: "dd/MM/yy") + ", " + "12:30 AM"
+        
+        self.dictCreateEventDetail.setValue(ProjectUtilities.stringFromDate(date: self.selectedDay.date.convertedDate()!, strFormatter: "MMM dd, yyyy") + " " + "12:30 AM", forKey: "EventEndDate")
+        
+//        APESuperHUD.showOrUpdateHUD(loadingIndicator: .standard, message: "", presentingView: self.view)
+        EventProfile.insertUpdateEventData(dictEventDetail: dictCreateEventDetail) { (errors: [NSError]?) in
             
-            ActionSheetDatePicker.show(withTitle: "Select Time", datePickerMode: .time, selectedDate: maxDate, minimumDate: minDate, maximumDate: maxDate, doneBlock: { (picker,selectedDate,origin) in
+//            APESuperHUD.removeHUD(animated: true, presentingView: self.view, completion: nil)
+            if errors == nil {
                 
-                self.isSelectedDateButton = false
-                
-                if self.isStartDateSelected == true {
-                    self.lblStartDateTime.text = ProjectUtilities.stringFromDate(date: self.selectedDay.date.convertedDate()!, strFormatter: "dd/MM/yy") + ", " + ProjectUtilities.stringFromDate(date: selectedDate as! Date, strFormatter: "hh:mm a")
-                    
-                    self.dictCreateEventDetail.setValue(ProjectUtilities.stringFromDate(date: self.selectedDay.date.convertedDate()!, strFormatter: "MMM dd, yyyy") + " " + ProjectUtilities.stringFromDate(date: selectedDate as! Date, strFormatter: "hh:mm a"), forKey: "EventStartDate")
-                    self.dictCreateEventDetail.setValue(ProjectUtilities.stringFromDate(date: self.selectedDay.date.convertedDate()!, strFormatter: "MMM dd, yyyy") + " at " + ProjectUtilities.stringFromDate(date: selectedDate as! Date, strFormatter: "hh:mm a"), forKey: "EventStartDate1")
-                    
-                    
-                }else{
-                    self.lblEndDateTime.text = ProjectUtilities.stringFromDate(date: self.selectedDay.date.convertedDate()!, strFormatter: "dd/MM/yy") + ", " + ProjectUtilities.stringFromDate(date: selectedDate as! Date, strFormatter: "hh:mm a")
-                    
-                    self.dictCreateEventDetail.setValue(ProjectUtilities.stringFromDate(date: self.selectedDay.date.convertedDate()!, strFormatter: "MMM dd, yyyy") + " " + ProjectUtilities.stringFromDate(date: selectedDate as! Date, strFormatter: "hh:mm a"), forKey: "EventEndDate")
-                    self.dictCreateEventDetail.setValue(ProjectUtilities.stringFromDate(date: self.selectedDay.date.convertedDate()!, strFormatter: "MMM dd, yyyy") + " at " + ProjectUtilities.stringFromDate(date: selectedDate as! Date, strFormatter: "hh:mm a"), forKey: "EventEndDate1")
-                }
-                
-            }, cancel: { (ActionSheetDatePicker) in
-                
-            }, origin: self.btnClear)
+            }
         }
     }
     

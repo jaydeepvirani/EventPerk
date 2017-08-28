@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import APESuperHUD
 
 class EventOptionalInformation: UIViewController {
 
@@ -15,6 +16,7 @@ class EventOptionalInformation: UIViewController {
     
     //MARK: Other Objects
     var dictCreateEventDetail = NSMutableDictionary()
+    var isFromEventDetail = false
     
     //MARK:- View Life Cycle
     override func viewDidLoad() {
@@ -39,7 +41,29 @@ class EventOptionalInformation: UIViewController {
     }
     
     @IBAction func btnPermenantlyDeactivateEventAction (_ sender: UIButton) {
+        let alert = UIAlertController(title: "Alert", message: "Are you sure you want to permenently deactivate event?", preferredStyle: UIAlertControllerStyle.alert)
         
+        alert.addAction(UIAlertAction.init(title: "Yes", style: UIAlertActionStyle.default) { (action) in
+            
+            APESuperHUD.showOrUpdateHUD(loadingIndicator: .standard, message: "", presentingView: self.view)
+            EventProfile.removeEvent(eventId: self.dictCreateEventDetail.value(forKey: "id") as! String, completionHandler: { (errors: [NSError]?) in
+                
+                APESuperHUD.removeHUD(animated: true, presentingView: self.view, completion: nil)
+                if errors == nil {
+                    
+                    let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+            
+                    if viewControllers.count == 3 {
+                        self.navigationController!.popToViewController(viewControllers[viewControllers.count - 3], animated: true)
+                    }else{
+                        self.navigationController!.popToViewController(viewControllers[viewControllers.count - 7], animated: true)
+                    }
+                }
+            })
+        })
+        alert.addAction(UIAlertAction.init(title: "No", style: UIAlertActionStyle.cancel) { (action) in
+        })
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -48,6 +72,7 @@ class EventOptionalInformation: UIViewController {
             
             let vc: EventDetailsVC = segue.destination as! EventDetailsVC
             vc.dictCreateEventDetail = dictCreateEventDetail
+            vc.isFromEventDetail = isFromEventDetail
         }else if segue.identifier == "eventCharacteristicsSegue" {
             
             let vc: EventCharacteristicsVC = segue.destination as! EventCharacteristicsVC

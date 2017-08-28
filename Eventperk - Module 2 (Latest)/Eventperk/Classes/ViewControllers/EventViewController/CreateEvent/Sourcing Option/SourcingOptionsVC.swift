@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import APESuperHUD
 
 class SourcingOptionsVC: UIViewController {
 
     //MARK:- Outlet Declaration
+    @IBOutlet var lblSourcingOption: UILabel!
+    
     @IBOutlet var btnSave: UIButton!
     @IBOutlet var btnUseEventperkSorcing: UIButton!
     @IBOutlet var btnDontUseEventperkSorcing: UIButton!
@@ -39,6 +42,25 @@ class SourcingOptionsVC: UIViewController {
     func initialization() {
         btnSave.layer.cornerRadius = 10.0
         constUserEventPerkViewHeight.constant = 0
+        
+        if dictCreateEventDetail.value(forKey: "SourcingOption") != nil{
+            
+            if dictCreateEventDetail.value(forKey: "SourcingOption") as! String == "Use Eventperk sourcing" {
+                
+                btnUseEventperkSorcing.isSelected = true
+                imgCheckBoxUseEventperkSorcing.image = UIImage(named: "Checked_Checkbox_Line_Icon")
+                constUserEventPerkViewHeight.constant = 277
+                
+            }else{
+                btnDontUseEventperkSorcing.isSelected = true
+                imgCheckBoxDontUseEventperkSorcing.image = UIImage(named: "Checked_Checkbox_Line_Icon")
+                constUserEventPerkViewHeight.constant = 0
+            }
+            btnSave.backgroundColor = UIColor.init(red: 0.0/255.0, green: 255.0/255.0, blue: 102.0/255.0, alpha: 1.0)
+            btnSave.isSelected = true
+            
+            constNoteViewHeight.constant = 0
+        }
     }
     
     //MARK:- Button TouchUp
@@ -49,13 +71,21 @@ class SourcingOptionsVC: UIViewController {
     @IBAction func btnSaveAction (_ sender: UIButton) {
         if btnSave.isSelected == true {
             
-            _ = self.navigationController?.popViewController(animated: true)
-            
-            var strSourcingOption = "User Eventperk"
+            var strSourcingOption = "Use Eventperk sourcing"
             if btnDontUseEventperkSorcing.isSelected == true{
-                strSourcingOption = "Don't use Eventperk"
+                strSourcingOption = "Don't use Eventperk sourcing"
             }
             dictCreateEventDetail.setValue(strSourcingOption, forKey: "SourcingOption")
+            
+            APESuperHUD.showOrUpdateHUD(loadingIndicator: .standard, message: "", presentingView: self.view)
+            EventProfile.insertUpdateEventData(dictEventDetail: dictCreateEventDetail) { (errors: [NSError]?) in
+                
+                APESuperHUD.removeHUD(animated: true, presentingView: self.view, completion: nil)
+                if errors == nil {
+                    
+                    _ = self.navigationController?.popViewController(animated: true)
+                }
+            }
         }
     }
     

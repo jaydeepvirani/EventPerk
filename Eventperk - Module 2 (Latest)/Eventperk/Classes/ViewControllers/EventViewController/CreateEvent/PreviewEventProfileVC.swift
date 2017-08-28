@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import Social
 
 class PreviewEventProfileVC: UIViewController {
 
     //MARK:- Outlet Declaration
+    @IBOutlet var btnShare: UIButton!
+    
     @IBOutlet var colPhotos: UICollectionView!
     @IBOutlet var colServices: UICollectionView!
     
+    @IBOutlet var lblViewTitle: UILabel!
     @IBOutlet var lblTitle: UILabel!
     @IBOutlet var lblCountry: UILabel!
     @IBOutlet var lblEventDate: UILabel!
@@ -23,6 +27,7 @@ class PreviewEventProfileVC: UIViewController {
     @IBOutlet var lblGuest: UILabel!
     @IBOutlet var lblBudget: UILabel!
     @IBOutlet var lblDuration: UILabel!
+    @IBOutlet var lblVenueTitle: UILabel!
     @IBOutlet var lblVenue: UILabel!
     
     @IBOutlet var lblTheEventTitle: UILabel!
@@ -33,7 +38,6 @@ class PreviewEventProfileVC: UIViewController {
     @IBOutlet var lblTheLogistic: UILabel!
     @IBOutlet var lblTheAdditionalTitle: UILabel!
     @IBOutlet var lblTheAdditional: UILabel!
-    
     
     //MARK: Other Objects
     var dictCreateEventDetail = NSMutableDictionary()
@@ -77,12 +81,16 @@ class PreviewEventProfileVC: UIViewController {
         }
         
         if dictCreateEventDetail.value(forKey: "EventTitle") != nil {
+            
+            if dictCreateEventDetail.value(forKey: "Status") as! String != "Incomplete" {
+                lblViewTitle.text = dictCreateEventDetail.value(forKey: "EventTitle") as? String
+            }
             lblTitle.text = dictCreateEventDetail.value(forKey: "EventTitle") as? String
         }
         
-        if dictCreateEventDetail.value(forKey: "EventLocationInDetial") != nil && (dictCreateEventDetail.value(forKey: "EventLocationInDetial") as! NSMutableDictionary).value(forKey: "Country") != nil{
+        if dictCreateEventDetail.value(forKey: "EventLocationInDetail") != nil && (dictCreateEventDetail.value(forKey: "EventLocationInDetail") as! NSMutableDictionary).value(forKey: "Country") != nil{
             
-            lblCountry.text = (dictCreateEventDetail.value(forKey: "EventLocationInDetial") as! NSMutableDictionary).value(forKey: "Country") as? String
+            lblCountry.text = (dictCreateEventDetail.value(forKey: "EventLocationInDetail") as! NSMutableDictionary).value(forKey: "Country") as? String
         }
         
         if dictCreateEventDetail.value(forKey: "EventStartDate") != nil {
@@ -107,8 +115,14 @@ class PreviewEventProfileVC: UIViewController {
             lblDuration.text = "\(dictCreateEventDetail.value(forKey: "EventStartDate") as! String) to \(dictCreateEventDetail.value(forKey: "EventEndDate") as! String)"
         }
         
-        if dictCreateEventDetail.value(forKey: "VenueLocation") != nil  {
-            lblVenue.text = dictCreateEventDetail.value(forKey: "VenueLocation") as? String
+        if dictCreateEventDetail.value(forKey: "HaveVenue") as! String == "Yes" {
+            lblVenueTitle.text = "\nVenue:"
+            if dictCreateEventDetail.value(forKey: "VenueLocation") != nil  {
+                lblVenue.text = dictCreateEventDetail.value(forKey: "VenueLocation") as? String
+            }
+        }else{
+            lblVenueTitle.text = ""
+            lblVenue.text = ""
         }
         
         if dictCreateEventDetail.value(forKey: "TheEvent") != nil  {
@@ -140,12 +154,41 @@ class PreviewEventProfileVC: UIViewController {
             lblTheAdditionalTitle.text = ""
             lblTheAdditional.text = ""
         }
+        
+        if dictCreateEventDetail.value(forKey: "Status") as! String != "Incomplete" {
+            btnShare.isHidden = false
+        }else{
+            btnShare.isHidden = true
+        }
     }
     
     //MARK:- Button TouchUp
     @IBAction func btnBackAction (_ sender: UIButton) {
         _ = self.navigationController?.popViewController(animated: true)
     }
+    
+    @IBAction func btnShareAction (_ sender: UIButton) {
+        let strTitle = "Title: \(dictCreateEventDetail.value(forKey: "EventTitle") as! String)\n"
+        let strStartDate = "Start date: \(dictCreateEventDetail.value(forKey: "EventStartDate") as! String)\n"
+        
+        var strVenue = ""
+        if dictCreateEventDetail.value(forKey: "HaveVenue") as! String == "Yes" {
+            strVenue = "Venue: \(dictCreateEventDetail.value(forKey: "VenueLocation") as! String)"
+        }
+        
+        let strType = "Event type: \(dictCreateEventDetail.value(forKey: "EventCategory") as! String)"
+        
+        let textToShare:Array = [strTitle, strStartDate, strVenue, strType] as [Any]
+        let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        
+        // exclude some activity types from the list (optional)
+//        activityViewController.excludedActivityTypes = [ UIActivityType.airDrop, UIActivityType.postToFacebook ]
+        
+        // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
     
     //MARK:- UICollectionView
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
@@ -162,7 +205,11 @@ class PreviewEventProfileVC: UIViewController {
         if collectionView == colPhotos {
             let cell : PreviewEventProfilePhotoCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PreviewEventProfilePhotoCollectionCell", for: indexPath) as! PreviewEventProfilePhotoCollectionCell
             
-            cell.imgPhoto.image = arrPhotos.object(at: indexPath.row) as? UIImage
+            if ((arrPhotos.object(at: indexPath.row)) as AnyObject).isKind(of: UIImage.self) {
+                cell.imgPhoto.image = arrPhotos.object(at: indexPath.row+1) as? UIImage
+            }else if arrPhotos.object(at: indexPath.row) as! String != " " {
+                cell.imgPhoto.sd_setImage(with: NSURL(string: arrPhotos.object(at: indexPath.row) as! String) as URL!)
+            }
             
             return cell
         }else{

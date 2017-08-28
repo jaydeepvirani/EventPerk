@@ -11,9 +11,13 @@ import UIKit
 class ServicesView: UIView {
     
     var imgServiceIcon = UIImageView()
-    var intTag = 0
+    var intArrIndex = 0
     var strServiceType = ""
     var strEventBudget = ""
+    var index = 0
+    var subIndex = 0
+    var intItemCountIndex = 0
+    var strTags = ""
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,7 +35,6 @@ class ServicesView: UIView {
     func addBehavior() {
         imgServiceIcon = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: 40, height: 40))
         imgServiceIcon.contentMode = UIViewContentMode.center//scaleAspectFit
-//        imgServiceIcon.backgroundColor = UIColor.darkGray
         self.addSubview(imgServiceIcon)
     }
 }

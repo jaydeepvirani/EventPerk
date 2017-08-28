@@ -24,6 +24,7 @@
 
 @interface MVPlaceSearchTextField : MLPAutoCompleteTextField
 @property(nonatomic,strong)NSString *strApiKey;
+@property(nonatomic,strong)NSString *strCities;
 
 @property(nonatomic,strong)IBOutlet id<PlaceSearchTextFieldDelegate>placeSearchDelegate;
 @end

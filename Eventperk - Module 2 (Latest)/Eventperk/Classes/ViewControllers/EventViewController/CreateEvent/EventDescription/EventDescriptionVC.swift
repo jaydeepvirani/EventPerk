@@ -8,6 +8,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import APESuperHUD
 
 class EventDescriptionVC: UIViewController, UITextViewDelegate {
 
@@ -20,8 +21,7 @@ class EventDescriptionVC: UIViewController, UITextViewDelegate {
     //MARK: TextInput View
     @IBOutlet var viewTextInputView: UIView!
     @IBOutlet var viewTextInputViewIn: UIView!
-    @IBOutlet var txtViewTitle: UIPlaceHolderTextView!
-    @IBOutlet var txtViewSummary: UIPlaceHolderTextView!
+    @IBOutlet var txtViewInput: UIPlaceHolderTextView!
     @IBOutlet var lblCharacterLeft: UILabel!
     @IBOutlet var constCharacterLeftViewHeight: NSLayoutConstraint!
     
@@ -53,13 +53,10 @@ class EventDescriptionVC: UIViewController, UITextViewDelegate {
         if dictCreateEventDetail.value(forKey: "EventTitle") != nil {
             
             lblTitle.text = dictCreateEventDetail.value(forKey: "EventTitle") as? String
-            txtViewTitle.text = lblTitle.text
-            
             lblSummary.text = dictCreateEventDetail.value(forKey: "EventDescription") as? String
-            txtViewSummary.text = lblSummary.text
             
-            let numberOfChars = txtViewTitle.text.characters.count
-            lblCharacterLeft.text = "\(numberOfChars) characters left"
+            let numberOfChars = lblTitle.text?.characters.count
+            lblCharacterLeft.text = "\(String(describing: numberOfChars)) characters left"
         }
     }
     
@@ -71,16 +68,26 @@ class EventDescriptionVC: UIViewController, UITextViewDelegate {
     @IBAction func btnInputViewAction (_ sender: UIButton) {
         
         viewTextInputView.isHidden = false
-        txtViewSummary.isHidden = true
-        txtViewTitle.isHidden = true
+        txtViewInput.becomeFirstResponder()
+        txtViewInput.text = ""
         
         if sender.tag == 1 {
-            txtViewTitle.becomeFirstResponder()
-            txtViewTitle.isHidden = false
+            
+            if lblTitle.text != "Give your event a headline" {
+                
+                txtViewInput.text = lblTitle.text
+                let numberOfChars = txtViewInput.text.characters.count
+                lblCharacterLeft.text = "\(numberOfChars) characters left"
+            }
+            
+            txtViewInput.tag = 1
             constCharacterLeftViewHeight.constant = 25
         }else {
-            txtViewSummary.isHidden = false
-            txtViewSummary.becomeFirstResponder()
+            
+            if lblSummary.text != "Give a highlight of your event" {
+                txtViewInput.text = lblSummary.text
+            }
+            txtViewInput.tag = 2
             constCharacterLeftViewHeight.constant = 0
         }
     }
@@ -89,14 +96,23 @@ class EventDescriptionVC: UIViewController, UITextViewDelegate {
         if btnSave.isSelected {
             dictCreateEventDetail.setValue(lblTitle.text, forKey: "EventTitle")
             dictCreateEventDetail.setValue(lblSummary.text, forKey: "EventDescription")
-            _ = self.navigationController?.popViewController(animated: true)
+            
+            APESuperHUD.showOrUpdateHUD(loadingIndicator: .standard, message: "", presentingView: self.view)
+            EventProfile.insertUpdateEventData(dictEventDetail: dictCreateEventDetail) { (errors: [NSError]?) in
+                
+                APESuperHUD.removeHUD(animated: true, presentingView: self.view, completion: nil)
+                if errors == nil {
+                    
+                    _ = self.navigationController?.popViewController(animated: true)
+                }
+            }
         }
     }
     
     //MARK:- TextView Delegate
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
-        if textView == txtViewTitle{
+        if textView.tag == 1{
             if(text == "\n") {
                 textView.resignFirstResponder()
                 return false
@@ -113,18 +129,19 @@ class EventDescriptionVC: UIViewController, UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         
-        if textView == txtViewTitle {
-            lblTitle.text = txtViewTitle.text
+        if textView.tag == 1 {
+            lblTitle.text = textView.text
+            if textView.text == ""{
+                lblTitle.text = "Give your event a headline"
+            }
         }else{
-            lblSummary.text = txtViewSummary.text
+            lblSummary.text = textView.text
+            if textView.text == ""{
+                lblSummary.text = "Give a highlight of your event"
+            }
         }
         
-        if txtViewTitle.text == ""{
-            lblTitle.text = "Give your event a headline"
-        }
-        if txtViewSummary.text == ""{
-            lblSummary.text = "Give a highlight of your event"
-        }
+        
         
         viewTextInputView.isHidden = true
         self.checkForValidation()

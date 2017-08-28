@@ -65,6 +65,7 @@ class EventSubServiceList: UIViewController {
         if btnSave.isSelected == true {
             let index = (arrServiceList.value(forKey: "SubServiceTitle") as AnyObject).index(of: strSelectedSubService)
             if index != NSNotFound {
+                
                 (arrServiceList.object(at: index) as! NSMutableDictionary).setValue(arrSubServiceList, forKey: "SubServices")
             }
         }
@@ -286,11 +287,6 @@ class EventSubServiceList: UIViewController {
             
             lblNotes.text = "If you need to different variations of services for example cafe 1 for morning and cafe 2 for evening services, you have to select 2."
         }
-        
-        /*let index = ((dictCreateEventDetail.value(forKey: "EventServices") as! NSMutableArray).value(forKey: "SubServiceTitle") as AnyObject).index(of: strSelectedSubService)
-        if index != NSNotFound {
-            ((dictCreateEventDetail.value(forKey: "EventServices") as! NSMutableArray).object(at: index) as! NSMutableDictionary).setValue(arrSubServiceList, forKey: "SubServices")
-        }*/
     }
     
     //MARK:- Validations

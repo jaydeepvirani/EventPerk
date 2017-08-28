@@ -44,6 +44,7 @@ class CreateEventStep1VC: UIViewController {
         }else{
             dictCreateEventDetail.setValue("Corporate", forKey: "EventType")
         }
+        dictCreateEventDetail.setValue("Incomplete", forKey: "Status")
     }
     
     // MARK:- Segue

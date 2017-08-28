@@ -17,6 +17,9 @@ class EventDetailsVC: UIViewController {
     @IBOutlet var lblItinerary: UILabel!
     @IBOutlet var lblLogistics: UILabel!
     @IBOutlet var lblAdditional: UILabel!
+    @IBOutlet var lblGuestCount: UILabel!
+    
+    @IBOutlet var constGuestCountViewHeight: NSLayoutConstraint!
     
     //MARK:- TextInputView
     @IBOutlet var viewTextInputView: UIView!
@@ -26,6 +29,7 @@ class EventDetailsVC: UIViewController {
     
     //MARK: Other Objects
     var dictCreateEventDetail = NSMutableDictionary()
+    var isFromEventDetail = false
     
     //MARK:- View Life Cycle
     override func viewDidLoad() {
@@ -38,6 +42,21 @@ class EventDetailsVC: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        super.viewWillDisappear(true)
+        
+        if isFromEventDetail {
+            
+            if dictCreateEventDetail.value(forKey: "NumberOfGuest") as? String != lblGuestCount.text  {
+               
+                dictCreateEventDetail.setValue(lblGuestCount.text, forKey: "NumberOfGuest")
+                EventProfile.insertUpdateEventData(dictEventDetail: dictCreateEventDetail) { (errors: [NSError]?) in
+                }
+            }
+        }
+    }
+    
     //MARK:- Initialization
     func initialization() {
         btnPreview.layer.cornerRadius = 10
@@ -46,6 +65,28 @@ class EventDetailsVC: UIViewController {
         viewTextInputView.frame = CGRect(x: 0, y: 0, width: Constants.ScreenSize.SCREEN_WIDTH, height: Constants.ScreenSize.SCREEN_HEIGHT)
         self.view.addSubview(viewTextInputView)
         viewTextInputView.isHidden = true
+        
+        if dictCreateEventDetail.value(forKey: "TheEvent") != nil{
+            lblEvent.text = dictCreateEventDetail.value(forKey: "TheEvent") as? String
+        }
+        if dictCreateEventDetail.value(forKey: "TheItinerary") != nil{
+            lblItinerary.text = dictCreateEventDetail.value(forKey: "TheItinerary") as? String
+        }
+        if dictCreateEventDetail.value(forKey: "TheLogistics") != nil{
+            lblLogistics.text = dictCreateEventDetail.value(forKey: "TheLogistics") as? String
+        }
+        if dictCreateEventDetail.value(forKey: "TheAdditional") != nil{
+            lblAdditional.text = dictCreateEventDetail.value(forKey: "TheAdditional") as? String
+        }
+        
+        if isFromEventDetail == true{
+            constGuestCountViewHeight.constant = 88
+            if dictCreateEventDetail.value(forKey: "NumberOfGuest") != nil {
+                lblGuestCount.text = dictCreateEventDetail.value(forKey: "NumberOfGuest") as? String
+            }
+        }else{
+            constGuestCountViewHeight.constant = 0
+        }
     }
     
     //MARK:- Button TouchUp
@@ -54,6 +95,8 @@ class EventDetailsVC: UIViewController {
     }
     
     @IBAction func btnPreviewAction (_ sender: UIButton) {
+        
+        self.performSegue(withIdentifier: "previewEventProfileSegue", sender: nil)
     }
     
     @IBAction func btnEventDetailAction (_ sender: UIButton) {
@@ -74,6 +117,19 @@ class EventDetailsVC: UIViewController {
         }else if sender.tag == 4 {
             lblTextInputTitle.text = "The Additional"
         }
+    }
+    
+    @IBAction func btnGuestCountAction (_ sender: UIButton) {
+        
+        var intCount = Int(lblGuestCount.text!)
+        if sender.tag == 1{
+            if intCount != 0 {
+                intCount = intCount! - 1
+            }
+        }else{
+            intCount = intCount! + 1
+        }
+        lblGuestCount.text = "\(String(describing: intCount!))"
     }
     
     //MARK:- TextView Delegate
@@ -109,6 +165,20 @@ class EventDetailsVC: UIViewController {
             dictCreateEventDetail.setValue(textView.text, forKey: "TheAdditional")
         }
         
+        if textView.text != "" {
+            
+            EventProfile.insertUpdateEventData(dictEventDetail: dictCreateEventDetail) { (errors: [NSError]?) in
+            }
+        }
+        
         viewTextInputView.isHidden = true
+    }
+    
+    //MARK:- Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "previewEventProfileSegue" {
+            let vc: PreviewEventProfileVC = segue.destination as! PreviewEventProfileVC
+            vc.dictCreateEventDetail = dictCreateEventDetail
+        }
     }
 }

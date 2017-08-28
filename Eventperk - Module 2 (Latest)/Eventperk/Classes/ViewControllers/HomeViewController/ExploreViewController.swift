@@ -99,7 +99,7 @@ class ExploreViewController: UIViewController,UITextFieldDelegate {
                 if task.error != nil {
                     APESuperHUD.removeHUD(animated: true, presentingView: self.view, completion: nil)
                     
-                    NSLog("\(task.error)")
+                    NSLog("\(task.error!)")
                 } else {
                     
                     let response = task.result! as AWSCognitoIdentityUserGetDetailsResponse

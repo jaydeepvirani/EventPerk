@@ -31,7 +31,6 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
     @IBOutlet var txt_Email:UITextField!
     
     //MARK: About us popup
-    
     @IBOutlet var viewAboutUsPopup: UIView!
     @IBOutlet var viewAboutUsPopupIn: UIView!
     @IBOutlet var txtViewAboutUs: UITextView!
@@ -81,7 +80,6 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
     }
     
     //MARK:- Initialization
-    
     func initialization(){
         
         self.displayData()
@@ -129,7 +127,6 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
     }
     
     //MARK:- Button Click
-    
     @IBAction func clk_Back(_ sender: UIButton)
     {
         _ = self.navigationController?.popViewController(animated: true)
@@ -221,7 +218,6 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
     }
     
     //MARK: AboutUs Popup
-    
     @IBAction func btnCloseAboutUsPopupAction(_ sender: UIButton){
         viewAboutUsPopup.isHidden = true
         self.view.endEditing(true)
@@ -234,7 +230,6 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
     }
     
     //MARK:- Other
-    
     func dismissPopUpTextView(_ textView:UITextView)
     {
         lbl_AboutMe.text = textView.text
@@ -264,7 +259,6 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
     }
     
     //MARK:- TextFiled Delegate
-    
     func textFieldDidBeginEditing(_ textField: UITextField)
     {
         if textField == txt_Country
@@ -294,14 +288,12 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
     }
     
     //MARK:- Picker View
-    
     public func countryPicker(_ picker: CountryPicker!, didSelectCountryWithName name: String!, code: String!)
     {
         txt_Country.text = name
     }
     
     //MARK:- ImagePicker
-    
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
     {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -318,7 +310,6 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
     }
     
     //MARK:- AWS Call
-    
     func getUserDetails() {
         
         self.user = self.pool.getUser(Constants.appDelegate.dictUserDetail.value(forKey: "userName") as! String)
@@ -328,7 +319,7 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
                 
                 APESuperHUD.removeHUD(animated: true, presentingView: self.view, completion: nil)
                 if task.error != nil {
-                    NSLog("\(task.error)")
+                    print("\(task.error!)")
                 } else {
                     
                     let response = task.result! as AWSCognitoIdentityUserGetDetailsResponse
@@ -505,7 +496,7 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
         group.enter()
         
         objectMapper.save(itemForGet, completionHandler: {(error: Error?) -> Void in
-            if let error = error as? NSError {
+            if let error = error as NSError? {
                 DispatchQueue.main.async(execute: {
                     errors.append(error)
                 })
@@ -524,14 +515,12 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
     }
     
     //MARK:- AddPhoneNumber Delegate
-    
     func phoneNumberVerified(strPhoneNumber: String) {
         
         _ = strPhoneNumber
     }
     
     //MARK:- Upload Profile Pic
-    
     func uploadProfilePic(){
         
         var imgUser: UIImage = UIImage()

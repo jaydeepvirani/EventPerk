@@ -32,18 +32,24 @@ class CreateEventStep2VC: UIViewController {
     
     //MARK:- Initialization
     func initialization() {
-        lblEventType.text = "Great! What type of social \(dictCreateEventDetail.value(forKey: "EventType") as! String) event is this ?"
+        lblEventType.text = "Great! What type of \(dictCreateEventDetail.value(forKey: "EventType") as! String) event is this?"
         
         if dictCreateEventDetail.value(forKey: "EventType") as! String == "Social" {
-            arrSubEventTitles = ["Anniversary", "Birthday", "Ceremony", "Festival", "Reunion", "Theme", "Wedding", "Other"]
+            arrSubEventTitles = ["Anniversary", "Birthday", "Ceremony", "Festival", "Reunion", "Theme", "Wedding"]
         }else{
-            arrSubEventTitles = ["Conference", "Charity", "Dinner & Dance", "Expo & Launch", "Networking", "Trade Fair", "Seminar", "Other"]
+            arrSubEventTitles = ["Conference", "Charity", "Dinner & Dance", "Expo & Launch", "Networking", "Trade Fair", "Seminar"]
         }
     }
     
     //MARK:- Button TouchUp
     @IBAction func btnBackAction (_ sender: UIButton) {
         _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func btnOtherAction (_ sender: UIButton) {
+        dictCreateEventDetail.setValue("Other", forKey: "EventCategory")
+        
+        self.performSegue(withIdentifier: "createEventStep3Segue", sender: nil)
     }
     
     //MARK:- Tableview Delegate

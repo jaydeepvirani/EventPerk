@@ -111,10 +111,10 @@ import UIKit
         super.draw(rect)
         
         activeBackground = UIView()
-
-        layer.borderColor = borderColor.cgColor
+        
+        layer.borderColor = UIColor.clear.cgColor//borderColor.cgColor
         layer.cornerRadius = borderRadius
-        layer.borderWidth = borderWidth
+        layer.borderWidth = 0//borderWidth
         
         setupItems()
         setupAutoLayout()

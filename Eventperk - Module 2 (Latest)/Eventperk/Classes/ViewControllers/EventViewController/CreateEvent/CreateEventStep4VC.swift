@@ -7,17 +7,24 @@
 //
 
 import UIKit
+import APESuperHUD
 
 class CreateEventStep4VC: UIViewController {
 
     //MARK:- Outlet Declaration
+    @IBOutlet var lblTitle: UILabel!
     @IBOutlet var lblGuestCount: UILabel!
     
     @IBOutlet var btnYesVenue: UIButton!
     @IBOutlet var btnNoVenue: UIButton!
     
+    @IBOutlet var constDescriptionViewHeight: NSLayoutConstraint!
+    @IBOutlet var constVenueViewHeight: NSLayoutConstraint!
+    
     //MARK: Other Objects
     var dictCreateEventDetail = NSMutableDictionary()
+    var isFromEventDetail = false
+    
     
     //MARK:- View Life Cycle
     override func viewDidLoad() {
@@ -33,6 +40,17 @@ class CreateEventStep4VC: UIViewController {
     //MARK:- Initialization
     func initialization() {
         btnYesVenue.isSelected = true
+        
+        if isFromEventDetail == true {
+            lblTitle.text = "Pax"
+            
+            constDescriptionViewHeight.constant = 0
+            constVenueViewHeight.constant = 0
+            
+            if dictCreateEventDetail.value(forKey: "NumberOfGuest") != nil {    
+                lblGuestCount.text = dictCreateEventDetail.value(forKey: "NumberOfGuest") as? String
+            }
+        }
     }
     
     //MARK:- Button TouchUp
@@ -72,13 +90,33 @@ class CreateEventStep4VC: UIViewController {
         }
     }
     
+    @IBAction func btnNextAction (_ sender: UIButton) {
+        
+        if isFromEventDetail == true {
+            dictCreateEventDetail.setValue(lblGuestCount.text, forKey: "NumberOfGuest")
+        }else{
+            dictCreateEventDetail.setValue(lblGuestCount.text, forKey: "NumberOfGuest")
+            dictCreateEventDetail.setValue(btnYesVenue.isSelected == true ? "Yes" : "No", forKey: "HaveVenue")
+        }
+        APESuperHUD.showOrUpdateHUD(loadingIndicator: .standard, message: "", presentingView: self.view)
+        EventProfile.insertUpdateEventData(dictEventDetail: dictCreateEventDetail) { (errors: [NSError]?) in
+            
+            APESuperHUD.removeHUD(animated: true, presentingView: self.view, completion: nil)
+            if errors == nil {
+                
+                if self.isFromEventDetail == true {
+                    _ = self.navigationController?.popViewController(animated: true)
+                }else{
+                    self.performSegue(withIdentifier: "createEventStep5Segue", sender: nil)
+                }
+            }
+        }
+    }
+    
     // MARK:- Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "createEventStep5Segue" {
-            
-            dictCreateEventDetail.setValue(lblGuestCount.text, forKey: "NumberOfGuest")
-            dictCreateEventDetail.setValue(btnYesVenue.isSelected == true ? "true" : "false", forKey: "HaveVenue")
             
             let vc: CreateEventStep5VC = segue.destination as! CreateEventStep5VC
             vc.dictCreateEventDetail = dictCreateEventDetail

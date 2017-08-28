@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import APESuperHUD
 
 class EventVenueLocationVC: UIViewController, UITextFieldDelegate {
 
@@ -38,31 +39,31 @@ class EventVenueLocationVC: UIViewController, UITextFieldDelegate {
     func initialization() {
         btnSave.layer.cornerRadius = 10
         
-        if dictCreateEventDetail.value(forKey: "VenueLocationInDetial") != nil {
+        if dictCreateEventDetail.value(forKey: "VenueLocationInDetail") != nil {
             
-            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetial") as! NSMutableDictionary).value(forKey: "Street") != nil {
+            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "Street") != nil {
                 
-                txtStreet.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetial") as! NSMutableDictionary).value(forKey: "Street") as? String
+                txtStreet.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "Street") as? String
             }
-            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetial") as! NSMutableDictionary).value(forKey: "Unit") != nil {
+            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "Unit") != nil {
                 
-                txtUnit.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetial") as! NSMutableDictionary).value(forKey: "Unit") as? String
+                txtUnit.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "Unit") as? String
             }
-            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetial") as! NSMutableDictionary).value(forKey: "City") != nil {
+            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "City") != nil {
                 
-                txtCity.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetial") as! NSMutableDictionary).value(forKey: "City") as? String
+                txtCity.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "City") as? String
             }
-            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetial") as! NSMutableDictionary).value(forKey: "State") != nil {
+            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "State") != nil {
                 
-                txtState.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetial") as! NSMutableDictionary).value(forKey: "State") as? String
+                txtState.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "State") as? String
             }
-            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetial") as! NSMutableDictionary).value(forKey: "PostalCode") != nil {
+            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "PostalCode") != nil {
                 
-                txtPostal.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetial") as! NSMutableDictionary).value(forKey: "PostalCode") as? String
+                txtPostal.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "PostalCode") as? String
             }
-            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetial") as! NSMutableDictionary).value(forKey: "Country") != nil {
+            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "Country") != nil {
                 
-                txtCountry.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetial") as! NSMutableDictionary).value(forKey: "Country") as? String
+                txtCountry.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "Country") as? String
             }
             
             self.saveButtonValidation()
@@ -75,8 +76,28 @@ class EventVenueLocationVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func btnSaveAction (_ sender: UIButton) {
+        
+        self.view.endEditing(true)
+        
         if btnSave.isSelected == true {
-            self.performSegue(withIdentifier: "venuePhotosSegue", sender: nil)
+            
+            (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).setValue(txtStreet.text, forKey: "Street")
+            (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).setValue(txtUnit.text, forKey: "Unit")
+            (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).setValue(txtCity.text, forKey: "City")
+            (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).setValue(txtState.text, forKey: "State")
+            (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).setValue(txtPostal.text, forKey: "PostalCode")
+            (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).setValue(txtCountry.text, forKey: "Country")
+            
+            
+            APESuperHUD.showOrUpdateHUD(loadingIndicator: .standard, message: "", presentingView: self.view)
+            EventProfile.insertUpdateEventData(dictEventDetail: dictCreateEventDetail) { (errors: [NSError]?) in
+                
+                APESuperHUD.removeHUD(animated: true, presentingView: self.view, completion: nil)
+                if errors == nil {
+                    
+                    self.performSegue(withIdentifier: "venuePhotosSegue", sender: nil)
+                }
+            }
         }
     }
     

@@ -8,10 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "NSDictionary+NullReplacement.h"
 
 @interface ObjectiveCMethods : NSObject
 
-+(NSString *)findUniqueSavePath;
++ (NSArray*)decodePolylineWithString:(NSString *)encodedString;
+
++(NSString *) findUniqueSavePath;
 +(UIImage *)scaleAndRotateImage:(UIImage *)image;
+
++ (NSMutableArray *)arrayByReplacingNullsWithBlanks:(NSArray *)arrData;
++ (NSMutableDictionary *)dictionaryByReplacingNullsWithBlanks:(NSDictionary *)dictData;
 
 @end

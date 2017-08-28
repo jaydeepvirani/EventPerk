@@ -76,6 +76,7 @@
                                                                        doneBlock:doneBlock
                                                                      cancelBlock:cancelBlock
                                                                           origin:view];
+    picker.minuteInterval = 15;
     [picker showActionSheetPicker];
     return picker;
 }

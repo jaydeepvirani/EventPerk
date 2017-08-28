@@ -9,6 +9,10 @@
 import UIKit
 import Photos
 //import BSImagePicker
+import AWSDynamoDB
+import AWSMobileHubHelper
+import AWSCognitoIdentityProvider
+import APESuperHUD
 
 class VenuePhotosVC: UIViewController, UIActionSheetDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
@@ -24,6 +28,11 @@ class VenuePhotosVC: UIViewController, UIActionSheetDelegate, UIImagePickerContr
     var dictCreateEventDetail = NSMutableDictionary()
     var arrPhotos = NSMutableArray()
     var isLongPressGestureEnable = false
+    
+    var intPhotoUploadingIndex = 0
+    var isEditedPhoto = false
+    
+    fileprivate var manager: AWSUserFileManager!
     
     //MARK:- View Life Cycle
     override func viewDidLoad() {
@@ -56,6 +65,8 @@ class VenuePhotosVC: UIViewController, UIActionSheetDelegate, UIImagePickerContr
         
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(VenuePhotosVC.longPressed(sender:)))
         self.colPhotos.addGestureRecognizer(longPressRecognizer)
+        
+        manager = AWSUserFileManager.defaultUserFileManager()
     }
     
     //MARK:- Button TouchUp
@@ -81,16 +92,15 @@ class VenuePhotosVC: UIViewController, UIActionSheetDelegate, UIImagePickerContr
     @IBAction func btnDoneAction (_ sender: UIButton) {
         
         if btnDone.isSelected == true {
-            dictCreateEventDetail.setValue(arrPhotos, forKey: "VenuePhotos")
             
-            let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
-            self.navigationController!.popToViewController(viewControllers[viewControllers.count - 4], animated: true)
+            self.loopPhoto()
         }
     }
     
-    //MARK:- Button TouchUp
+    //MARK: Cell Events
     @IBAction func btnCrossAction (_ sender: UIButton) {
         
+        isEditedPhoto = true
         arrPhotos.removeObject(at: sender.tag)
         isLongPressGestureEnable = false
         colPhotos.reloadData()
@@ -109,6 +119,8 @@ class VenuePhotosVC: UIViewController, UIActionSheetDelegate, UIImagePickerContr
         
         if ((arrPhotos.object(at: indexPath.row+1)) as AnyObject).isKind(of: UIImage.self) {
             cell.imgVenue.image = arrPhotos.object(at: indexPath.row+1) as? UIImage
+        }else if arrPhotos.object(at: indexPath.row+1) as! String != " " {
+            cell.imgVenue.sd_setImage(with: NSURL(string: arrPhotos.object(at: indexPath.row+1) as! String) as URL!)
         }
         
         cell.btnCross.tag = indexPath.row+1
@@ -186,10 +198,11 @@ class VenuePhotosVC: UIViewController, UIActionSheetDelegate, UIImagePickerContr
     //MARK: ImagePicker Delegate
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        if arrPhotos.count != 0 && !((arrPhotos.object(at: 0)) as AnyObject).isKind(of: UIImage.self) {
+        if arrPhotos.count != 0 && arrPhotos.object(at: 0) as? String == " " {
             arrPhotos.removeAllObjects()
         }
         
+        isEditedPhoto = true
         
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             arrPhotos.add(pickedImage)
@@ -210,22 +223,25 @@ class VenuePhotosVC: UIViewController, UIActionSheetDelegate, UIImagePickerContr
             constNoteViewHeight.constant = 0
             btnDone.isSelected = true
             btnDone.backgroundColor = UIColor.init(red: 0.0/255.0, green: 255.0/255.0, blue: 102.0/255.0, alpha: 1.0)
+            
+            if ((arrPhotos.object(at: 0)) as AnyObject).isKind(of: UIImage.self) {
+                self.imgPhoto.image = self.arrPhotos.object(at: 0) as? UIImage
+            }else if arrPhotos.object(at: 0) as! String != " " {
+                self.imgPhoto.sd_setImage(with: NSURL(string: arrPhotos.object(at: 0) as! String) as URL!)
+            }
+            
+            self.colPhotos.reloadData()
         }else{
             constNoteViewHeight.constant = 46
             btnDone.isSelected = false
             btnDone.backgroundColor = UIColor.red
-        }
-        
-        if arrPhotos.count != 0 {
-            self.imgPhoto.image = self.arrPhotos.object(at: 0) as? UIImage
-            self.colPhotos.reloadData()
         }
     }
     
     //MARK:- Gesture
     func longPressed(sender: UILongPressGestureRecognizer){
         
-        if arrPhotos.count != 0 && ((arrPhotos.object(at: 0)) as AnyObject).isKind(of: UIImage.self) {
+        if arrPhotos.count != 0 && arrPhotos.object(at: 0) as? String != " " {
             isLongPressGestureEnable = true
             colPhotos.reloadData()
         }
@@ -234,6 +250,73 @@ class VenuePhotosVC: UIViewController, UIActionSheetDelegate, UIImagePickerContr
     func tapped(sender: UITapGestureRecognizer){
         isLongPressGestureEnable = false
         colPhotos.reloadData()
+    }
+    
+    //MARK:- Upload Venue Photos
+    func loopPhoto(){
+        
+        if intPhotoUploadingIndex < arrPhotos.count && isEditedPhoto == true {
+            if ((arrPhotos.object(at: intPhotoUploadingIndex)) as AnyObject).isKind(of: UIImage.self) {
+                self.uploadVenuePhoto(img: (arrPhotos.object(at: intPhotoUploadingIndex) as? UIImage)!)
+            }else{
+                intPhotoUploadingIndex = intPhotoUploadingIndex + 1
+                self.loopPhoto()
+            }
+        }else{
+            
+            if isEditedPhoto == true {
+                dictCreateEventDetail.setValue(arrPhotos, forKey: "VenuePhotos")
+                
+                APESuperHUD.showOrUpdateHUD(loadingIndicator: .standard, message: "", presentingView: self.view)
+                EventProfile.insertUpdateEventData(dictEventDetail: dictCreateEventDetail) { (errors: [NSError]?) in
+                    
+                    APESuperHUD.removeHUD(animated: true, presentingView: self.view, completion: nil)
+                    if errors == nil {
+                        
+                        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+                        self.navigationController!.popToViewController(viewControllers[viewControllers.count - 4], animated: true)
+                    }
+                }
+            }else{
+                let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+                self.navigationController!.popToViewController(viewControllers[viewControllers.count - 4], animated: true)
+            }
+        }
+    }
+    
+    func uploadVenuePhoto(img: UIImage){
+        
+        APESuperHUD.showOrUpdateHUD(loadingIndicator: .standard, message: "", presentingView: self.view)
+        
+        var imgVenue: UIImage = UIImage()
+        imgVenue = ObjectiveCMethods.scaleAndRotateImage(img)
+        
+        let data = UIImagePNGRepresentation(imgVenue)!
+        
+        let strPhotoUrl = "uploads/\((dictCreateEventDetail.value(forKey: "id"))!)\(intPhotoUploadingIndex).png"
+        let localContent = manager.localContent(with: data, key: strPhotoUrl)
+        localContent.uploadWithPin(onCompletion: false, progressBlock: {[weak self] (content: AWSLocalContent, progress: Progress) in
+            
+            print("Inprogress")
+            
+            }, completionHandler: {[weak self] (content: AWSLocalContent?, error: Error?) in
+                if let error = error {
+                    print("Failed to upload an object. \(error)")
+                    APESuperHUD.removeHUD(animated: true, presentingView: (self?.view)!, completion: nil)
+                } else {
+                    
+                    print("success")
+                    
+                    self?.arrPhotos.replaceObject(at: (self?.intPhotoUploadingIndex)!, with: "https://s3-ap-southeast-1.amazonaws.com/eventperkios-userfiles-mobilehub-1122713487/\(strPhotoUrl)")
+                    
+                    self?.intPhotoUploadingIndex = (self?.intPhotoUploadingIndex)! + 1
+                    self?.loopPhoto()
+                    
+//                        self.arrPhotos.replaceObject(at: self.intPhotoUploadingIndex, with: "https://s3-ap-southeast-1.amazonaws.com/eventperkios-userfiles-mobilehub-1122713487/\(strPhotoUrl)")
+//                        self.intPhotoUploadingIndex = self.intPhotoUploadingIndex + 1
+//                        self.loopPhoto()
+                }
+        })
     }
 }
 

@@ -13,3 +13,5 @@
 #import "MLPAutoCompleteTextField.h"
 #import "UIPlaceHolderTextView.h"
 #import "UIImageViewModeScaleAspect.h"
+#import "ObjectiveCMethods.h"
+#import "UIImageView+WebCache.h"

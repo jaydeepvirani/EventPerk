@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import APESuperHUD
 
 class CreateEventStep5VC: UIViewController {
 
@@ -45,13 +46,15 @@ class CreateEventStep5VC: UIViewController {
         }
         if dictCreateEventDetail.value(forKey: "EventServices") != nil {
             
-            _ = ProjectUtilities.setUpIconsForServices(arrServices: dictCreateEventDetail.value(forKey: "EventServices") as! NSMutableArray, viewDragable: viewServices)
+            _ = ProjectUtilities.setUpIconsForServices(arrServices: dictCreateEventDetail.value(forKey: "EventServices") as! NSMutableArray, viewDragable: viewServices, size: 50)
             viewServices.bringSubview(toFront: btnEventServices)
         }
         
         tblAttributes.reloadData()
         
         self.checkAttributeValidation()
+        
+        self.rdv_tabBarController.setTabBarHidden(true, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -69,17 +72,44 @@ class CreateEventStep5VC: UIViewController {
     
     //MARK:- Button TouchUp
     @IBAction func btnBackAction (_ sender: UIButton) {
-        _ = self.navigationController?.popViewController(animated: true)
+        
+        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+        if viewControllers.count > 2 {
+            self.navigationController!.popToViewController(viewControllers[viewControllers.count - 6], animated: true)
+        }else{
+            _ = self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func btnPreviewAction (_ sender: UIButton) {
-//        if btnPreview.isSelected == true {
-            self.performSegue(withIdentifier: "previewEventProfileSegue", sender: nil)
-//        }
+        self.performSegue(withIdentifier: "previewEventProfileSegue", sender: nil)
     }
     
     @IBAction func btnOptionalInformationAction (_ sender: UIButton) {
         self.performSegue(withIdentifier: "optionalInformationSegue", sender: nil)
+    }
+    
+    @IBAction func btnStartAction (_ sender: UIButton) {
+        
+        if dictCreateEventDetail.value(forKey: "Status") as! String == "Incomplete" {
+           dictCreateEventDetail.setValue("Inprogress", forKey: "Status")
+        }
+        
+        APESuperHUD.showOrUpdateHUD(loadingIndicator: .standard, message: "", presentingView: self.view)
+        EventProfile.insertUpdateEventData(dictEventDetail: dictCreateEventDetail) { (errors: [NSError]?) in
+            
+            APESuperHUD.removeHUD(animated: true, presentingView: self.view, completion: nil)
+            if errors == nil {
+                
+                let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+                if viewControllers.count > 2 {
+                    self.navigationController!.popToViewController(viewControllers[viewControllers.count - 6], animated: true)
+                }else{
+                    _ = self.navigationController?.popViewController(animated: true)
+                }
+            }
+        }
+        
     }
     
     //MARK:- Tableview Delegate
@@ -113,8 +143,8 @@ class CreateEventStep5VC: UIViewController {
             }
         }else if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Event Date and Duration" {
             
-            if dictCreateEventDetail.value(forKey: "EventStartDate1") != nil {
-                cell.lblAttributeName.text = dictCreateEventDetail.value(forKey: "EventStartDate1") as? String
+            if dictCreateEventDetail.value(forKey: "EventStartDate") != nil {
+                cell.lblAttributeName.text = (ProjectUtilities.changeDateFormate(strDate: dictCreateEventDetail.value(forKey: "EventStartDate") as! String, strFormatter1: "MMM dd, yyyy hh:mm a", strFormatter2: "MMM dd, yyyy") as String) + " at " + (ProjectUtilities.changeDateFormate(strDate: dictCreateEventDetail.value(forKey: "EventStartDate") as! String, strFormatter1: "MMM dd, yyyy hh:mm a", strFormatter2: "hh:mm a") as String)
                 cell.lblAttributeDescription.text = dictRowData.value(forKey: "DateWhenAttributeChanged") as? String
                 
                 isNeedToSetDefaultTitle = true
@@ -125,6 +155,14 @@ class CreateEventStep5VC: UIViewController {
             if dictCreateEventDetail.value(forKey: "VenueLocation") != nil {
                 cell.lblAttributeName.text = dictCreateEventDetail.value(forKey: "VenueLocation") as? String
                 cell.lblAttributeDescription.text = dictRowData.value(forKey: "VenueWhenAttributeChanged") as? String
+                
+                isNeedToSetDefaultTitle = true
+            }
+        }else if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Sourcing Settings" {
+            
+            if dictCreateEventDetail.value(forKey: "SourcingOption") != nil {
+                cell.lblAttributeName.text = dictCreateEventDetail.value(forKey: "SourcingOption") as? String
+                cell.lblAttributeDescription.text = dictRowData.value(forKey: "SorurcingWhenAttributeChanged") as? String
                 
                 isNeedToSetDefaultTitle = true
             }
@@ -167,7 +205,7 @@ class CreateEventStep5VC: UIViewController {
         
         dictAttribute = NSMutableDictionary()
         dictAttribute.setValue("Event Budget", forKey: "AttributeTitle")
-        dictAttribute.setValue("Input budget for your event and each services", forKey: "AttributeDescription")
+        dictAttribute.setValue("input budget for your event or each services", forKey: "AttributeDescription")
         dictAttribute.setValue("Edit budget of event and each services", forKey: "BudgetWhenAttributeChanged")
         arrAttributes.add(dictAttribute)
         
@@ -177,7 +215,7 @@ class CreateEventStep5VC: UIViewController {
         dictAttribute.setValue("Edit date and time of your event", forKey: "DateWhenAttributeChanged")
         arrAttributes.add(dictAttribute)
         
-        if dictCreateEventDetail.value(forKey: "HaveVenue") as! String == "true" {
+        if dictCreateEventDetail.value(forKey: "HaveVenue") as! String == "Yes" {
             dictAttribute = NSMutableDictionary()
             dictAttribute.setValue("Event Venue", forKey: "AttributeTitle")
             dictAttribute.setValue("Input the location of your event venue", forKey: "AttributeDescription")
@@ -188,6 +226,7 @@ class CreateEventStep5VC: UIViewController {
         dictAttribute = NSMutableDictionary()
         dictAttribute.setValue("Sourcing Settings", forKey: "AttributeTitle")
         dictAttribute.setValue("Other vendors must send engagement requests", forKey: "AttributeDescription")
+        dictAttribute.setValue("Edit sourcing setting", forKey: "SorurcingWhenAttributeChanged")
         arrAttributes.add(dictAttribute)
         
         dictCreateEventDetail.setValue(arrAttributes, forKey: "EventAttributes")
@@ -234,7 +273,7 @@ class CreateEventStep5VC: UIViewController {
             isNeedToSetNoteView = false
         }
         
-        if dictCreateEventDetail.value(forKey: "HaveVenue") as! String == "true" && dictCreateEventDetail.value(forKey: "VenueLocation") == nil {
+        if dictCreateEventDetail.value(forKey: "HaveVenue") as! String == "Yes" && dictCreateEventDetail.value(forKey: "VenueLocation") == nil {
             
             isAllAttributeFulfilled = false
         }else{
@@ -248,12 +287,8 @@ class CreateEventStep5VC: UIViewController {
         }
         
         if isAllAttributeFulfilled == true {
-            btnPreview.backgroundColor = UIColor.init(red: 0.0/255.0, green: 255.0/255.0, blue: 102.0/255.0, alpha: 1.0)
-            btnPreview.isSelected = true
             constStartButtonHeight.constant = 40
         }else{
-            btnPreview.backgroundColor = UIColor.red
-            btnPreview.isSelected = false
             constStartButtonHeight.constant = 0
         }
         
@@ -268,7 +303,6 @@ class CreateEventStep5VC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "eventDescriptionSegue" {
-            
             let vc: EventDescriptionVC = segue.destination as! EventDescriptionVC
             vc.dictCreateEventDetail = dictCreateEventDetail
         }else if segue.identifier == "eventServiceListSegue" {

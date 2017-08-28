@@ -175,7 +175,7 @@ class ProfileViewController: UIViewController,UICollectionViewDelegate,UICollect
             DispatchQueue.main.async(execute: {
             
                 if task.error != nil {
-                    NSLog("\(task.error)")
+                    NSLog("\(task.error!)")
                 } else {
                     
                     let response = task.result! as AWSCognitoIdentityUserGetDetailsResponse

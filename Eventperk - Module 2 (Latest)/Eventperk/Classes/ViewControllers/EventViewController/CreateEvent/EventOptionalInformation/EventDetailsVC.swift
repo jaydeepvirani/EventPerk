@@ -46,15 +46,15 @@ class EventDetailsVC: UIViewController {
         
         super.viewWillDisappear(true)
         
-        if isFromEventDetail {
-            
-            if dictCreateEventDetail.value(forKey: "NumberOfGuest") as? String != lblGuestCount.text  {
-               
-                dictCreateEventDetail.setValue(lblGuestCount.text, forKey: "NumberOfGuest")
-                EventProfile.insertUpdateEventData(dictEventDetail: dictCreateEventDetail) { (errors: [NSError]?) in
-                }
-            }
-        }
+//        if isFromEventDetail {
+//            
+//            if dictCreateEventDetail.value(forKey: "NumberOfGuest") as? String != lblGuestCount.text  {
+//               
+//                dictCreateEventDetail.setValue(lblGuestCount.text, forKey: "NumberOfGuest")
+//                EventProfile.insertUpdateEventData(dictEventDetail: dictCreateEventDetail) { (errors: [NSError]?) in
+//                }
+//            }
+//        }
     }
     
     //MARK:- Initialization
@@ -79,14 +79,15 @@ class EventDetailsVC: UIViewController {
             lblAdditional.text = dictCreateEventDetail.value(forKey: "TheAdditional") as? String
         }
         
-        if isFromEventDetail == true{
-            constGuestCountViewHeight.constant = 88
-            if dictCreateEventDetail.value(forKey: "NumberOfGuest") != nil {
-                lblGuestCount.text = dictCreateEventDetail.value(forKey: "NumberOfGuest") as? String
-            }
-        }else{
-            constGuestCountViewHeight.constant = 0
-        }
+        constGuestCountViewHeight.constant = 0
+//        if isFromEventDetail == true{
+//            constGuestCountViewHeight.constant = 88
+//            if dictCreateEventDetail.value(forKey: "NumberOfGuest") != nil {
+//                lblGuestCount.text = dictCreateEventDetail.value(forKey: "NumberOfGuest") as? String
+//            }
+//        }else{
+//            constGuestCountViewHeight.constant = 0
+//        }
     }
     
     //MARK:- Button TouchUp

@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import MapKit
+import CountryPicker
 
 class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSearchTextFieldDelegate, UIScrollViewDelegate, UITextFieldDelegate {
 
@@ -22,12 +23,17 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var btnNext: UIButton!
     
+    @IBOutlet var viewPicker: UIView!
+    @IBOutlet var pickerCountry: UIPickerView!
+    
     @IBOutlet var constNoteViewHeight: NSLayoutConstraint!
     @IBOutlet var constMapViewHeight: NSLayoutConstraint!
     
     //MARK: Other Objects
     var dictCreateEventDetail = NSMutableDictionary()
     var dictLocationInDetail = NSMutableDictionary()
+    var arrCountryNames = NSArray()
+    var arrCountryCodes = NSArray()
     var annotation = MKPointAnnotation()
     var isFromCreateEventStep5 = false
     
@@ -67,10 +73,11 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
             txtAddress.strCities = ""
         }else{
             txtAddress.strCities = "&types=(cities)&components=country:sg"
+            
+            mapView.isHidden = true
         }
         
         Constants.appDelegate.locationManager.startUpdatingLocation()
-//        self.getAddressFromLocation()
         viewLocationInput.layer.cornerRadius = 20
         
         let location = CLLocationCoordinate2D(latitude: Constants.appDelegate.latitude, longitude: Constants.appDelegate.longitude)
@@ -92,6 +99,13 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
         }else{
             constNoteViewHeight.constant = 0
             viewVenueTypeDescription.isHidden = true
+            
+            arrCountryNames = CountryPicker.countryNames() as NSArray
+            arrCountryCodes = CountryPicker.countryCodes() as NSArray
+            
+            txtAddress.isEnabled = false
+            
+            self.getAddressFromLocation()
         }
         
         if Constants.ScreenSize.SCREEN_HEIGHT == 667 {
@@ -155,28 +169,28 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
                     
                     var strAddress = ""
                     
-                    if self.isFromCreateEventStep5 == true {
-                        if containsPlacemark.subThoroughfare != nil {
-                            strAddress = strAddress + containsPlacemark.subThoroughfare! + " "
-                            self.dictLocationInDetail.setValue(containsPlacemark.subThoroughfare, forKey: "Unit")
-                        }
-                        if containsPlacemark.thoroughfare != nil {
-                            strAddress = strAddress + containsPlacemark.thoroughfare! + " "
-                            self.dictLocationInDetail.setValue(containsPlacemark.thoroughfare, forKey: "Street")
-                        }
-                    }
-                    if containsPlacemark.locality != nil {
-                        strAddress = strAddress + containsPlacemark.locality! + " "
-                        self.dictLocationInDetail.setValue(containsPlacemark.locality, forKey: "City")
-                    }
-                    if containsPlacemark.administrativeArea != nil {
-                        strAddress = strAddress + containsPlacemark.administrativeArea! + " "
-                        self.dictLocationInDetail.setValue(containsPlacemark.administrativeArea, forKey: "State")
-                    }
-                    if self.isFromCreateEventStep5 == true && containsPlacemark.postalCode != nil {
-                        strAddress = strAddress + containsPlacemark.postalCode! + " "
-                        self.dictLocationInDetail.setValue(containsPlacemark.postalCode, forKey: "PostalCode")
-                    }
+//                    if self.isFromCreateEventStep5 == true {
+//                        if containsPlacemark.subThoroughfare != nil {
+//                            strAddress = strAddress + containsPlacemark.subThoroughfare! + " "
+//                            self.dictLocationInDetail.setValue(containsPlacemark.subThoroughfare, forKey: "Unit")
+//                        }
+//                        if containsPlacemark.thoroughfare != nil {
+//                            strAddress = strAddress + containsPlacemark.thoroughfare! + " "
+//                            self.dictLocationInDetail.setValue(containsPlacemark.thoroughfare, forKey: "Street")
+//                        }
+//                    }
+//                    if containsPlacemark.locality != nil {
+//                        strAddress = strAddress + containsPlacemark.locality! + " "
+//                        self.dictLocationInDetail.setValue(containsPlacemark.locality, forKey: "City")
+//                    }
+//                    if containsPlacemark.administrativeArea != nil {
+//                        strAddress = strAddress + containsPlacemark.administrativeArea! + " "
+//                        self.dictLocationInDetail.setValue(containsPlacemark.administrativeArea, forKey: "State")
+//                    }
+//                    if self.isFromCreateEventStep5 == true && containsPlacemark.postalCode != nil {
+//                        strAddress = strAddress + containsPlacemark.postalCode! + " "
+//                        self.dictLocationInDetail.setValue(containsPlacemark.postalCode, forKey: "PostalCode")
+//                    }
                     if containsPlacemark.country != nil {
                         strAddress = strAddress + containsPlacemark.country!
                         self.dictLocationInDetail.setValue(containsPlacemark.country, forKey: "Country")
@@ -263,8 +277,48 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
         }
     }
     
-    //MARK:- TextField Delegate
+    //MARK:- PickerView
+    func numberOfComponentsInPickerView(_ pickerView: UIPickerView) -> Int {
+        return 1
+    }
     
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return arrCountryNames.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 40
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
+        
+        let myView = UIView(frame: CGRect.init(x: 0, y: 0, width: pickerView.bounds.width - 30, height: 40))
+        
+        let myImageView = UIImageView(frame: CGRect.init(x: 0, y: 0, width: 30, height: 20))
+        myImageView.contentMode = UIViewContentMode.scaleAspectFit
+        let imagePath: String = "CountryPicker.bundle/\(arrCountryCodes.object(at: row) as! String)"
+        if UIImage.self.responds(to: #selector(UIImage.init(named:in:compatibleWith:))){
+            myImageView.image = UIImage(named: imagePath, in: Bundle(for: CreateEventStep3VC.self), compatibleWith: nil)
+        } else {
+            myImageView.image = UIImage(named: imagePath)
+        }
+        
+        let myLabel = UILabel(frame: CGRect.init(x: 60, y: 0, width: pickerView.bounds.width - 90, height: 40))
+        myLabel.text = arrCountryNames.object(at: row) as? String
+        
+        myView.addSubview(myLabel)
+        myView.addSubview(myImageView)
+        
+        return myView
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        txtAddress.text = arrCountryNames.object(at: row) as? String
+        self.dictLocationInDetail.setValue(txtAddress.text, forKey: "Country")
+    }
+    
+    //MARK:- TextField Delegate
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         dictLocationInDetail = NSMutableDictionary()

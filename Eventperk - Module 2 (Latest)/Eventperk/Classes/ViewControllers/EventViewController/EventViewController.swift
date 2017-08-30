@@ -62,22 +62,22 @@ class EventViewController: UIViewController {
     
     func getEventList() {
         
-        APESuperHUD.showOrUpdateHUD(loadingIndicator: .standard, message: "", presentingView: self.view)
-        EventProfile.getEventList({ (response: NSMutableArray, success:Bool) in
-            print(response)
-            
-            APESuperHUD.removeHUD(animated: true, presentingView: self.view, completion: nil)
-            
-            if success {
-                self.viewNoEventView.isHidden = true
-                self.viewEvent.isHidden = false
-                self.arrEventList = response.mutableCopy() as! NSMutableArray
-                self.tblEventList.reloadData()
-            }else {
+//        APESuperHUD.showOrUpdateHUD(loadingIndicator: .standard, message: "", presentingView: self.view)
+//        EventProfile.getEventList({ (response: NSMutableArray, success:Bool) in
+//            print(response)
+//            
+//            APESuperHUD.removeHUD(animated: true, presentingView: self.view, completion: nil)
+//            
+//            if success {
+//                self.viewNoEventView.isHidden = true
+//                self.viewEvent.isHidden = false
+//                self.arrEventList = response.mutableCopy() as! NSMutableArray
+//                self.tblEventList.reloadData()
+//            }else {
                 self.viewNoEventView.isHidden = false
                 self.viewEvent.isHidden = true
-            }
-        })
+//            }
+//        })
     }
     
     //MARK:- Tableview Delegate

@@ -21,6 +21,8 @@ class EventCharacteristicsVC: UIViewController {
     @IBOutlet var lblGuest: UILabel!
     @IBOutlet var lblVenue: UILabel!
     
+    @IBOutlet var viewDescription: UIView!
+    
     //MARK: Other Objects
     var dictCreateEventDetail = NSMutableDictionary()
     
@@ -46,6 +48,10 @@ class EventCharacteristicsVC: UIViewController {
         }
         lblGuest.text = dictCreateEventDetail.value(forKey: "NumberOfGuest") as? String
         lblVenue.text = dictCreateEventDetail.value(forKey: "HaveVenue") as? String
+        
+        if dictCreateEventDetail.value(forKey: "Status") as! String != "Incomplete" {
+            viewDescription.isHidden = true
+        }
     }
     
     //MARK:- Button TouchUp
@@ -100,8 +106,8 @@ class EventCharacteristicsVC: UIViewController {
     
     @IBAction func btnEventCharacteristicsOptionsAction (_ sender: UIButton) {
         
+        var intSelection = 0
         if dictCreateEventDetail.value(forKey: "Status") as! String == "Incomplete" {
-            var intSelection = 0
             if sender.tag == 1 {
                 
                 if lblEventType.text == "Corporate"{
@@ -149,33 +155,13 @@ class EventCharacteristicsVC: UIViewController {
                     return
                 }, cancel: { ActionMultipleStringCancelBlock in return }, origin: sender)
                 
-            }else if sender.tag == 4 {
-                
-                let arrGuest = NSMutableArray()
-                for i in 0 ..< 10000 {
-                    arrGuest.add("\(i)")
-                }
-                
-                let index = (arrGuest as AnyObject).index(of: lblGuest.text!)
-                if index != NSNotFound {
-                    intSelection = index
-                }
-                
-                ActionSheetMultipleStringPicker.show(withTitle: "Selece country", rows: [arrGuest], initialSelection: [intSelection], doneBlock: {
-                    picker, indexes, values in
-                    let selecedValue = values as? Array<Any>
-                    self.lblGuest.text = selecedValue?[0] as? String
-                    self.validateSaveButton()
-                    return
-                }, cancel: { ActionMultipleStringCancelBlock in return }, origin: sender)
-                
             }else if sender.tag == 5 {
                 
                 if lblVenue.text == "No" {
                     intSelection = 1
                 }
                 
-                ActionSheetMultipleStringPicker.show(withTitle: "Selece country", rows: [["Yes", "No"]], initialSelection: [intSelection], doneBlock: {
+                ActionSheetMultipleStringPicker.show(withTitle: "Selece venue option", rows: [["Yes", "No"]], initialSelection: [intSelection], doneBlock: {
                     picker, indexes, values in
                     let selecedValue = values as? Array<Any>
                     self.lblVenue.text = selecedValue?[0] as? String
@@ -184,6 +170,28 @@ class EventCharacteristicsVC: UIViewController {
                 }, cancel: { ActionMultipleStringCancelBlock in return }, origin: sender)
                 
             }
+        }
+        
+        if sender.tag == 4 {
+            
+            let arrGuest = NSMutableArray()
+            for i in 0 ..< 10000 {
+                arrGuest.add("\(i)")
+            }
+            
+            let index = (arrGuest as AnyObject).index(of: lblGuest.text!)
+            if index != NSNotFound {
+                intSelection = index
+            }
+            
+            ActionSheetMultipleStringPicker.show(withTitle: "Selece number of guest", rows: [arrGuest], initialSelection: [intSelection], doneBlock: {
+                picker, indexes, values in
+                let selecedValue = values as? Array<Any>
+                self.lblGuest.text = selecedValue?[0] as? String
+                self.validateSaveButton()
+                return
+            }, cancel: { ActionMultipleStringCancelBlock in return }, origin: sender)
+            
         }
     }
     

@@ -30,6 +30,7 @@
 		2C0CCDAC1F51AA6C00A42573 /* EventSnoozedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0CCDAB1F51AA6C00A42573 /* EventSnoozedVC.swift */; };
 		2C2145DA1F5330A200DC5215 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2145D91F5330A200DC5215 /* Social.framework */; };
 		2C38167C1F2888BA00B1A363 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C38167B1F2888BA00B1A363 /* Constants.swift */; };
+		2C39B5CE1F5752C70039B1F2 /* CountryPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C39B5CD1F5752C70039B1F2 /* CountryPicker.bundle */; };
 		2C4A3BB91F309CD20047D22E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4A3BB81F309CD20047D22E /* MapKit.framework */; };
 		2C4A3BBB1F309E030047D22E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4A3BBA1F309E030047D22E /* CoreLocation.framework */; };
 		2C53ECB11F2F588C002B8916 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53ECB01F2F588C002B8916 /* EventViewController.swift */; };
@@ -226,6 +227,7 @@
 		2C0CCDAB1F51AA6C00A42573 /* EventSnoozedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventSnoozedVC.swift; sourceTree = "<group>"; };
 		2C2145D91F5330A200DC5215 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		2C38167B1F2888BA00B1A363 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2C39B5CD1F5752C70039B1F2 /* CountryPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CountryPicker.bundle; sourceTree = "<group>"; };
 		2C4A3BB81F309CD20047D22E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2C4A3BBA1F309E030047D22E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2C53ECB01F2F588C002B8916 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
@@ -820,6 +822,7 @@
 		EE62A5031EB30EEE00E2C6E1 /* 3rdPartyController */ = {
 			isa = PBXGroup;
 			children = (
+				2C39B5CD1F5752C70039B1F2 /* CountryPicker.bundle */,
 				2C0106B01F4D930600F4D350 /* SDWebImage */,
 				EEF36EEE1F3C71BC004D60D1 /* CVCalendar */,
 				E1FE5E941F3B976400D79400 /* UIImageViewModeScaleAspect */,
@@ -1116,6 +1119,7 @@
 				EED89AA61EB75E1E009155E0 /* PhotoCollectionViewCell.xib in Resources */,
 				EEB191AB1EB88AD900CEC946 /* FollowViewController.xib in Resources */,
 				35A037831E844AB500D1F43F /* SFUIText-Bold.otf in Resources */,
+				2C39B5CE1F5752C70039B1F2 /* CountryPicker.bundle in Resources */,
 				35FE071A1E81BA2B00255602 /* Calibri.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

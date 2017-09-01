@@ -168,17 +168,10 @@ class PreviewEventProfileVC: UIViewController {
     }
     
     @IBAction func btnShareAction (_ sender: UIButton) {
-        let strTitle = "Title: \(dictCreateEventDetail.value(forKey: "EventTitle") as! String)\n"
-        let strStartDate = "Start date: \(dictCreateEventDetail.value(forKey: "EventStartDate") as! String)\n"
         
-        var strVenue = ""
-        if dictCreateEventDetail.value(forKey: "HaveVenue") as! String == "Yes" {
-            strVenue = "Venue: \(dictCreateEventDetail.value(forKey: "VenueLocation") as! String)"
-        }
+        let strText = "\(dictCreateEventDetail.value(forKey: "EventTitle") as! String): I'm hosting this \(dictCreateEventDetail.value(forKey: "EventCategory") as! String) event on \(dictCreateEventDetail.value(forKey: "EventStartDate") as! String). Visit my event profile and show some contributions with "
         
-        let strType = "Event type: \(dictCreateEventDetail.value(forKey: "EventCategory") as! String)"
-        
-        let textToShare:Array = [strTitle, strStartDate, strVenue, strType] as [Any]
+        let textToShare:Array = [strText, NSURL.init(string: "http:///www.eventperk.com")!] as [Any]
         let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
         

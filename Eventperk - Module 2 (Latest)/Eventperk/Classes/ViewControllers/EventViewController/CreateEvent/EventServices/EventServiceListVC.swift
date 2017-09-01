@@ -230,7 +230,8 @@ class EventServiceListVC: UIViewController, UIGestureRecognizerDelegate, UITextV
                 
                 viewTextInputView.isHidden = false
                 textViewInput.becomeFirstResponder()
-                
+                textViewInput.text = selectedServiceView?.strTags
+                lblTextInputTitle.text = selectedServiceView?.strServiceType
 //                self.setUpServiceTagsView()
 //                
 //                if viewServicesIcon.isHidden == false {
@@ -240,7 +241,6 @@ class EventServiceListVC: UIViewController, UIGestureRecognizerDelegate, UITextV
 //                    viewServicesIcon.isHidden = false
 //                    viewServicesTags.isHidden = true
 //                }
-                textViewInput.text = selectedServiceView?.strTags
             }
             
         }else if sender.tag == 4 {

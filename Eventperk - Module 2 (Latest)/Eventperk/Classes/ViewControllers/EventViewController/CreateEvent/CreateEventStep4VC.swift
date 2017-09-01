@@ -14,17 +14,14 @@ class CreateEventStep4VC: UIViewController {
     //MARK:- Outlet Declaration
     @IBOutlet var lblTitle: UILabel!
     @IBOutlet var lblGuestCount: UILabel!
+    @IBOutlet var lblVenue: UILabel!
     
-    @IBOutlet var btnYesVenue: UIButton!
-    @IBOutlet var btnNoVenue: UIButton!
+    @IBOutlet var sldrGuest: UISlider!
     
     @IBOutlet var constDescriptionViewHeight: NSLayoutConstraint!
-    @IBOutlet var constVenueViewHeight: NSLayoutConstraint!
     
     //MARK: Other Objects
     var dictCreateEventDetail = NSMutableDictionary()
-    var isFromEventDetail = false
-    
     
     //MARK:- View Life Cycle
     override func viewDidLoad() {
@@ -39,18 +36,6 @@ class CreateEventStep4VC: UIViewController {
     
     //MARK:- Initialization
     func initialization() {
-        btnYesVenue.isSelected = true
-        
-        if isFromEventDetail == true {
-            lblTitle.text = "Pax"
-            
-            constDescriptionViewHeight.constant = 0
-            constVenueViewHeight.constant = 0
-            
-            if dictCreateEventDetail.value(forKey: "NumberOfGuest") != nil {    
-                lblGuestCount.text = dictCreateEventDetail.value(forKey: "NumberOfGuest") as? String
-            }
-        }
     }
     
     //MARK:- Button TouchUp
@@ -58,27 +43,17 @@ class CreateEventStep4VC: UIViewController {
         _ = self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func btnGuestCountAction (_ sender: UIButton) {
+    @IBAction func sliderValueDidChanged (_ sender: UISlider) {
         
-        var intCount = Int(lblGuestCount.text!)
-        if sender.tag == 1{
-            if intCount != 0 {
-                intCount = intCount! - 1
-            }
-        }else{
-            intCount = intCount! + 1
-        }
-        lblGuestCount.text = "\(String(describing: intCount!))"
+        lblGuestCount.text = "\(Int(sender.value))"
     }
     
-    @IBAction func btnVenueOptionAction (_ sender: UIButton) {
+    @IBAction func btnVenueOptionSwitchAction (_ sender: UISwitch) {
         
-        btnYesVenue.isSelected = false
-        btnNoVenue.isSelected = false
-        if sender == btnYesVenue {
-            btnYesVenue.isSelected = true
+        if sender.isOn {
+            lblVenue.text = "Yes"
         }else{
-            btnNoVenue.isSelected = true
+            lblVenue.text = "No"
         }
         
         if dictCreateEventDetail.value(forKey: "EventAttributes") != nil {
@@ -92,23 +67,15 @@ class CreateEventStep4VC: UIViewController {
     
     @IBAction func btnNextAction (_ sender: UIButton) {
         
-        if isFromEventDetail == true {
-            dictCreateEventDetail.setValue(lblGuestCount.text, forKey: "NumberOfGuest")
-        }else{
-            dictCreateEventDetail.setValue(lblGuestCount.text, forKey: "NumberOfGuest")
-            dictCreateEventDetail.setValue(btnYesVenue.isSelected == true ? "Yes" : "No", forKey: "HaveVenue")
-        }
+        dictCreateEventDetail.setValue(lblGuestCount.text, forKey: "NumberOfGuest")
+        dictCreateEventDetail.setValue(lblVenue.text, forKey: "HaveVenue")
         APESuperHUD.showOrUpdateHUD(loadingIndicator: .standard, message: "", presentingView: self.view)
         EventProfile.insertUpdateEventData(dictEventDetail: dictCreateEventDetail) { (errors: [NSError]?) in
             
             APESuperHUD.removeHUD(animated: true, presentingView: self.view, completion: nil)
             if errors == nil {
                 
-                if self.isFromEventDetail == true {
-                    _ = self.navigationController?.popViewController(animated: true)
-                }else{
-                    self.performSegue(withIdentifier: "createEventStep5Segue", sender: nil)
-                }
+                self.performSegue(withIdentifier: "createEventStep5Segue", sender: nil)
             }
         }
     }

@@ -86,9 +86,6 @@ class EventTotalBudgetVC: UIViewController, UITextFieldDelegate {
         
         btnSave.layer.cornerRadius = 10
         
-        viewEventBudget.layer.borderWidth = 1
-        viewEventBudget.layer.borderColor = UIColor.init(red: 95.0/255.0, green: 95.0/255.0, blue: 95.0/255.0, alpha: 1.0).cgColor
-        
         self.setupTapGestures()
         
         viewBudgetEntry.isHidden = true
@@ -96,8 +93,6 @@ class EventTotalBudgetVC: UIViewController, UITextFieldDelegate {
         btnSetTotalEventBudget.layer.cornerRadius = 20
         btnSetIndividualServiceBudget.layer.cornerRadius = 20
         
-//        btnSetTotalEventBudget.layer.borderColor = UIColor.init(red: 255.0/255.0, green: 153.0/255.0, blue: 51.0/255.0, alpha: 1.0).cgColor
-//        btnSetTotalEventBudget.layer.borderWidth = 1
         btnSetIndividualServiceBudget.layer.borderColor = UIColor.init(red: 255.0/255.0, green: 153.0/255.0, blue: 51.0/255.0, alpha: 1.0).cgColor
         btnSetIndividualServiceBudget.layer.borderWidth = 1
     }

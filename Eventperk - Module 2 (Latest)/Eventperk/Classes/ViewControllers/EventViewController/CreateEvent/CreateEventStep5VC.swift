@@ -92,7 +92,12 @@ class CreateEventStep5VC: UIViewController {
     @IBAction func btnStartAction (_ sender: UIButton) {
         
         if dictCreateEventDetail.value(forKey: "Status") as! String == "Incomplete" {
-           dictCreateEventDetail.setValue("Inprogress", forKey: "Status")
+            
+            if dictCreateEventDetail.value(forKey: "SourcingOption") as! String == "Don't use Eventperk sourcing" {
+                dictCreateEventDetail.setValue("Snoozed", forKey: "Status")
+            }else{
+                dictCreateEventDetail.setValue("Inprogress", forKey: "Status")
+            }
         }
         
         APESuperHUD.showOrUpdateHUD(loadingIndicator: .standard, message: "", presentingView: self.view)
@@ -188,7 +193,7 @@ class CreateEventStep5VC: UIViewController {
             self.performSegue(withIdentifier: "dateAndDurationSegue", sender: nil)
         }else if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Event Venue" {
             
-            self.performSegue(withIdentifier: "venueSegue", sender: nil)
+            self.performSegue(withIdentifier: "venueLocationSegue", sender: nil)
         }else if (arrAttributes.object(at: indexPath.row) as! NSMutableDictionary).value(forKey: "AttributeTitle") as! String == "Sourcing Settings" {
             
             self.performSegue(withIdentifier: "sourcingOptionsSegue", sender: nil)
@@ -314,10 +319,10 @@ class CreateEventStep5VC: UIViewController {
         }else if segue.identifier == "dateAndDurationSegue" {
             let vc: EventDateAndDurationVC = segue.destination as! EventDateAndDurationVC
             vc.dictCreateEventDetail = dictCreateEventDetail
-        }else if segue.identifier == "venueSegue" {
-            let vc: CreateEventStep3VC = segue.destination as! CreateEventStep3VC
+        }else if segue.identifier == "venueLocationSegue" {
+            let vc: EventVenueLocationVC = segue.destination as! EventVenueLocationVC
             vc.dictCreateEventDetail = dictCreateEventDetail
-            vc.isFromCreateEventStep5 = true
+//            vc.isFromCreateEventStep5 = true
         }else if segue.identifier == "optionalInformationSegue" {
             let vc: EventOptionalInformation = segue.destination as! EventOptionalInformation
             vc.dictCreateEventDetail = dictCreateEventDetail
@@ -328,7 +333,6 @@ class CreateEventStep5VC: UIViewController {
             let vc: PreviewEventProfileVC = segue.destination as! PreviewEventProfileVC
             vc.dictCreateEventDetail = dictCreateEventDetail
         }
-        
     }
 }
 

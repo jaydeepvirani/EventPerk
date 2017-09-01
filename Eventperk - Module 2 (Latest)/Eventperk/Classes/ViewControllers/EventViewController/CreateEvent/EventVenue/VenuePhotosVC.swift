@@ -274,12 +274,12 @@ class VenuePhotosVC: UIViewController, UIActionSheetDelegate, UIImagePickerContr
                     if errors == nil {
                         
                         let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
-                        self.navigationController!.popToViewController(viewControllers[viewControllers.count - 4], animated: true)
+                        self.navigationController!.popToViewController(viewControllers[viewControllers.count - 3], animated: true)
                     }
                 }
             }else{
                 let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
-                self.navigationController!.popToViewController(viewControllers[viewControllers.count - 4], animated: true)
+                self.navigationController!.popToViewController(viewControllers[viewControllers.count - 3], animated: true)
             }
         }
     }

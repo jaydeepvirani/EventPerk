@@ -62,22 +62,22 @@ class EventViewController: UIViewController {
     
     func getEventList() {
         
-//        APESuperHUD.showOrUpdateHUD(loadingIndicator: .standard, message: "", presentingView: self.view)
-//        EventProfile.getEventList({ (response: NSMutableArray, success:Bool) in
-//            print(response)
-//            
-//            APESuperHUD.removeHUD(animated: true, presentingView: self.view, completion: nil)
-//            
-//            if success {
-//                self.viewNoEventView.isHidden = true
-//                self.viewEvent.isHidden = false
-//                self.arrEventList = response.mutableCopy() as! NSMutableArray
-//                self.tblEventList.reloadData()
-//            }else {
+        APESuperHUD.showOrUpdateHUD(loadingIndicator: .standard, message: "", presentingView: self.view)
+        EventProfile.getEventList({ (response: NSMutableArray, success:Bool) in
+            print(response)
+            
+            APESuperHUD.removeHUD(animated: true, presentingView: self.view, completion: nil)
+            
+            if success {
+                self.viewNoEventView.isHidden = true
+                self.viewEvent.isHidden = false
+                self.arrEventList = response.mutableCopy() as! NSMutableArray
+                self.tblEventList.reloadData()
+            }else {
                 self.viewNoEventView.isHidden = false
                 self.viewEvent.isHidden = true
-//            }
-//        })
+            }
+        })
     }
     
     //MARK:- Tableview Delegate
@@ -106,7 +106,12 @@ class EventViewController: UIViewController {
         }
         
         cell.lblDescription.textColor = UIColor.black
-        if dict.value(forKey: "Status") as! String == "Incomplete" {
+        if dict.value(forKey: "SourcingOption") != nil && dict.value(forKey: "SourcingOption") as! String == "Don't use Eventperk sourcing" {
+            
+            cell.lblDescription.text = "Completed: Snoozed Till \(ProjectUtilities.stringFromDate(date: Date(), strFormatter: "dd MMM yyyy"))"
+            cell.lblDescription.textColor = UIColor.red
+            
+        }else if dict.value(forKey: "Status") as! String == "Incomplete" {
             let intStepsCount = self.findRemainingSteps(dict: dict)
             
             if intStepsCount == 0 {

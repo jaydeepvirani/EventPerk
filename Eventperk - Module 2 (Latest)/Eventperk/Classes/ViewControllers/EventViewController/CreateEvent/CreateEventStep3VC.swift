@@ -71,6 +71,7 @@ class CreateEventStep3VC: UIViewController, CLLocationManagerDelegate, PlaceSear
         
         if isFromCreateEventStep5 == true {
             txtAddress.strCities = ""
+            viewPicker.isHidden = true
         }else{
             txtAddress.strCities = "&types=(cities)&components=country:sg"
             

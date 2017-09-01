@@ -9,17 +9,24 @@
 import UIKit
 import APESuperHUD
 
-class EventVenueLocationVC: UIViewController, UITextFieldDelegate {
+class EventVenueLocationVC: UIViewController {
 
     //MARK:- Outlet Declaration
     @IBOutlet var btnSave: UIButton!
     
-    @IBOutlet var txtStreet: UITextField!
-    @IBOutlet var txtUnit: UITextField!
-    @IBOutlet var txtCity: UITextField!
-    @IBOutlet var txtState: UITextField!
-    @IBOutlet var txtPostal: UITextField!
-    @IBOutlet var txtCountry: UITextField!
+    @IBOutlet var lblVenuePhotos: UILabel!
+    @IBOutlet var lblCountry: UILabel!
+    @IBOutlet var lblStreet: UILabel!
+    @IBOutlet var lblUnit: UILabel!
+    @IBOutlet var lblCity: UILabel!
+    @IBOutlet var lblPostalCode: UILabel!
+    
+    @IBOutlet var viewTextInputView: UIView!
+    @IBOutlet var viewTextInputViewIn: UIView!
+    @IBOutlet var lblTextInputTitle: UILabel!
+    @IBOutlet var textViewInput: UITextView!
+    
+    @IBOutlet var constNoteViewHeight: NSLayoutConstraint!
     
     //MARK: Other Objects
     var dictCreateEventDetail = NSMutableDictionary()
@@ -28,6 +35,18 @@ class EventVenueLocationVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(dictCreateEventDetail)
+        
+        btnSave.layer.cornerRadius = 10
+        viewTextInputViewIn.layer.cornerRadius = 10
+        
+        viewTextInputView.frame = CGRect(x: 0, y: 0, width: Constants.ScreenSize.SCREEN_WIDTH, height: Constants.ScreenSize.SCREEN_HEIGHT)
+        self.view.addSubview(viewTextInputView)
+        viewTextInputView.isHidden = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
         self.initialization()
     }
     
@@ -37,42 +56,77 @@ class EventVenueLocationVC: UIViewController, UITextFieldDelegate {
     
     //MARK:- Initialization
     func initialization() {
-        btnSave.layer.cornerRadius = 10
+        
+        if dictCreateEventDetail.value(forKey: "VenuePhotos") != nil{
+            lblVenuePhotos.text = "Tap to edit images"
+        }
         
         if dictCreateEventDetail.value(forKey: "VenueLocationInDetail") != nil {
             
-            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "Street") != nil {
+            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSDictionary).value(forKey: "Country") != nil {
                 
-                txtStreet.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "Street") as? String
-            }
-            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "Unit") != nil {
-                
-                txtUnit.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "Unit") as? String
-            }
-            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "City") != nil {
-                
-                txtCity.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "City") as? String
-            }
-            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "State") != nil {
-                
-                txtState.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "State") as? String
-            }
-            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "PostalCode") != nil {
-                
-                txtPostal.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "PostalCode") as? String
-            }
-            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "Country") != nil {
-                
-                txtCountry.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).value(forKey: "Country") as? String
+                lblCountry.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSDictionary).value(forKey: "Country") as? String
             }
             
-            self.saveButtonValidation()
+            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSDictionary).value(forKey: "Street") != nil {
+                
+                lblStreet.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSDictionary).value(forKey: "Street") as? String
+                lblStreet.textColor = UIColor.black
+            }
+            
+            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSDictionary).value(forKey: "Unit") != nil {
+                
+                lblUnit.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSDictionary).value(forKey: "Unit") as? String
+                lblUnit.textColor = UIColor.black
+            }
+            
+            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSDictionary).value(forKey: "City") != nil {
+                
+                lblCity.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSDictionary).value(forKey: "City") as? String
+                lblCity.textColor = UIColor.black
+            }
+            
+            if (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSDictionary).value(forKey: "PostalCode") != nil {
+                
+                lblPostalCode.text = (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSDictionary).value(forKey: "PostalCode") as? String
+                lblPostalCode.textColor = UIColor.black
+            }
+            
+            constNoteViewHeight.constant = 0
         }
+        
     }
     
     //MARK:- Button TouchUp
     @IBAction func btnBackAction (_ sender: UIButton) {
         _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func btnSelectionAction (_ sender: UIButton) {
+        if sender.tag == 1 {
+            self.performSegue(withIdentifier: "venuePhotosSegue", sender: nil)
+        }else if sender.tag == 2 {
+            
+        }else if sender.tag == 3 {
+            viewTextInputView.isHidden = false
+            textViewInput.becomeFirstResponder()
+            lblTextInputTitle.text = "Street"
+        }else if sender.tag == 4 {
+            viewTextInputView.isHidden = false
+            textViewInput.becomeFirstResponder()
+            lblTextInputTitle.text = "Unit"
+        }else if sender.tag == 5 {
+            viewTextInputView.isHidden = false
+            textViewInput.becomeFirstResponder()
+            lblTextInputTitle.text = "City"
+        }else if sender.tag == 6 {
+            viewTextInputView.isHidden = false
+            textViewInput.becomeFirstResponder()
+            lblTextInputTitle.text = "Postal Code"
+        }
+        
+        textViewInput.tag = sender.tag
+        textViewInput.text = ""
     }
     
     @IBAction func btnSaveAction (_ sender: UIButton) {
@@ -81,12 +135,24 @@ class EventVenueLocationVC: UIViewController, UITextFieldDelegate {
         
         if btnSave.isSelected == true {
             
-            (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).setValue(txtStreet.text, forKey: "Street")
-            (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).setValue(txtUnit.text, forKey: "Unit")
-            (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).setValue(txtCity.text, forKey: "City")
-            (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).setValue(txtState.text, forKey: "State")
-            (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).setValue(txtPostal.text, forKey: "PostalCode")
-            (dictCreateEventDetail.value(forKey: "VenueLocationInDetail") as! NSMutableDictionary).setValue(txtCountry.text, forKey: "Country")
+            let dict = NSMutableDictionary()
+            
+            var str = ""
+            dict.setValue(lblCountry.text, forKey: "Country")
+            dict.setValue(lblStreet.text, forKey: "Street")
+            
+            if lblUnit.text != "e. g. # 08-12 Kingston Building" {
+                dict.setValue(lblUnit.text, forKey: "Unit")
+                
+                str = lblUnit.text!
+            }
+            dict.setValue(lblCity.text, forKey: "City")
+            dict.setValue(lblPostalCode.text, forKey: "PostalCode")
+            dictCreateEventDetail.setValue(dict, forKey: "VenueLocationInDetail")
+            
+            str = str + " " + lblStreet.text! + " " + lblCity.text! + " " + lblCountry.text! + " " + lblPostalCode.text!
+            
+            dictCreateEventDetail.setValue(str, forKey: "VenueLocation")
             
             
             APESuperHUD.showOrUpdateHUD(loadingIndicator: .standard, message: "", presentingView: self.view)
@@ -95,21 +161,41 @@ class EventVenueLocationVC: UIViewController, UITextFieldDelegate {
                 APESuperHUD.removeHUD(animated: true, presentingView: self.view, completion: nil)
                 if errors == nil {
                     
-                    self.performSegue(withIdentifier: "venuePhotosSegue", sender: nil)
+                    _ = self.navigationController?.popViewController(animated: true)
                 }
             }
         }
     }
     
-    //MARK:- UITextFieldDelegate
-    @IBAction func textFieldDidChanged(_ sender: UITextField) {
+    //MARK:- TextView Delegate
+    func textViewDidEndEditing(_ textView: UITextView) {
+        viewTextInputView.isHidden = true
+        
+        if textView.text != "" {
+            if textViewInput.tag == 3 {
+                lblStreet.text = textView.text
+                lblStreet.textColor = UIColor.black
+            }else if textViewInput.tag == 4 {
+                lblUnit.text = textView.text
+                lblUnit.textColor = UIColor.black
+            }else if textViewInput.tag == 5 {
+                lblCity.text = textView.text
+                lblCity.textColor = UIColor.black
+            }else if textViewInput.tag == 6 {
+                lblPostalCode.text = textView.text
+                lblPostalCode.textColor = UIColor.black
+            }
+            
+            constNoteViewHeight.constant = 0
+        }
+        
         self.saveButtonValidation()
     }
     
     //MARK:- Validation
     func saveButtonValidation() {
         
-        if txtCity.text == "" || txtState.text == "" || txtCountry.text == "" || txtPostal.text == "" {
+        if lblStreet.text == "e. g. 1 Kingston Road" || lblCity.text == "e. g. SIngapore" || lblPostalCode.text == "e. g. 2334501" {
             
             btnSave.isSelected = false
             btnSave.backgroundColor = UIColor.red

@@ -133,7 +133,7 @@ class EventDetailVC: UIViewController {
     @IBAction func btnVenueLocationAction (_ sender: UIButton) {
         if dictCreateEventDetail.value(forKey: "HaveVenue") as! String == "Yes" &&  dictCreateEventDetail.value(forKey: "VenueLocation") != nil  {
             
-            self.performSegue(withIdentifier: "venueSegue", sender: nil)
+            self.performSegue(withIdentifier: "venueLocationSegue", sender: nil)
         }
     }
     
@@ -155,10 +155,9 @@ class EventDetailVC: UIViewController {
         }else if segue.identifier == "dateAndDurationSegue" {
             let vc: EventDateAndDurationVC = segue.destination as! EventDateAndDurationVC
             vc.dictCreateEventDetail = dictCreateEventDetail
-        }else if segue.identifier == "venueSegue" {
-            let vc: CreateEventStep3VC = segue.destination as! CreateEventStep3VC
+        }else if segue.identifier == "venueLocationSegue" {
+            let vc: EventVenueLocationVC = segue.destination as! EventVenueLocationVC
             vc.dictCreateEventDetail = dictCreateEventDetail
-            vc.isFromCreateEventStep5 = true
         }else if segue.identifier == "sourcingOptionsSegue" {
             let vc: SourcingOptionsVC = segue.destination as! SourcingOptionsVC
             vc.dictCreateEventDetail = dictCreateEventDetail
